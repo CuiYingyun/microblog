@@ -1,0 +1,13 @@
+# Issues state to publish: "all"|"closed"|"open"
+state = "closed"
+
+# If the following labels is present, the issue will not be published
+excludedLabels = ["do-not-publish"]
+
+# In order to use Octokit with GitHub Enterprise, set the baseUrl option.
+# See: https://octokit.github.io/rest.js/v19#usage
+baseUrl = "https://api.github.com"
+
+# If turned on, set the `editURL` in the frontmatter
+# also turn on `showEdit = true` in `config/_default/params.toml`
+enableEditUrl = true

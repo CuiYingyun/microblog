@@ -1,0 +1,48 @@
+name: Fetch Issues and Publish Pages
+
+on:
+  # Run workflow automatically when issue has been closed
+  # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#issues
+  issues:
+    types: [closed]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+
+    # Skip if issue has label "do-not-publish"
+    if: |
+      github.event_name == 'workflow_dispatch' ||
+      (!contains(github.event.issue.labels.*.name, 'do-not-publish'))
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Setup Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+
+      - name: Fetch Issues
+        run: |
+          deno run --allow-net --allow-env --allow-read --allow-write scripts/main.ts
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+
+      - name: Build Hugo Site
+        run: hugo --gc --minify
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        if: ${{ github.ref == 'refs/heads/main' }}
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./public
