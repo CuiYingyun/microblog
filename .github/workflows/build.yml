@@ -36,7 +36,7 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: '0.145.1'   # ← 固定到旧版
+          hugo-version: '0.145.0'   # ← 固定到旧版
           extended: true
 
       - name: Build Hugo Site
