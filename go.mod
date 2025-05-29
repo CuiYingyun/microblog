@@ -1,4 +1,4 @@
-module github.com/imfing/issues-blog
+module github.com/CuiYingyun/microblog
 
 go 1.19
 
