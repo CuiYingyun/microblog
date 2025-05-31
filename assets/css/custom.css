@@ -422,4 +422,9 @@ html.dark body .content a {
 .dark .prose-neutral :where(a):not(:where([class~="not-prose"] *)) {
   color: #ffffff !important;
   text-decoration: none !important;
+}
+
+/* 调整 Markdown 正文的行间距 */
+.prose, article.prose {
+  line-height: 1.4; /* 只影响正文 */
 } 
