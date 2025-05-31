@@ -1,0 +1,128 @@
+/* Critical CSS - Core layout to prevent layout shift */
+body {
+  min-height: 100vh;
+}
+
+/* Microblog custom styles */
+.microblog-container {
+  max-width: 650px;
+  margin: 0 auto;
+  padding-top: 0rem; /* 添加上边距，因为去掉了页面标题 */
+}
+
+/* Dark mode background colors */
+.dark {
+  background-color: #0a0a0a !important; /* 纯黑色背景 */
+}
+
+.dark body {
+  background-color: #0a0a0a !important;
+}
+
+/* Adjust dark mode text colors for better contrast on black background */
+.dark .text-neutral-500 {
+  color: #a0a0a0 !important; /* 稍微提高文本亮度 */
+}
+
+.dark .text-neutral-400 {
+  color: #b0b0b0 !important;
+}
+
+.microblog-post {
+  /* 移除 transition 效果 */
+  /* transition: all 0.2s ease; */
+  
+  /* 添加虚线边框 */
+  border: 1px dashed #d1d5db;
+  padding: 1.0rem;
+  border-radius: 0.7rem;
+  
+  /* 调整间距 - 可以修改这个值来控制每个微博之间的距离 */
+  margin-bottom: 0.5rem; /* 从 1rem 改为 2rem */
+}
+
+/* 完全移除悬停效果 */
+.microblog-post:hover {
+  /* 注释掉所有悬停样式 */
+  /* background-color: rgba(0, 0, 0, 0.02); */
+  /* padding: 1rem; */
+  /* margin: -1rem; */
+  /* border-radius: 0.5rem; */
+}
+
+.dark .microblog-post:hover {
+  /* 注释掉暗色模式的悬停样式 */
+  /* background-color: rgba(255, 255, 255, 0.02); */
+}
+
+/* 暗色模式下的虚线边框颜色 */
+.dark .microblog-post {
+  border-color: #4b5563;
+  background-color: #0a0a0a; /* 微博卡片背景稍微亮一点 */
+}
+
+/* 日期和标签部分的样式 */
+.microblog-post .post-meta {
+  margin-top: 0.5rem; /* 增加与内容的间距 */
+  padding-top: 0.5rem; /* 额外的内边距 */
+ /*  border-top: 0px dashed #e5e7eb; 可选：添加一条分隔线 */
+}
+
+.dark .microblog-post .post-meta {
+  border-top-color: #374151; /* 暗色模式下的分隔线颜色 */
+}
+
+/* Remove link underlines in content */
+.microblog-post .prose a {
+  text-decoration: none;
+  color: rgb(59, 130, 246);
+}
+
+.microblog-post .prose a:hover {
+  text-decoration: underline;
+}
+
+/* Tag styling */
+.tag {
+  color: rgb(107, 114, 128);
+  font-weight: 500;
+}
+
+.dark .tag {
+  color: rgb(156, 163, 175);
+}
+
+/* Ensure images don't overflow */
+.microblog-post img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  margin: 1rem 0;
+}
+
+/* Code block styling */
+.microblog-post pre {
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+}
+
+/* Blockquote styling */
+.microblog-post blockquote {
+  border-left: 4px solid rgb(229, 231, 235);
+  padding-left: 1rem;
+  font-style: italic;
+}
+
+.dark .microblog-post blockquote {
+  border-left-color: rgb(55, 65, 81);
+}
+
+/* General prose container styles */
+.prose {
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+article.prose {
+  padding: 2rem 1rem;
+} 

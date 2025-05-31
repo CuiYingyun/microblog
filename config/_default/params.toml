@@ -18,33 +18,33 @@ enableCodeCopy = false
 [header]
   layout = "hybrid" # valid options: basic, hamburger, hybrid, custom
   # logo = "img/logo.jpg"
-  showTitle = true
+  showTitle = false
 
 [footer]
-  showCopyright = true
+  showCopyright = false
   showThemeAttribution = false
-  showAppearanceSwitcher = true
+  showAppearanceSwitcher = false
   showScrollToTop = true
 
 [homepage]
-  layout = "page" # valid options: page, profile, custom
-  showRecent = true
+  layout = "custom" # valid options: page, profile, custom
+  showRecent = false
 
 [article]
-  showDate = true
-  showDateUpdated = true
+  showDate = false
+  showDateUpdated = false
   showAuthor = false
   showBreadcrumbs = false
-  showDraftLabel = true
-  showEdit = true
+  showDraftLabel = false
+  showEdit = false
   # editURL = "https://github.com/username/repo/"
   editAppendPath = false
-  showHeadingAnchors = true
-  showPagination = true
+  showHeadingAnchors = false
+  showPagination = false
   invertPagination = false
-  showReadingTime = true
-  showTableOfContents = true
-  showTaxonomies = true
+  showReadingTime = false
+  showTableOfContents = false
+  showTaxonomies = false
   showWordCount = false
   showComments = false
   # sharingLinks = ["facebook", "twitter", "pinterest", "reddit", "linkedin", "email"]
@@ -53,7 +53,7 @@ enableCodeCopy = false
   showBreadcrumbs = false
   showSummary = false
   showTableOfContents = false
-  showTaxonomies = true
+  showTaxonomies = false
   groupByYear = false
   paginationWidth = 1
 

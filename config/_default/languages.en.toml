@@ -5,7 +5,7 @@ isoCode = "en"
 weight = 1
 rtl = false
 
-title = "Blog"
+title = "Cui.Yingyun"
 # logo = "img/logo.jpg"
 description = "Publish GitHub Issues as blog or newsletter via GitHub actions automatically"
 copyright = "© 2022 Fing"

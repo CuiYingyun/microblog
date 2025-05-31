@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>微博风格博客演示</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f9fafb;
+            margin: 0;
+            padding: 20px;
+            color: #1f2937;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 650px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            color: #111827;
+        }
+        
+        .microblog-post {
+            background: white;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s ease;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .microblog-post:hover {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transform: translateY(-1px);
+        }
+        
+        .microblog-post p {
+            margin: 0.5rem 0;
+        }
+        
+        .post-meta {
+            margin-top: 1rem;
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+        
+        .tag {
+            color: #6b7280;
+            font-weight: 500;
+            margin-right: 0.5rem;
+        }
+        
+        code {
+            background: #f3f4f6;
+            padding: 0.125rem 0.25rem;
+            border-radius: 0.25rem;
+            font-size: 0.875rem;
+        }
+        
+        pre {
+            background: #1f2937;
+            color: #f9fafb;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        
+        pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+        }
+        
+        blockquote {
+            border-left: 4px solid #e5e7eb;
+            padding-left: 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+            color: #4b5563;
+        }
+        
+        a {
+            color: #3b82f6;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>我的微博</h1>
+        
+        <article class="microblog-post">
+            <div class="content">
+                <p>今天天气真好！☀️</p>
+                <p>试试看微博风格的效果如何。这是一个简短的内容测试。</p>
+                <p>#生活记录 #日常</p>
+            </div>
+            <div class="post-meta">
+                <time>2024/01/20 10:00</time>
+                <span> · </span>
+                <span class="tag">#测试</span>
+                <span class="tag">#微博</span>
+            </div>
+        </article>
+        
+        <article class="microblog-post">
+            <div class="content">
+                <p>今天学习了 Go 语言的并发编程：</p>
+                <pre><code>func main() {
+    ch := make(chan int)
+    go func() {
+        ch <- 42
+    }()
+    fmt.Println(<-ch)
+}</code></pre>
+                <p>Go 的 channel 机制真的很优雅！</p>
+            </div>
+            <div class="post-meta">
+                <time>2024/01/20 11:00</time>
+                <span> · </span>
+                <span class="tag">#编程</span>
+                <span class="tag">#Go</span>
+            </div>
+        </article>
+        
+        <article class="microblog-post">
+            <div class="content">
+                <p>今天读到一句很有意思的话：</p>
+                <blockquote>
+                    "The best time to plant a tree was 20 years ago. The second best time is now."<br>
+                    — Chinese Proverb
+                </blockquote>
+                <p>种一棵树最好的时间是20年前，其次是现在。</p>
+                <p>很多事情都是这样，不要因为错过了最好的时机就放弃行动。现在开始，永远不晚。</p>
+                <p>#励志 #行动力</p>
+            </div>
+            <div class="post-meta">
+                <time>2024/01/20 12:00</time>
+                <span> · </span>
+                <span class="tag">#名言</span>
+                <span class="tag">#思考</span>
+            </div>
+        </article>
+    </div>
+</body>
+</html> 
