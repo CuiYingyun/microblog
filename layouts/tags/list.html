@@ -1,0 +1,19 @@
+{{ define "main" }}
+  <div class="max-w-prose mx-auto px-4 py-8">
+    <ul class="space-y-2">
+      {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
+        {{ with $.Site.GetPage (printf "/tags/%s" $name) }}
+          <li>
+            <a
+              href="{{ .RelPermalink }}"
+              class="flex items-center justify-between py-2 text-neutral-700 dark:text-neutral-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+            >
+              <span class="text-base">#{{ .Title }}</span>
+              <span class="text-sm text-neutral-500 dark:text-neutral-400">{{ len $taxonomy }}</span>
+            </a>
+          </li>
+        {{ end }}
+      {{ end }}
+    </ul>
+  </div>
+{{ end }} 
