@@ -8,13 +8,13 @@
         </div>
         <div class="post-meta text-sm text-neutral-500 dark:text-neutral-400">
           <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
-            {{ .Date.Format "2006/01/02 15:04" }}
+            {{ .Date.Format "2006-01-02" }}
           </time>
           {{ if .Params.tags }}
             <span class="mx-2">·</span>
             {{ range $index, $tag := .Params.tags }}
               {{- if $index -}}, {{ end -}}
-              <span class="tag">#{{ $tag }}</span>
+              <a href="{{ ($.Site.GetPage (printf "/tags/%s" .)).RelPermalink }}" class="tag">#{{ $tag }}</a>
             {{- end -}}
           {{ end }}
         </div>
@@ -26,12 +26,12 @@
       <nav class="flex justify-between mt-8">
         <div>
           {{ if $paginator.HasPrev }}
-            <a href="{{ $paginator.Prev.URL }}" class="text-primary-600 hover:underline">← 较新的内容</a>
+            <a href="{{ $paginator.Prev.URL }}" class="text-neutral-900 dark:text-white">← Newer Posts</a>
           {{ end }}
         </div>
         <div>
           {{ if $paginator.HasNext }}
-            <a href="{{ $paginator.Next.URL }}" class="text-primary-600 hover:underline">较早的内容 →</a>
+            <a href="{{ $paginator.Next.URL }}" class="text-neutral-900 dark:text-white">Older Posts →</a>
           {{ end }}
         </div>
       </nav>

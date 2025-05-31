@@ -3,10 +3,10 @@ title: "About Me"
 layout: "simple"
 ---
 
-# 👏 缘起
-这个 Microblog 是我记录思考和生活感悟的地方。
+# 👏 About
+This Microblog is where I record my thoughts and life insights.
 
 
-# 📫 联系方式
+# 📫 Contact
 - Email: mail@cuiyingyun.com
 

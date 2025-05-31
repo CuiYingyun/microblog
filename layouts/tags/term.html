@@ -1,0 +1,44 @@
+{{ define "main" }}
+  <div class="microblog-container">
+    {{/* 标签标题 */}}
+    <div class="text-center mb-8">
+      <h1 class="text-2xl font-bold tag-page-title">#{{ .Title }}</h1>
+      <p class="text-sm text-neutral-500 dark:text-neutral-400 mt-2">{{ len .Pages }} posts</p>
+    </div>
+    
+    {{/* 文章列表 */}}
+    <div class="space-y-6">
+      {{ range .Pages }}
+        <article class="microblog-post">
+          {{/* 文章内容 */}}
+          <div class="prose prose-neutral dark:prose-invert max-w-none">
+            {{ .Content }}
+          </div>
+          
+          {{/* 元数据部分 */}}
+          <div class="post-meta text-sm text-neutral-500 dark:text-neutral-400">
+            <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+              {{ .Date.Format "2006-01-02" }}
+            </time>
+            
+            {{/* 标签列表 */}}
+            {{ if .Params.tags }}
+              <span class="mx-2">·</span>
+              {{ range $index, $tag := .Params.tags }}
+                {{- if $index -}}, {{ end -}}
+                <a href="{{ ($.Site.GetPage (printf "/tags/%s" $tag)).RelPermalink }}" class="tag">#{{ $tag }}</a>
+              {{- end -}}
+            {{ end }}
+          </div>
+        </article>
+      {{ end }}
+    </div>
+    
+    {{/* 返回标签列表 */}}
+    <div class="text-center mt-8">
+      <a href="{{ $.Site.BaseURL }}tags/" class="back-to-tags">
+        ← Back to all tags
+      </a>
+    </div>
+  </div>
+{{ end }} 

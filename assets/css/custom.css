@@ -3,6 +3,44 @@ body {
   min-height: 100vh;
 }
 
+/* Global link styles - Remove all purple/blue colors */
+a {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+a:hover {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+/* Override any theme colors for links */
+a[class*="primary"],
+a[class*="accent"],
+.text-primary-600,
+.text-primary-500,
+.text-primary-400,
+.dark .text-primary-600,
+.dark .text-primary-500,
+.dark .text-primary-400,
+.hover\:text-primary-600:hover,
+.dark .hover\:text-primary-400:hover {
+  color: inherit !important;
+}
+
+/* Specific overrides for different link types */
+article a,
+.prose a,
+.content a {
+  color: #000000 !important;
+}
+
+.dark article a,
+.dark .prose a,
+.dark .content a {
+  color: #ffffff !important;
+}
+
 /* Microblog custom styles */
 .microblog-container {
   max-width: 650px;
@@ -26,6 +64,25 @@ body {
 
 .dark .text-neutral-400 {
   color: #b0b0b0 !important;
+}
+
+/* Tag page title styling - 强制覆盖所有其他样式 */
+.tag-page-title {
+  color: #000000 !important; /* 亮色模式：纯黑色 */
+}
+
+.dark .tag-page-title {
+  color: #ffffff !important; /* 暗色模式：纯白色 */
+}
+
+/* 返回链接样式 */
+.back-to-tags {
+  color: #000000 !important; /* 亮色模式：黑色 */
+  text-decoration: none !important;
+}
+
+.dark .back-to-tags {
+  color: #ffffff !important; /* 暗色模式：白色 */
 }
 
 .microblog-post {
@@ -75,21 +132,43 @@ body {
 /* Remove link underlines in content */
 .microblog-post .prose a {
   text-decoration: none;
-  color: rgb(59, 130, 246);
+  color: inherit; /* 改为继承父元素颜色，而不是蓝色 */
+  font-weight: 500; /* 稍微加粗以示区别 */
 }
 
 .microblog-post .prose a:hover {
-  text-decoration: underline;
+  text-decoration: none; /* 移除hover时的下划线 */
+  opacity: 0.8; /* hover时稍微变淡 */
+}
+
+/* 或者如果你想要链接保持黑白色 */
+.prose a {
+  color: #000000 !important;
+}
+
+.dark .prose a {
+  color: #ffffff !important;
 }
 
 /* Tag styling */
 .tag {
-  color: rgb(107, 114, 128);
+  color: rgb(107, 114, 128) !important;
   font-weight: 500;
+  text-decoration: none !important;
 }
 
 .dark .tag {
-  color: rgb(156, 163, 175);
+  color: rgb(156, 163, 175) !important;
+}
+
+/* Remove hover effects for tags */
+.tag:hover {
+  text-decoration: none !important;
+  color: rgb(107, 114, 128) !important;
+}
+
+.dark .tag:hover {
+  color: rgb(156, 163, 175) !important;
 }
 
 /* Ensure images don't overflow */
@@ -125,4 +204,60 @@ body {
 
 article.prose {
   padding: 2rem 1rem;
+}
+
+/* Remove hover underline from main navigation */
+nav a:hover,
+header a:hover,
+.group:hover .group-hover\\:underline {
+  text-decoration: none !important;
+}
+
+.decoration-primary-500 {
+  text-decoration: none !important;
+}
+
+/* Force remove any underline decoration on navigation links */
+header nav a {
+  text-decoration: none !important;
+}
+
+header nav a:hover {
+  text-decoration: none !important;
+}
+
+/* Remove underline from all group hover states */
+.group-hover\\:underline:hover,
+.group:hover .group-hover\\:underline,
+.group-hover\\:decoration-2:hover,
+.group:hover .group-hover\\:decoration-2,
+.group-hover\\:underline-offset-2:hover,
+.group:hover .group-hover\\:underline-offset-2 {
+  text-decoration: none !important;
+  text-underline-offset: 0 !important;
+  text-decoration-thickness: 0 !important;
+}
+
+/* Ensure no underline on any navigation link state */
+nav a,
+nav a:hover,
+nav a:focus,
+nav a:active,
+header a,
+header a:hover,
+header a:focus,
+header a:active {
+  text-decoration: none !important;
+}
+
+/* Force page title to always show Cui.Yingyun */
+head title {
+  content: "Cui.Yingyun" !important;
+}
+
+/* Override any dynamic title changes */
+.page-title,
+.site-title,
+h1.title {
+  display: none !important;
 } 
