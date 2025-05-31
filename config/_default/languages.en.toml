@@ -7,8 +7,8 @@ rtl = false
 
 title = "Cui.Yingyun"
 # logo = "img/logo.jpg"
-description = "Publish GitHub Issues as blog or newsletter via GitHub actions automatically"
-copyright = "© 2022 Fing"
+description = "Cui.Yingyun Microblog"
+copyright = "© 2022 Cui.Yingyun"
 
 dateFormat = "2 January 2006"
 

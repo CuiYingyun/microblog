@@ -1,51 +1,63 @@
-<h1 align="center">
-  💭 Issues Blog
-</h1>
+# 🌟 Cui.Yingyun's Microblog
 
-<p align="center">
-  Effortlessly write and publish on GitHub ✏️
-</p>
+A minimalist microblog powered by GitHub Issues, based on [issues-blog](https://imfing.github.io/issues-blog/).
 
-<p align="center">
-  <img alt="GitHub Issue" src="https://user-images.githubusercontent.com/5097752/203450000-350d643a-dcef-40cc-91c5-b5cd7998a63f.png" width="40%">
-&nbsp; &nbsp; 
-  <img alt="Published Website" src="https://user-images.githubusercontent.com/5097752/203450036-0f06fdc4-6409-4032-9421-210a2d6b78b5.png" width="40%">
-</p>
+## 📝 About
 
-## Overview
+This is Cui.Yingyun's personal microblog where thoughts, insights, and daily reflections are shared. Built using GitHub Issues as the content management system, it provides a seamless writing experience while maintaining a clean, distraction-free reading interface.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+## ✨ Features
 
+- **Microblog Style**: Full content display without clicking through titles
+- **GitHub Issues as CMS**: Write and manage posts directly from GitHub
+- **Mobile Friendly**: Capture thoughts on-the-go using GitHub mobile app
+- **Tag Support**: Organize content with GitHub labels
+- **Dark Mode**: Automatic theme switching for comfortable reading
+- **No Database Required**: All content stored in GitHub Issues
 
-🌎 [**Demo**](https://imfing.github.io/issues-blog/)
+## 🚀 How It Works
 
-Jog down ideas, notes or blog posts, publish it as website automatically. 
+1. **Write**: Create a new issue in the repository
+2. **Tag**: Add labels to categorize your content  
+3. **Publish**: GitHub Actions automatically converts issues to blog posts
+4. **Deploy**: Site updates automatically via GitHub Pages
 
-It uses [GitHub Issues](https://docs.github.com/en/issues/tracking-your-work-with-issues/quickstart) as [CMS](https://en.wikipedia.org/wiki/Content_management_system), [Hugo](https://gohugo.io/) and [GitHub Actions](https://docs.github.com/en/actions) for building the site. Hosted on [Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages) for free.
+## 🎨 Customizations
 
-## Features
+This microblog features several enhancements over the original template:
 
-- Easy to setup (see [Quick Start](https://imfing.github.io/issues-blog/posts/quick-start/))
-- Blazing fast build and deploy ⚡
-- Write from anywhere with GitHub web or [mobile](https://github.com/mobile)
-- Clean and responsive blog theme 🫧
+- **Inline Content Display**: Posts show full content directly on the homepage
+- **Minimalist Design**: Clean interface with subtle borders and proper spacing
+- **Unified Color Scheme**: No purple/primary colors, pure black and white aesthetic
+- **Right-aligned Metadata**: Date and tags positioned elegantly on the right
+- **English Interface**: All UI elements in English
 
-## Setup
+## 📱 Writing Workflow
 
-- [Quick Start](https://imfing.github.io/issues-blog/posts/quick-start/)
-- [Configuration](https://imfing.github.io/issues-blog/posts/configuration/)
+The beauty of using GitHub Issues:
+- ✍️ Write from anywhere - web, mobile app, or API
+- 🏷️ Organize with labels (automatically become tags)
+- 🔍 Built-in search functionality
+- 📅 Automatic timestamp and version history
+- 💬 Comments for reader engagement (if enabled)
 
-## Use Cases
+## 🛠️ Technical Stack
 
-- Blogging ✍️
-- Newsletter 📰
-- Notes / Today I Learned (TIL) 📒
-- Quick thoughts and ideas 💡
+- **Static Site Generator**: [Hugo](https://gohugo.io/) with Congo theme
+- **Content Source**: GitHub Issues via [imfing/issues-blog](https://imfing.github.io/issues-blog/)
+- **Deployment**: GitHub Pages / Vercel / Netlify
+- **CI/CD**: GitHub Actions
 
-❓ **Why not just manage contents using markdown files in a repository?**
+## 📄 License
 
-While storing and editing Markdown files in a GitHub repository is typical for building blog websites, using GitHub Issues brings these benefits:
-- more user-friendly interface with built-in labelling and search 🔍
-- accessible from mobile app and website, good for capturing thoughts 📱
-- streamlined workflow by leveraging [GitHub Projects](https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/quickstart-for-projects) and Issue status (open/closed)
-- free GitHub CDN for displaying images and videos
+This project is based on [issues-blog](https://github.com/imfing/issues-blog) by @imfing.
+
+## 🙏 Acknowledgments
+
+Special thanks to [@imfing](https://github.com/imfing) for creating the original issues-blog template that makes this microblog possible.
+
+---
+
+**Visit the blog**: [https://cuiyingyun.github.io/microblog/](https://cuiyingyun.github.io/microblog/)
+
+**Contact**: mail@cuiyingyun.com
