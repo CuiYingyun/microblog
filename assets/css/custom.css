@@ -3,6 +3,82 @@ body {
   min-height: 100vh;
 }
 
+/* FORCE remove ALL link colors - absolute override */
+* {
+  --color-primary-50: #f5f5f5 !important;
+  --color-primary-100: #e0e0e0 !important;
+  --color-primary-200: #bdbdbd !important;
+  --color-primary-300: #9e9e9e !important;
+  --color-primary-400: #757575 !important;
+  --color-primary-500: #616161 !important;
+  --color-primary-600: #424242 !important;
+  --color-primary-700: #303030 !important;
+  --color-primary-800: #212121 !important;
+  --color-primary-900: #000000 !important;
+}
+
+/* Kill ALL link colors with maximum specificity */
+html body * a,
+html body * a[href],
+html body * a[href^="mailto:"],
+html body * a[href^="http"],
+html body * a[href^="https"],
+html body article.prose a,
+html body article.prose a[href^="mailto:"],
+html body div.prose a,
+html body div.prose a[href^="mailto:"],
+html body .prose a,
+html body .prose a[href^="mailto:"],
+html body .prose-neutral a,
+html body .prose-neutral a[href^="mailto:"] {
+  color: #000000 !important;
+  text-decoration: none !important;
+  background: none !important;
+  border: none !important;
+}
+
+html.dark body * a,
+html.dark body * a[href],
+html.dark body * a[href^="mailto:"],
+html.dark body * a[href^="http"],
+html.dark body * a[href^="https"],
+html.dark body article.prose a,
+html.dark body article.prose a[href^="mailto:"],
+html.dark body div.prose a,
+html.dark body div.prose a[href^="mailto:"],
+html.dark body .prose a,
+html.dark body .prose a[href^="mailto:"],
+html.dark body .prose-neutral a,
+html.dark body .prose-neutral a[href^="mailto:"] {
+  color: #ffffff !important;
+  text-decoration: none !important;
+  background: none !important;
+  border: none !important;
+}
+
+/* Override ALL pseudo-classes */
+html body * a:link,
+html body * a:visited,
+html body * a:hover,
+html body * a:active,
+html body * a:focus,
+html body * a:focus-visible,
+html body * a:focus-within {
+  color: #000000 !important;
+  text-decoration: none !important;
+}
+
+html.dark body * a:link,
+html.dark body * a:visited,
+html.dark body * a:hover,
+html.dark body * a:active,
+html.dark body * a:focus,
+html.dark body * a:focus-visible,
+html.dark body * a:focus-within {
+  color: #ffffff !important;
+  text-decoration: none !important;
+}
+
 /* Global link styles - Remove all purple/blue colors */
 a {
   color: inherit !important;
@@ -39,6 +115,53 @@ article a,
 .dark .prose a,
 .dark .content a {
   color: #ffffff !important;
+}
+
+/* Force email links to be black/white */
+a[href^="mailto:"],
+a[href^="mailto:"]:hover,
+a[href^="mailto:"]:focus,
+a[href^="mailto:"]:active,
+a[href^="mailto:"]:visited {
+  color: #000000 !important;
+  text-decoration: none !important;
+}
+
+.dark a[href^="mailto:"],
+.dark a[href^="mailto:"]:hover,
+.dark a[href^="mailto:"]:focus,
+.dark a[href^="mailto:"]:active,
+.dark a[href^="mailto:"]:visited {
+  color: #ffffff !important;
+  text-decoration: none !important;
+}
+
+/* Override all possible link states */
+a:link,
+a:visited,
+a:hover,
+a:active,
+a:focus {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+.prose a:link,
+.prose a:visited,
+.prose a:hover,
+.prose a:active,
+.prose a:focus {
+  color: #000000 !important;
+  text-decoration: none !important;
+}
+
+.dark .prose a:link,
+.dark .prose a:visited,
+.dark .prose a:hover,
+.dark .prose a:active,
+.dark .prose a:focus {
+  color: #ffffff !important;
+  text-decoration: none !important;
 }
 
 /* Microblog custom styles */
@@ -260,4 +383,43 @@ head title {
 .site-title,
 h1.title {
   display: none !important;
+}
+
+/* Absolute final override for all links - highest specificity */
+html body * a,
+html body * a:link,
+html body * a:visited,
+html body * a:hover,
+html body * a:active,
+html body * a:focus,
+html body * a[href^="mailto:"],
+html body * a[href^="mailto:"]:hover {
+  color: currentColor !important;
+  text-decoration: none !important;
+}
+
+/* Ensure prose links in light/dark mode */
+html body .prose a,
+html body article a,
+html body .content a {
+  color: #000000 !important;
+}
+
+html.dark body .prose a,
+html.dark body article a,
+html.dark body .content a {
+  color: #ffffff !important;
+}
+
+/* Override Congo theme link colors */
+.prose :where(a):not(:where([class~="not-prose"] *)),
+.prose-neutral :where(a):not(:where([class~="not-prose"] *)) {
+  color: #000000 !important;
+  text-decoration: none !important;
+}
+
+.dark .prose :where(a):not(:where([class~="not-prose"] *)),
+.dark .prose-neutral :where(a):not(:where([class~="not-prose"] *)) {
+  color: #ffffff !important;
+  text-decoration: none !important;
 } 
