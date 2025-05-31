@@ -17,64 +17,74 @@ body {
   --color-primary-900: #000000 !important;
 }
 
-/* Kill ALL link colors with maximum specificity */
-html body * a,
-html body * a[href],
-html body * a[href^="mailto:"],
-html body * a[href^="http"],
-html body * a[href^="https"],
-html body article.prose a,
-html body article.prose a[href^="mailto:"],
-html body div.prose a,
-html body div.prose a[href^="mailto:"],
-html body .prose a,
-html body .prose a[href^="mailto:"],
-html body .prose-neutral a,
-html body .prose-neutral a[href^="mailto:"] {
+/* Kill ALL link colors with maximum specificity - BUT EXCLUDE TAGS */
+html body * a:not(.tag),
+html body * a[href]:not(.tag),
+html body * a[href^="mailto:"]:not(.tag),
+html body * a[href^="http"]:not(.tag),
+html body * a[href^="https"]:not(.tag),
+html body article.prose a:not(.tag),
+html body article.prose a[href^="mailto:"]:not(.tag),
+html body div.prose a:not(.tag),
+html body div.prose a[href^="mailto:"]:not(.tag),
+html body .prose a:not(.tag),
+html body .prose a[href^="mailto:"]:not(.tag),
+html body .prose-neutral a:not(.tag),
+html body .prose-neutral a[href^="mailto:"]:not(.tag) {
   color: #000000 !important;
   text-decoration: none !important;
   background: none !important;
   border: none !important;
 }
 
-html.dark body * a,
-html.dark body * a[href],
-html.dark body * a[href^="mailto:"],
-html.dark body * a[href^="http"],
-html.dark body * a[href^="https"],
-html.dark body article.prose a,
-html.dark body article.prose a[href^="mailto:"],
-html.dark body div.prose a,
-html.dark body div.prose a[href^="mailto:"],
-html.dark body .prose a,
-html.dark body .prose a[href^="mailto:"],
-html.dark body .prose-neutral a,
-html.dark body .prose-neutral a[href^="mailto:"] {
+/* 移除之前的特别排除规则，因为现在用:not(.tag)了 */
+/* html body * a.tag {
+  color: inherit !important;
+} */
+
+html.dark body * a:not(.tag),
+html.dark body * a[href]:not(.tag),
+html.dark body * a[href^="mailto:"]:not(.tag),
+html.dark body * a[href^="http"]:not(.tag),
+html.dark body * a[href^="https"]:not(.tag),
+html.dark body article.prose a:not(.tag),
+html.dark body article.prose a[href^="mailto:"]:not(.tag),
+html.dark body div.prose a:not(.tag),
+html.dark body div.prose a[href^="mailto:"]:not(.tag),
+html.dark body .prose a:not(.tag),
+html.dark body .prose a[href^="mailto:"]:not(.tag),
+html.dark body .prose-neutral a:not(.tag),
+html.dark body .prose-neutral a[href^="mailto:"]:not(.tag) {
   color: #ffffff !important;
   text-decoration: none !important;
   background: none !important;
   border: none !important;
 }
 
-/* Override ALL pseudo-classes */
-html body * a:link,
-html body * a:visited,
-html body * a:hover,
-html body * a:active,
-html body * a:focus,
-html body * a:focus-visible,
-html body * a:focus-within {
+/* 移除之前的特别排除规则，因为现在用:not(.tag)了 */
+/* html.dark body * a.tag {
+  color: inherit !important;
+} */
+
+/* Override ALL pseudo-classes - BUT EXCLUDE TAGS */
+html body * a:not(.tag):link,
+html body * a:not(.tag):visited,
+html body * a:not(.tag):hover,
+html body * a:not(.tag):active,
+html body * a:not(.tag):focus,
+html body * a:not(.tag):focus-visible,
+html body * a:not(.tag):focus-within {
   color: #000000 !important;
   text-decoration: none !important;
 }
 
-html.dark body * a:link,
-html.dark body * a:visited,
-html.dark body * a:hover,
-html.dark body * a:active,
-html.dark body * a:focus,
-html.dark body * a:focus-visible,
-html.dark body * a:focus-within {
+html.dark body * a:not(.tag):link,
+html.dark body * a:not(.tag):visited,
+html.dark body * a:not(.tag):hover,
+html.dark body * a:not(.tag):active,
+html.dark body * a:not(.tag):focus,
+html.dark body * a:not(.tag):focus-visible,
+html.dark body * a:not(.tag):focus-within {
   color: #ffffff !important;
   text-decoration: none !important;
 }
@@ -245,6 +255,7 @@ a:focus {
 .microblog-post .post-meta {
   margin-top: 0.5rem; /* 增加与内容的间距 */
   padding-top: 0.5rem; /* 额外的内边距 */
+  min-height: 1.5rem; /* 确保即使没有标签也有一定高度 */
  /*  border-top: 0px dashed #e5e7eb; 可选：添加一条分隔线 */
 }
 
@@ -273,26 +284,51 @@ a:focus {
   color: #ffffff !important;
 }
 
-/* Tag styling */
-.tag {
-  color: rgb(107, 114, 128) !important;
-  font-weight: 500;
+/* ==========================
+   TAG STYLING SECTION
+   确保标签颜色与日期保持一致
+   ========================== */
+
+/* 基础tag样式 - 继承父元素颜色 */
+.tag,
+a.tag {
+  color: inherit !important;
+  font-weight: inherit !important;
   text-decoration: none !important;
+  font-size: inherit !important;
 }
 
-.dark .tag {
-  color: rgb(156, 163, 175) !important;
-}
-
-/* Remove hover effects for tags */
+/* 确保所有状态下tag都继承颜色 */
+a.tag:link,
+a.tag:visited,
+a.tag:hover,
+a.tag:active,
+a.tag:focus,
 .tag:hover {
+  color: inherit !important;
   text-decoration: none !important;
-  color: rgb(107, 114, 128) !important;
 }
 
-.dark .tag:hover {
-  color: rgb(156, 163, 175) !important;
+/* 在post-meta容器中的tag样式 */
+.post-meta .tag,
+.post-meta a.tag,
+.text-neutral-500 a.tag,
+.dark .text-neutral-400 a.tag {
+  color: inherit !important;
 }
+
+/* 最高优先级 - 确保在任何情况下tag都继承颜色 */
+html body .post-meta a.tag,
+html.dark body .post-meta a.tag,
+html body article .post-meta a.tag,
+html.dark body article .post-meta a.tag {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+/* ==========================
+   END TAG STYLING SECTION
+   ========================== */
 
 /* Ensure images don't overflow */
 .microblog-post img {
@@ -385,15 +421,15 @@ h1.title {
   display: none !important;
 }
 
-/* Absolute final override for all links - highest specificity */
-html body * a,
-html body * a:link,
-html body * a:visited,
-html body * a:hover,
-html body * a:active,
-html body * a:focus,
-html body * a[href^="mailto:"],
-html body * a[href^="mailto:"]:hover {
+/* Absolute final override for all links - highest specificity - BUT EXCLUDE TAGS */
+html body * a:not(.tag),
+html body * a:not(.tag):link,
+html body * a:not(.tag):visited,
+html body * a:not(.tag):hover,
+html body * a:not(.tag):active,
+html body * a:not(.tag):focus,
+html body * a[href^="mailto:"]:not(.tag),
+html body * a[href^="mailto:"]:not(.tag):hover {
   color: currentColor !important;
   text-decoration: none !important;
 }
