@@ -4,7 +4,6 @@ A clean, distraction-free microblog powered by GitHub Issues and Hugo. Easily wr
 
 **Demo:** [Live Site](https://www.cuiyingyun.com/)
 
----
 
 ## ✨ Features
 
@@ -19,7 +18,6 @@ A clean, distraction-free microblog powered by GitHub Issues and Hugo. Easily wr
 - **Multilingual Support:** Theme supports 30+ languages out of the box
 - **Modern Hugo Features:** Utilizes latest Hugo capabilities for optimal performance
 
----
 
 ## 🚀 Quick Start
 
@@ -85,7 +83,6 @@ Once you have the basic setup working, use these instructions for local developm
    ```
    This fetches content from GitHub Issues and starts the dev server.
 
----
 
 ## 🛠️ Customization & Debugging
 
@@ -136,7 +133,6 @@ hugo --gc --minify
 ls -la public/
 ```
 
----
 
 ## 📁 Project Structure
 
@@ -164,7 +160,6 @@ ls -la public/
     └── main.ts          # GitHub Issues sync
 ```
 
----
 
 ## 🌍 Pages
 
@@ -173,7 +168,6 @@ ls -la public/
 - **Tags** (`/tags/`) – All tags
 - **About** (`/about/`) – About page
 
----
 
 ## 🎨 Appearance Switcher
 
@@ -185,7 +179,6 @@ ls -la public/
   - Uses localStorage for user preference
   - Responsive icon (sun/moon)
 
----
 
 ## 🧩 Common Issues
 
@@ -206,13 +199,20 @@ ls -la public/
   - Ensure `layouts/partials/extend-head.html` exists
   - Clear browser cache and refresh
 
----
 
 ## 🚢 Deployment Checklist
 
 **IMPORTANT:**
 > **Before deploying, always edit `config/_default/config.toml` and set `baseURL` to your own domain.**
 > If you skip this, domain mapping will not work correctly, even if you set up DNS or custom domains.
+
+**For Custom Domain Deployment:**
+> **If using a custom domain, you MUST update the CNAME configuration in `.github/workflows/build.yml`:**
+> ```yaml
+> - name: Add CNAME for custom domain
+>   run: echo 'your-domain.com' > public/CNAME # Replace with your domain
+> ```
+> Otherwise, every GitHub Actions run will reset your custom domain settings and cause deployment failures.
 
 **Remove test files before deploying:**
 ```bash
@@ -222,7 +222,3 @@ Or use:
 ```bash
 make clean
 ```
-
----
-
-**Contact:** mail@cuiyingyun.com
