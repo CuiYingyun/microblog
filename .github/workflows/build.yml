@@ -39,11 +39,14 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: '0.145.0'   # ← 固定到旧版
+          hugo-version: '0.145.0'   # Only support this version 
           extended: true
 
       - name: Build Hugo Site
         run: hugo --gc --minify
+
+      - name: Add CNAME for custom domain
+        run: echo 'www.cuiyingyun.com' > public/CNAME # For Custom Domain
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
