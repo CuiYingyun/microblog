@@ -3,7 +3,13 @@
 &lt;p>非格式化的文字的发散性太强了，它容易让阅读者不在一个聚焦的框架内思考问题。可视化的方式有助于理解的原因可能就是通过让焦点放在了一个非常特定的范围内。文字的特点反而是内容表达的范围特别广，这是它的优点，但有时候是缺点。&lt;/p>
 &lt;p>对于小说、表达人的感受的写作时应该使用纯文字。&lt;/p>
 &lt;p>对于技术型写作，用于表达一种事实性的观点，则应该多使用“图类数据”。&lt;/p></description></item><item><title>2025/06/15 软件与硬件</title><link>https://www.cuiyingyun.com/posts/20250615-%E8%BD%AF%E4%BB%B6%E4%B8%8E%E7%A1%AC%E4%BB%B6/</link><pubDate>Sun, 15 Jun 2025 00:00:00 +0000</pubDate><guid>https://www.cuiyingyun.com/posts/20250615-%E8%BD%AF%E4%BB%B6%E4%B8%8E%E7%A1%AC%E4%BB%B6/</guid><description>&lt;p>软件是逻辑上顺序的、硬件是逻辑上并行的。&lt;/p>
-&lt;p>两个东西通过互补的方式可以实现螺旋式上升。&lt;/p></description></item><item><title>2025/06/13 借鉴苹果的飞轮</title><link>https://www.cuiyingyun.com/posts/20250613-%E5%80%9F%E9%89%B4%E8%8B%B9%E6%9E%9C%E7%9A%84%E9%A3%9E%E8%BD%AE/</link><pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate><guid>https://www.cuiyingyun.com/posts/20250613-%E5%80%9F%E9%89%B4%E8%8B%B9%E6%9E%9C%E7%9A%84%E9%A3%9E%E8%BD%AE/</guid><description>&lt;h2 id="从苹果式飞轮到个人发展" class="relative group">从苹果式飞轮到个人发展 &lt;/h2>&lt;p>苹果通过「全栈自研—生态闭环—高溢价」等方式，形成了在商业、技术以及产品创新上的完美闭环，打造出了飞轮效应。这不仅为世界带来了优质产品，也为公司创造了大量财富。&lt;/p>
+&lt;p>两个东西通过互补的方式可以实现螺旋式上升。&lt;/p></description></item><item><title>2025/06/16 提示词设计技巧</title><link>https://www.cuiyingyun.com/posts/20250616-%E6%8F%90%E7%A4%BA%E8%AF%8D%E8%AE%BE%E8%AE%A1%E6%8A%80%E5%B7%A7/</link><pubDate>Sun, 15 Jun 2025 00:00:00 +0000</pubDate><guid>https://www.cuiyingyun.com/posts/20250616-%E6%8F%90%E7%A4%BA%E8%AF%8D%E8%AE%BE%E8%AE%A1%E6%8A%80%E5%B7%A7/</guid><description>&lt;h2 id="提示词设计技巧" class="relative group">提示词设计技巧 &lt;/h2>&lt;ol>
+&lt;li>先询问历史上某件事做得好的特点是什么&lt;/li>
+&lt;li>根据自身需求，对特点进行修改&lt;/li>
+&lt;li>提示大模型，将修改后的内容转换成可操作的提示词&lt;/li>
+&lt;li>如果有更大的任务提示词，将步骤 3 的提示词整合到更大的提示词，并指示大模型输出完整的提示词&lt;/li>
+&lt;/ol>
+&lt;p>整体思路就是通过手动调优到局部最优，达成全局最优。&lt;/p></description></item><item><title>2025/06/13 借鉴苹果的飞轮</title><link>https://www.cuiyingyun.com/posts/20250613-%E5%80%9F%E9%89%B4%E8%8B%B9%E6%9E%9C%E7%9A%84%E9%A3%9E%E8%BD%AE/</link><pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate><guid>https://www.cuiyingyun.com/posts/20250613-%E5%80%9F%E9%89%B4%E8%8B%B9%E6%9E%9C%E7%9A%84%E9%A3%9E%E8%BD%AE/</guid><description>&lt;h2 id="从苹果式飞轮到个人发展" class="relative group">从苹果式飞轮到个人发展 &lt;/h2>&lt;p>苹果通过「全栈自研—生态闭环—高溢价」等方式，形成了在商业、技术以及产品创新上的完美闭环，打造出了飞轮效应。这不仅为世界带来了优质产品，也为公司创造了大量财富。&lt;/p>
 &lt;p>苹果之所以能够实现飞轮效应，第一步必然是锚定了一个明确的发展方向（例如，打造极致体验的产品），并通过撬动该方向实现了飞轮的初始转动。&lt;/p>
 &lt;p>我的思考是，如何借鉴这一模式，将其映射到个人技术写作平台上。我的第一个锚定点，是打造一个深耕某一领域、能够提升读者认知层次的技术文章平台。这个平台不仅关注技术层面，更着眼于更高维度的设计层面。&lt;/p>
 &lt;p>同时，我希望这项工作能为我带来两个层面的自由：工作地点的自由与工作内容的自由。&lt;/p>
@@ -108,6 +114,4 @@
 &lt;p>难以坚持的原因在于它所需大量的时间，而这期间内你很难坚持自己不动摇。
 事实上大部分是时间我们都是在做浪费的事情，但其中少数你可能无意间坚持了下来，突然有一天意识到这东西带来的回报非常大。
 能够进行主动的长期主义，这是更为高级的层次了。&lt;/p>
-&lt;p>我希望我能花三年时间，在&lt;strong>学习与输出上形成正向循环&lt;/strong>。&lt;/p></description></item><item><title>2025/06/05</title><link>https://www.cuiyingyun.com/posts/20250605/</link><pubDate>Wed, 04 Jun 2025 00:00:00 +0000</pubDate><guid>https://www.cuiyingyun.com/posts/20250605/</guid><description>&lt;p>生活中大部分所谓的分歧，其实来自于语言的局限。最常见的，那就是双方对同一件事的「&lt;strong>定义&lt;/strong>」有所不同。&lt;/p>
-&lt;p>你说的 A，不是我说的 A。&lt;/p>
-&lt;p>比如「技术导向」、「商业公司」，不同公司都有各自的理解。当双方面对同一个词时，各自表述自己的理解，显然在前期会有摩擦。这些都是生活中我们的「一厢情愿」。&lt;/p></description></item></channel></rss>
+&lt;p>我希望我能花三年时间，在&lt;strong>学习与输出上形成正向循环&lt;/strong>。&lt;/p></description></item></channel></rss>
