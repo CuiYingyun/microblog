@@ -268,8 +268,14 @@
   }
 </style>
 
+{{/* Load html2canvas library for image generation */}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
 {{/* Extend functionality JavaScript */}}
 <script>
+// Global variable to store current article title
+let currentArticleTitle = '';
+
 document.addEventListener('DOMContentLoaded', function() {
   // Add event listeners to all extend buttons
   document.querySelectorAll('.extend-button').forEach(function(button) {
@@ -308,6 +314,8 @@ document.addEventListener('DOMContentLoaded', function() {
       
       if (action === 'copy-markdown') {
         copyAsMarkdown(button);
+      } else if (action === 'generate-share-image') {
+        generateShareImage(button);
       }
       
       // Close menu
@@ -432,9 +440,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     const typeStyles = type === 'success' 
       ? {
-          backgroundColor: '#10b981',
+          backgroundColor: '#8b5cf6',
           color: '#ffffff',
-          border: '1px solid #059669'
+          border: '1px solid #7c3aed'
         }
       : {
           backgroundColor: '#ef4444',
@@ -460,5 +468,301 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }, 3000);
   }
+
+  // Generate share image function
+  function generateShareImage(button) {
+    try {
+      const content = button.getAttribute('data-content');
+      const title = button.getAttribute('data-title');
+      const date = button.getAttribute('data-date');
+      
+      // Show modal
+      showShareImageModal(content, title, date);
+    } catch (error) {
+      console.error('Error generating share image:', error);
+      showCopyError('Failed to generate share image');
+    }
+  }
+
+  // Show share image modal
+  function showShareImageModal(content, title, date) {
+    const modal = document.getElementById('share-image-modal');
+    const articleContent = modal.querySelector('.share-article-content');
+    const shareDate = modal.querySelector('.share-date');
+    
+    // Store article title globally for filename
+    currentArticleTitle = title || '';
+    
+    // Process and format article content
+    const formattedContent = formatArticleContent(content, title);
+    articleContent.innerHTML = formattedContent;
+    
+    // Format and set date
+    const formattedDate = formatShareDate(date);
+    shareDate.textContent = formattedDate;
+    
+    // Show modal
+    modal.classList.remove('hidden');
+    setTimeout(() => {
+      modal.classList.add('show');
+    }, 10);
+  }
+
+  // Format article content with proper styling
+  function formatArticleContent(rawContent, title) {
+    if (!rawContent || rawContent.trim() === '') {
+      return '<p>No content available</p>';
+    }
+    
+    // Decode HTML entities
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = rawContent;
+    let content = tempDiv.textContent || tempDiv.innerText || '';
+    
+    // Convert Markdown-like syntax to HTML
+    let html = '';
+    
+    // Skip title - only include body content
+    
+    // Process content line by line
+    const lines = content.split('\n');
+    let inCodeBlock = false;
+    let codeBlockContent = '';
+    
+    for (let i = 0; i < lines.length; i++) {
+      let line = lines[i];
+      
+      // Handle code blocks
+      if (line.trim().startsWith('```')) {
+        if (inCodeBlock) {
+          // End code block
+          html += '<pre><code>' + escapeHtml(codeBlockContent.trim()) + '</code></pre>\n';
+          codeBlockContent = '';
+          inCodeBlock = false;
+        } else {
+          // Start code block
+          inCodeBlock = true;
+        }
+        continue;
+      }
+      
+      if (inCodeBlock) {
+        codeBlockContent += line + '\n';
+        continue;
+      }
+      
+      // Handle headings
+      if (line.trim().startsWith('### ')) {
+        html += '<h3>' + escapeHtml(line.trim().substring(4)) + '</h3>\n';
+      } else if (line.trim().startsWith('## ')) {
+        html += '<h2>' + escapeHtml(line.trim().substring(3)) + '</h2>\n';
+      } else if (line.trim().startsWith('# ')) {
+        html += '<h1>' + escapeHtml(line.trim().substring(2)) + '</h1>\n';
+      }
+      // Handle list items
+      else if (line.trim().startsWith('- ') || line.trim().startsWith('* ')) {
+        html += '<li>' + escapeHtml(line.trim().substring(2)) + '</li>\n';
+      }
+      // Handle numbered lists
+      else if (/^\d+\.\s/.test(line.trim())) {
+        html += '<li>' + escapeHtml(line.trim().replace(/^\d+\.\s/, '')) + '</li>\n';
+      }
+      // Handle inline code
+      else if (line.trim() !== '') {
+        let processedLine = escapeHtml(line.trim());
+        // Convert `code` to <code>code</code>
+        processedLine = processedLine.replace(/`([^`]+)`/g, '<code>$1</code>');
+        html += '<p>' + processedLine + '</p>\n';
+      }
+      // Handle empty lines
+      else {
+        html += '\n';
+      }
+    }
+    
+    return html;
+  }
+
+  // Format date for share image
+  function formatShareDate(dateString) {
+    if (!dateString) return '';
+    
+    try {
+      const date = new Date(dateString);
+      const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+      const weekday = weekdays[date.getDay()];
+      
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      
+      return `${year}/${month}/${day} (${weekday})`;
+    } catch (error) {
+      return dateString;
+    }
+  }
+
+  // Escape HTML entities
+  function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+
+  // Generate filename from article title
+  function getArticleFilename() {
+    if (!currentArticleTitle || currentArticleTitle.trim() === '') {
+      return 'share-image.png';
+    }
+    
+    // Clean the title for use as filename
+    let filename = currentArticleTitle
+      .trim()
+      .replace(/[^\w\s\-\u4e00-\u9fff]/g, '') // Keep only alphanumeric, spaces, hyphens, and Chinese characters
+      .replace(/\s+/g, '-') // Replace spaces with hyphens
+      .replace(/-+/g, '-') // Replace multiple hyphens with single hyphen
+      .replace(/^-+|-+$/g, ''); // Remove leading/trailing hyphens
+    
+    // Limit filename length
+    if (filename.length > 50) {
+      filename = filename.substring(0, 50);
+    }
+    
+    // Add .png extension
+    return filename + '.png';
+  }
+
+  // Close share image modal
+  function closeShareImageModal() {
+    const modal = document.getElementById('share-image-modal');
+    modal.classList.remove('show');
+    setTimeout(() => {
+      modal.classList.add('hidden');
+    }, 300);
+  }
+
+  // Download share image
+  function downloadShareImage() {
+    const shareCard = document.getElementById('share-card');
+    
+    // Show loading state
+    const downloadBtn = document.querySelector('.share-download-btn');
+    const originalText = downloadBtn.textContent;
+    downloadBtn.textContent = 'Generating...';
+    downloadBtn.disabled = true;
+    
+    html2canvas(shareCard, {
+      scale: 2,
+      backgroundColor: null,
+      useCORS: true,
+      allowTaint: true,
+      foreignObjectRendering: false
+    }).then(function(canvas) {
+      // Get article title for filename
+      const filename = getArticleFilename();
+      
+      // Create download link
+      const link = document.createElement('a');
+      link.download = filename;
+      link.href = canvas.toDataURL();
+      
+      // Trigger download
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      
+      // Reset button
+      downloadBtn.textContent = originalText;
+      downloadBtn.disabled = false;
+      
+      showCopySuccess('Share image downloaded successfully');
+    }).catch(function(error) {
+      console.error('Error generating image:', error);
+      downloadBtn.textContent = originalText;
+      downloadBtn.disabled = false;
+      showCopyError('Failed to generate image');
+    });
+  }
+
+  // Copy share image to clipboard
+  function copyShareImage() {
+    const shareCard = document.getElementById('share-card');
+    
+    // Show loading state
+    const copyBtn = document.querySelector('.share-copy-btn');
+    const originalText = copyBtn.textContent;
+    copyBtn.textContent = 'Copying...';
+    copyBtn.disabled = true;
+    
+    html2canvas(shareCard, {
+      scale: 2,
+      backgroundColor: null,
+      useCORS: true,
+      allowTaint: true,
+      foreignObjectRendering: false
+    }).then(function(canvas) {
+      // Convert canvas to blob
+      canvas.toBlob(function(blob) {
+        if (navigator.clipboard && window.ClipboardItem) {
+          // Use modern Clipboard API
+          const item = new ClipboardItem({ 'image/png': blob });
+          navigator.clipboard.write([item]).then(function() {
+            // Reset button
+            copyBtn.textContent = originalText;
+            copyBtn.disabled = false;
+            showCopySuccess('Share image copied to clipboard');
+          }).catch(function(error) {
+            console.error('Failed to copy image:', error);
+            copyBtn.textContent = originalText;
+            copyBtn.disabled = false;
+            showCopyError('Failed to copy image to clipboard');
+          });
+        } else {
+          // Fallback: show a message that copying is not supported
+          copyBtn.textContent = originalText;
+          copyBtn.disabled = false;
+          showCopyError('Image copy not supported in this browser');
+        }
+      }, 'image/png');
+    }).catch(function(error) {
+      console.error('Error generating image for copy:', error);
+      copyBtn.textContent = originalText;
+      copyBtn.disabled = false;
+      showCopyError('Failed to copy image');
+    });
+  }
+
+  // Add modal event listeners
+  document.addEventListener('click', function(e) {
+    // Close modal when clicking outside
+    if (e.target.classList.contains('share-modal')) {
+      closeShareImageModal();
+    }
+    
+    // Close modal when clicking close button
+    if (e.target.classList.contains('share-modal-close')) {
+      closeShareImageModal();
+    }
+    
+    // Download image when clicking download button
+    if (e.target.classList.contains('share-download-btn')) {
+      downloadShareImage();
+    }
+    
+    // Copy image when clicking copy button
+    if (e.target.classList.contains('share-copy-btn')) {
+      copyShareImage();
+    }
+  });
+
+  // Close modal with Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      const modal = document.getElementById('share-image-modal');
+      if (modal && !modal.classList.contains('hidden')) {
+        closeShareImageModal();
+      }
+    }
+  });
 });
 </script> 

@@ -25,6 +25,9 @@
             <div class="extend-menu-item" data-action="copy-markdown">
               Copy as Markdown
             </div>
+            <div class="extend-menu-item" data-action="generate-share-image">
+              Generate Share Image
+            </div>
           </div>
         </div>
       </article>
@@ -45,5 +48,36 @@
         </div>
       </nav>
     {{ end }}
+  </div>
+
+  {{/* Share Image Modal */}}
+  <div id="share-image-modal" class="share-modal hidden">
+    <div class="share-modal-overlay">
+      <div class="share-modal-container">
+        <div class="share-modal-header">
+          <h3 class="share-modal-title">Share Image Preview</h3>
+          <button class="share-modal-close">&times;</button>
+        </div>
+        <div class="share-modal-content">
+          <div id="share-card" class="share-card">
+            <div class="share-card-content">
+              <div class="share-article-content">
+                <!-- Article content will be inserted here -->
+              </div>
+            </div>
+            <div class="share-card-footer">
+              <div class="share-footer-info">
+                <span class="share-website">CuiYingyun.com</span>
+                <span class="share-date"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="share-modal-actions">
+          <button class="share-copy-btn">Copy</button>
+          <button class="share-download-btn">Download</button>
+        </div>
+      </div>
+    </div>
   </div>
 {{ end }} 
