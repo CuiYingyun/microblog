@@ -371,6 +371,24 @@ html.dark body article .post-meta a.tag {
   margin: 0;
 }
 
+/* 修复普通页面中的列表圆点对齐问题 */
+.prose ul,
+.prose ol {
+  list-style-position: outside; /* 确保列表标记在内容外部 */
+}
+
+.prose li {
+  /* 确保列表项正确对齐 */
+  vertical-align: baseline;
+}
+
+/* 精确控制普通页面列表标记的对齐 */
+.prose li::marker {
+  font-size: 1em;
+  line-height: 1;
+  vertical-align: baseline;
+}
+
 article.prose {
   padding: 2rem 1rem;
 }
@@ -787,36 +805,90 @@ html.dark body .content a {
   padding: 0 !important;
 }
 
-/* 分享卡片中的列表样式 */
+/* 分享卡片中的列表样式 - 彻底重写以确保对齐 */
 .share-article-content ul, 
 .share-article-content ol {
   margin: 1rem 0;
-  padding-left: 1.5rem;
-  line-height: 1.75;
+  padding-left: 0; /* 移除默认padding */
+  /* 使用与主内容相同的行高，确保对齐一致 */
+  line-height: var(--debug-line-height, 1.2) !important;
+  /* 移除默认的列表样式 */
+  list-style: none;
 }
 
-.share-article-content ul {
-  list-style-type: disc;
+.share-article-content ul li,
+.share-article-content ol li {
+  margin: 0.5rem 0;
+  /* 确保与父容器使用相同的行高 */
+  line-height: inherit !important;
+  position: relative;
+  padding-left: 1.5rem; /* 为自定义标记留出空间 */
+  /* 移除默认的list-item显示 */
+  display: block;
 }
 
+/* 为ul创建自定义圆点 */
+.share-article-content ul li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  top: 0;
+  /* 使用与文本相同的字体大小和行高 */
+  font-size: 1em;
+  line-height: inherit;
+  color: currentColor;
+  /* 确保圆点与文本基线对齐 */
+  height: 1em;
+  display: flex;
+  align-items: baseline;
+}
+
+/* 为ol创建自定义数字 */
 .share-article-content ol {
-  list-style-type: decimal;
+  counter-reset: list-counter;
 }
 
-.share-article-content li {
-  margin: 0.5rem 0;
-  display: list-item;
-  line-height: 1.75;
+.share-article-content ol li {
+  counter-increment: list-counter;
 }
 
-.share-article-content ul ul {
-  list-style-type: circle;
-  margin: 0.5rem 0;
+.share-article-content ol li::before {
+  content: counter(list-counter) ".";
+  position: absolute;
+  left: 0;
+  top: 0;
+  /* 使用与文本相同的字体大小和行高 */
+  font-size: 1em;
+  line-height: inherit;
+  color: currentColor;
+  /* 确保数字与文本基线对齐 */
+  height: 1em;
+  display: flex;
+  align-items: baseline;
 }
 
+/* 嵌套列表样式 */
+.share-article-content ul ul,
 .share-article-content ol ol {
-  list-style-type: lower-alpha;
   margin: 0.5rem 0;
+}
+
+/* 嵌套ul使用不同的标记 */
+.share-article-content ul ul li::before {
+  content: "◦"; /* 空心圆点 */
+}
+
+/* 嵌套ol使用字母编号 */
+.share-article-content ol ol {
+  counter-reset: nested-counter;
+}
+
+.share-article-content ol ol li {
+  counter-increment: nested-counter;
+}
+
+.share-article-content ol ol li::before {
+  content: counter(nested-counter, lower-alpha) ".";
 }
 
 /* 分享卡片中的代码样式 */

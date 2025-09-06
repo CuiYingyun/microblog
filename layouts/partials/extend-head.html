@@ -622,6 +622,16 @@ async function renderShareImageImproved() {
             el.style.lineHeight = (fontSize * DEBUG_CONFIG.lineHeight) + 'px';
           }
           
+          // 处理列表元素的行高 - 现在使用自定义列表样式
+          if (['UL', 'OL'].includes(el.tagName)) {
+            el.style.lineHeight = (fontSize * DEBUG_CONFIG.lineHeight) + 'px';
+          }
+          
+          if (el.tagName === 'LI') {
+            el.style.lineHeight = (fontSize * DEBUG_CONFIG.lineHeight) + 'px';
+            // 不需要设置display，因为我们使用的是block显示
+          }
+          
           // 移除其他元素的多余间距
           if (['DIV', 'SPAN', 'ARTICLE'].includes(el.tagName)) {
             el.style.lineHeight = (fontSize * DEBUG_CONFIG.lineHeight) + 'px';
