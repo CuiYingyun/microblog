@@ -176,7 +176,9 @@ a:focus {
 
 /* Microblog custom styles */
 .microblog-container {
+  max-width: 65ch; /* 与 Tailwind prose 默认宽度保持一致 */
   margin: 0 auto;
+  padding: 0 1rem; /* 添加左右内边距 */
   padding-top: 0rem; /* 添加上边距，因为去掉了页面标题 */
 }
 
@@ -365,7 +367,8 @@ html.dark body article .post-meta a.tag {
 
 /* General prose container styles */
 .prose {
-  margin: 0 auto;
+  max-width: none; /* 让内容占满容器宽度 */
+  margin: 0;
 }
 
 article.prose {
@@ -720,14 +723,20 @@ html.dark body .content a {
 
 .share-article-content {
   font-size: 1rem;
-  line-height: 1.75; /* 增加行高，避免文字重叠 */
+  line-height: var(--debug-line-height, 1.2) !important; /* 使用调试配置的行高 */
+  letter-spacing: var(--debug-letter-spacing, 0.01em); /* 使用调试配置的字符间距 */
   color: #111827;
   overflow-wrap: break-word;
   word-wrap: break-word;
+  word-break: break-word;
+  white-space: normal !important; /* 避免pre-wrap引入多余换行 */
   hyphens: auto;
   /* 防止文字大小随视口变化 */
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
+  /* 确保字体渲染清晰 */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .dark .share-article-content {
@@ -770,8 +779,12 @@ html.dark body .content a {
 
 /* 分享卡片中的段落样式 */
 .share-article-content p {
-  margin: 0 0 1rem 0;
-  line-height: 1.75;
+  margin: 0 0 var(--debug-paragraph-spacing, 0.5rem) 0 !important; /* 使用调试配置的段落间距 */
+  line-height: var(--debug-line-height, 1.2) !important; /* 使用调试配置的行高 */
+  letter-spacing: var(--debug-letter-spacing, 0.01em); /* 使用调试配置的字符间距 */
+  word-spacing: 0.02em;
+  white-space: normal !important;
+  padding: 0 !important;
 }
 
 /* 分享卡片中的列表样式 */

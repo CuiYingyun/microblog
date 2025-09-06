@@ -273,177 +273,213 @@
 
 {{/* Extend functionality JavaScript */}}
 <script>
-// Global variable to store current article title
+// ================================
+// 🎛️ 调试参数配置 - 在这里调整各项参数
+// ================================
+const DEBUG_CONFIG = {
+  // 🖼️ 图片尺寸配置
+  shareWidth: 400,           // 分享图片宽度 (px)
+  imageScale: 2.8,             // 图片分辨率缩放 (1=标准, 2=高清, 3=超高清)
+  
+  // 📝 文字样式配置
+  lineHeight: 1.6,           // 行高倍数 (建议范围: 1.1-1.4)
+  paragraphSpacing: 0.7,     // 段落间距 (rem) (建议范围: 0.3-1.0)
+  letterSpacing: '0.01em',   // 字符间距
+  
+  // 📏 间距配置
+  cardPadding: 2,            // 卡片内边距 (rem)
+  contentBottomMargin: 1,    // 内容区域底部间距 (rem)
+  
+  // 🎨 渲染配置
+  imageTimeout: 20000,       // 图片生成超时时间 (ms)
+  fontWaitTime: 500,         // 字体加载等待时间 (ms)
+  
+  // 🐛 调试配置
+  enableDebugLogs: true,     // 启用调试日志
+};
+
+// Global variables
 let currentArticleTitle = '';
 
-// Global fixed width setting for all share image operations
-const GLOBAL_SHARE_WIDTH = 400; // 修改这个数值来调整预览和生成图片的宽度
+// 从调试配置获取分享图片宽度
+const GLOBAL_SHARE_WIDTH = DEBUG_CONFIG.shareWidth;
+
+// 将调试配置应用到CSS自定义属性
+function applyDebugConfigToCSS() {
+  const root = document.documentElement;
+  root.style.setProperty('--debug-line-height', DEBUG_CONFIG.lineHeight);
+  root.style.setProperty('--debug-paragraph-spacing', DEBUG_CONFIG.paragraphSpacing + 'rem');
+  root.style.setProperty('--debug-letter-spacing', DEBUG_CONFIG.letterSpacing);
+  root.style.setProperty('--debug-card-padding', DEBUG_CONFIG.cardPadding + 'rem');
+}
+
+// 页面加载时应用配置
+document.addEventListener('DOMContentLoaded', applyDebugConfigToCSS);
+
+// 调试日志函数
+function debugLog(message, data = null) {
+  if (DEBUG_CONFIG.enableDebugLogs) {
+    const timestamp = new Date().toISOString().substr(11, 12);
+    console.log(`🖼️ [${timestamp}] ${message}`, data || '');
+  }
+}
 
 // 等待字体加载完成
 async function waitForFonts() {
+  debugLog('开始等待字体加载...');
+  
   if ('fonts' in document) {
+    debugLog('检测到 document.fonts API，等待字体就绪...');
     await document.fonts.ready;
+    
+    // 确保所有字体都已加载
+    const fontFaces = [...document.fonts];
+    debugLog(`发现 ${fontFaces.length} 个字体`, fontFaces.map(f => f.family));
+    await Promise.all(fontFaces.map(font => font.loaded));
+    
     // 额外等待确保字体完全渲染
-    await new Promise(resolve => setTimeout(resolve, 200));
+    debugLog(`等待 ${DEBUG_CONFIG.fontWaitTime}ms 确保字体渲染完成...`);
+    await new Promise(resolve => setTimeout(resolve, DEBUG_CONFIG.fontWaitTime));
   } else {
-    // Fallback: wait a bit for fonts to load
-    await new Promise(resolve => setTimeout(resolve, 500));
+    debugLog('字体 API 不可用，使用备用等待时间 1000ms');
+    await new Promise(resolve => setTimeout(resolve, 1000));
   }
+  
+  debugLog('字体加载完成 ✅');
 }
 
-// 创建一个完全独立的渲染容器
-function createIsolatedRenderContainer() {
-  const container = document.createElement('div');
-  container.id = 'isolated-render-container';
-  container.style.cssText = `
-    position: fixed !important;
-    left: -9999px !important;
-    top: -9999px !important;
-    width: ${GLOBAL_SHARE_WIDTH}px !important;
-    height: auto !important;
-    background: ${document.documentElement.classList.contains('dark') ? '#0a0a0a' : '#ffffff'} !important;
-    border: 1px dashed #d1d5db !important;
-    border-radius: 8px !important;
-    padding: 2rem !important;
-    box-sizing: border-box !important;
-    font-family: inherit !important;
-    font-size: 1rem !important;
-    line-height: 1.75 !important;
-    color: ${document.documentElement.classList.contains('dark') ? '#ffffff' : '#111827'} !important;
-    overflow: visible !important;
-    z-index: -1000 !important;
-    visibility: hidden !important;
-  `;
-  return container;
-}
 
-// Render share card to canvas with a fixed width using an isolated container
-async function renderShareCanvasWithFixedWidth() {
-  const originalCard = document.getElementById('share-card');
-  if (!originalCard) {
+// Render share card to image using improved html2canvas
+async function renderShareImageImproved() {
+  debugLog('🚀 开始生成分享图片...');
+  
+  const shareCard = document.getElementById('share-card');
+  if (!shareCard) {
+    debugLog('❌ 错误：找不到分享卡片元素');
     throw new Error('Share card not found');
   }
+  
+  debugLog('✅ 找到分享卡片元素', {
+    width: shareCard.offsetWidth,
+    height: shareCard.offsetHeight,
+    computedStyle: window.getComputedStyle(shareCard).display
+  });
 
   // 确保字体已加载
+  debugLog('📝 开始字体加载流程...');
   await waitForFonts();
 
-  const width = GLOBAL_SHARE_WIDTH;
-
-  // 创建完全独立的渲染容器
-  const renderContainer = createIsolatedRenderContainer();
-  
-  // 获取文章内容
-  const articleContent = originalCard.querySelector('.share-article-content');
-  const shareDate = originalCard.querySelector('.share-date');
-  
-  // 创建内容结构
-  const contentDiv = document.createElement('div');
-  contentDiv.style.cssText = `
-    margin-bottom: 2rem !important;
-    overflow-wrap: break-word !important;
-    word-wrap: break-word !important;
-    word-break: break-word !important;
-    display: block !important;
-  `;
-  
-  // 复制文章内容
-  if (articleContent) {
-    const clonedContent = articleContent.cloneNode(true);
-    
-    // 清理不需要的元素
-    const unwantedElements = clonedContent.querySelectorAll('script, button, .extend-button, .extend-menu');
-    unwantedElements.forEach(element => element.remove());
-    
-    // 禁用链接
-    const links = clonedContent.querySelectorAll('a');
-    links.forEach(link => {
-      link.removeAttribute('href');
-      link.style.pointerEvents = 'none';
-    });
-    
-    // 禁用图片
-    const images = clonedContent.querySelectorAll('img');
-    images.forEach(img => {
-      img.removeAttribute('src');
-      img.removeAttribute('srcset');
-    });
-    
-    contentDiv.appendChild(clonedContent);
-  }
-  
-  // 创建底部信息
-  const footerDiv = document.createElement('div');
-  footerDiv.style.cssText = `
-    border-top: 1px dashed #d1d5db !important;
-    padding-top: 1rem !important;
-    margin-top: 0 !important;
-  `;
-  
-  const footerInfo = document.createElement('div');
-  footerInfo.style.cssText = `
-    display: flex !important;
-    justify-content: space-between !important;
-    align-items: center !important;
-    font-size: 0.875rem !important;
-    color: ${document.documentElement.classList.contains('dark') ? '#9ca3af' : '#6b7280'} !important;
-  `;
-  
-  const websiteSpan = document.createElement('span');
-  websiteSpan.textContent = 'CuiYingyun.com';
-  websiteSpan.style.fontWeight = '600';
-  
-  const dateSpan = document.createElement('span');
-  dateSpan.textContent = shareDate ? shareDate.textContent : '';
-  dateSpan.style.fontStyle = 'italic';
-  
-  footerInfo.appendChild(websiteSpan);
-  footerInfo.appendChild(dateSpan);
-  footerDiv.appendChild(footerInfo);
-  
-  // 组装容器
-  renderContainer.appendChild(contentDiv);
-  renderContainer.appendChild(footerDiv);
-  
-  document.body.appendChild(renderContainer);
-
-  // 等待布局完成
-  await new Promise(resolve => requestAnimationFrame(resolve));
+  // 等待DOM更新完成
+  debugLog('⏳ 等待DOM更新完成...');
   await new Promise(resolve => requestAnimationFrame(resolve));
   await new Promise(resolve => setTimeout(resolve, 300));
 
-  // 获取实际高度
-  const height = Math.max(renderContainer.offsetHeight, renderContainer.scrollHeight, renderContainer.clientHeight);
-
-  // 获取背景色
-  const bgColor = document.documentElement.classList.contains('dark') ? '#0a0a0a' : '#ffffff';
+  // 检测当前主题
+  const isDark = document.documentElement.classList.contains('dark');
+  const bgColor = isDark ? '#0a0a0a' : '#ffffff';
+  debugLog('🎨 检测主题模式', { isDark, bgColor });
 
   try {
-    const canvas = await html2canvas(renderContainer, {
-      scale: 2,
-      backgroundColor: bgColor,
-      useCORS: false,
-      allowTaint: false,
-      logging: false,
-      foreignObjectRendering: false,
-      width: width,
-      height: height,
-      windowWidth: width,
-      windowHeight: height,
-      letterRendering: true,
-      onclone: (clonedDoc) => {
-        // 在克隆文档中确保样式正确
-        const clonedContainer = clonedDoc.querySelector('#isolated-render-container');
-        if (clonedContainer) {
-          clonedContainer.style.width = width + 'px';
-          clonedContainer.style.height = 'auto';
-        }
+    debugLog('🖼️ 开始调用 html2canvas...', {
+      配置: {
+        backgroundColor: bgColor,
+        scale: DEBUG_CONFIG.imageScale,
+        width: shareCard.offsetWidth,
+        height: shareCard.offsetHeight,
+        imageTimeout: DEBUG_CONFIG.imageTimeout
       }
     });
-    document.body.removeChild(renderContainer);
-    return canvas;
-  } catch (err) {
-    document.body.removeChild(renderContainer);
-    throw err;
+    
+    // 使用调试配置的 html2canvas 设置
+    const canvas = await html2canvas(shareCard, {
+      backgroundColor: bgColor,
+      scale: DEBUG_CONFIG.imageScale, // 使用调试配置的分辨率缩放
+      useCORS: true,
+      allowTaint: true,
+      foreignObjectRendering: false,
+      imageTimeout: DEBUG_CONFIG.imageTimeout, // 使用调试配置的超时时间
+      logging: DEBUG_CONFIG.enableDebugLogs, // 启用html2canvas日志
+      width: shareCard.offsetWidth,
+      height: shareCard.offsetHeight,
+      scrollX: 0,
+      scrollY: 0,
+      windowWidth: shareCard.offsetWidth,
+      windowHeight: shareCard.offsetHeight,
+      letterRendering: true, // 改善字体渲染
+      onclone: function(clonedDoc, element) {
+        debugLog('🔄 html2canvas onclone 回调执行中...');
+        
+        // 在克隆的文档中移除不需要的元素
+        const unwantedElements = element.querySelectorAll('.extend-button, .extend-menu');
+        debugLog(`🗑️ 移除 ${unwantedElements.length} 个不需要的元素`);
+        unwantedElements.forEach(el => el.remove());
+        
+        // 确保样式正确应用
+        element.style.background = bgColor;
+        element.style.color = isDark ? '#ffffff' : '#111827';
+        debugLog('🎨 应用基础样式完成');
+        
+        // 彻底重写字体和布局样式处理
+        const allElements = element.querySelectorAll('*');
+        debugLog(`🔧 开始处理 ${allElements.length} 个元素的样式...`);
+        allElements.forEach(el => {
+          const computedStyle = window.getComputedStyle(el);
+          const fontSize = parseFloat(computedStyle.fontSize);
+          
+          // 基础字体样式
+          el.style.fontFamily = computedStyle.fontFamily;
+          el.style.fontSize = computedStyle.fontSize;
+          el.style.fontWeight = computedStyle.fontWeight;
+          el.style.fontStyle = computedStyle.fontStyle;
+          
+          // 使用调试配置的行高
+          el.style.lineHeight = (fontSize * DEBUG_CONFIG.lineHeight) + 'px';
+          
+          // 使用调试配置的字符间距
+          el.style.letterSpacing = DEBUG_CONFIG.letterSpacing;
+          
+          // 彻底控制空白处理
+          el.style.whiteSpace = 'normal';
+          el.style.wordWrap = 'break-word';
+          el.style.overflowWrap = 'break-word';
+          
+          // 使用调试配置设置段落间距
+          if (el.tagName === 'P') {
+            el.style.margin = `0 0 ${DEBUG_CONFIG.paragraphSpacing}rem 0`;
+            el.style.padding = '0';
+            el.style.lineHeight = (fontSize * DEBUG_CONFIG.lineHeight) + 'px';
+          }
+          
+          // 移除其他元素的多余间距
+          if (['DIV', 'SPAN', 'ARTICLE'].includes(el.tagName)) {
+            el.style.lineHeight = (fontSize * DEBUG_CONFIG.lineHeight) + 'px';
+          }
+          
+          // 确保没有多余的空白
+          if (el.textContent && el.children.length === 0) {
+            el.textContent = el.textContent.replace(/\s+/g, ' ').trim();
+          }
+        });
+        
+        debugLog('✅ onclone 回调处理完成');
+      }
+    });
+    
+    debugLog('🎉 html2canvas 执行成功！', {
+      canvas宽度: canvas.width,
+      canvas高度: canvas.height
+    });
+    
+    const dataUrl = canvas.toDataURL('image/png');
+    debugLog('📷 图片数据生成完成', {
+      数据大小: `${Math.round(dataUrl.length / 1024)}KB`
+    });
+    
+    return dataUrl;
+  } catch (error) {
+    debugLog('❌ html2canvas 执行失败', error);
+    console.error('Error generating image with html2canvas:', error);
+    throw error;
   }
 }
 
@@ -667,37 +703,45 @@ document.addEventListener('DOMContentLoaded', function() {
     // Store article title globally for filename
     currentArticleTitle = title || '';
     
-    // 使用与渲染完全相同的样式设置
+    // 检测当前主题模式
+    const isDark = document.documentElement.classList.contains('dark');
+    const bgColor = isDark ? '#0a0a0a' : '#ffffff';
+    const textColor = isDark ? '#ffffff' : '#111827';
+    const borderColor = isDark ? '#4b5563' : '#d1d5db';
+    
+    // 使用调试配置设置分享卡片样式
     shareCard.style.cssText = `
       width: ${GLOBAL_SHARE_WIDTH}px !important;
       min-width: ${GLOBAL_SHARE_WIDTH}px !important;
       max-width: ${GLOBAL_SHARE_WIDTH}px !important;
       height: auto !important;
-      min-height: auto !important;
-      max-height: none !important;
       margin: 0 auto !important;
       display: block !important;
       position: relative !important;
       box-sizing: border-box !important;
       overflow: visible !important;
-      background: ${document.documentElement.classList.contains('dark') ? '#0a0a0a' : '#ffffff'} !important;
-      border: 1px dashed #d1d5db !important;
+      background: ${bgColor} !important;
+      border: 1px dashed ${borderColor} !important;
       border-radius: 8px !important;
-      padding: 2rem !important;
+      padding: ${DEBUG_CONFIG.cardPadding}rem !important;
       font-family: inherit !important;
       font-size: 1rem !important;
-      line-height: 1.75 !important;
-      color: ${document.documentElement.classList.contains('dark') ? '#ffffff' : '#111827'} !important;
+      line-height: ${DEBUG_CONFIG.lineHeight} !important;
+      color: ${textColor} !important;
     `;
     
-    // 设置内容区域样式
+    // 使用调试配置设置内容区域样式
     articleContent.style.cssText = `
-      margin-bottom: 2rem !important;
+      margin-bottom: ${DEBUG_CONFIG.contentBottomMargin}rem !important;
       overflow-wrap: break-word !important;
       word-wrap: break-word !important;
       word-break: break-word !important;
       display: block !important;
-      line-height: 1.75 !important;
+      line-height: ${DEBUG_CONFIG.lineHeight} !important;
+      letter-spacing: ${DEBUG_CONFIG.letterSpacing} !important;
+      white-space: normal !important;
+      color: ${textColor} !important;
+      padding: 0 !important;
     `;
     
     // Copy the rendered HTML content directly
@@ -745,7 +789,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const shareCardFooter = shareCard.querySelector('.share-card-footer');
     if (shareCardFooter) {
       shareCardFooter.style.cssText = `
-        border-top: 1px dashed #d1d5db !important;
+        border-top: 1px dashed ${borderColor} !important;
         padding-top: 1rem !important;
         margin-top: 0 !important;
       `;
@@ -753,12 +797,13 @@ document.addEventListener('DOMContentLoaded', function() {
     
     const shareFooterInfo = shareCard.querySelector('.share-footer-info');
     if (shareFooterInfo) {
+      const footerTextColor = isDark ? '#9ca3af' : '#6b7280';
       shareFooterInfo.style.cssText = `
         display: flex !important;
         justify-content: space-between !important;
         align-items: center !important;
         font-size: 0.875rem !important;
-        color: ${document.documentElement.classList.contains('dark') ? '#9ca3af' : '#6b7280'} !important;
+        color: ${footerTextColor} !important;
       `;
     }
     
@@ -908,20 +953,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Download share image
   function downloadShareImage() {
+    debugLog('📥 开始下载分享图片流程...');
+    
     // Show loading state
     const downloadBtn = document.querySelector('.share-download-btn');
     const originalText = downloadBtn.textContent;
     downloadBtn.textContent = 'Generating...';
     downloadBtn.disabled = true;
+    debugLog('🔄 按钮状态已设为生成中...');
     
-    renderShareCanvasWithFixedWidth().then(function(canvas) {
+    renderShareImageImproved().then(function(dataUrl) {
+      debugLog('✅ 图片生成成功，开始下载...');
       // Get article title for filename
       const filename = getArticleFilename();
       
       // Create download link
       const link = document.createElement('a');
       link.download = filename;
-      link.href = canvas.toDataURL();
+      link.href = dataUrl;
       
       // Trigger download
       document.body.appendChild(link);
@@ -931,9 +980,12 @@ document.addEventListener('DOMContentLoaded', function() {
       // Reset button
       downloadBtn.textContent = originalText;
       downloadBtn.disabled = false;
+      debugLog('🔄 按钮状态已重置');
       
       showCopySuccess('Share image downloaded successfully');
+      debugLog('📥 下载流程完成 ✅');
     }).catch(function(error) {
+      debugLog('❌ 下载失败', error);
       console.error('Error generating image:', error);
       downloadBtn.textContent = originalText;
       downloadBtn.disabled = false;
@@ -943,15 +995,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Copy share image to clipboard
   function copyShareImage() {
+    debugLog('📋 开始复制分享图片流程...');
+    
     // Show loading state
     const copyBtn = document.querySelector('.share-copy-btn');
     const originalText = copyBtn.textContent;
     copyBtn.textContent = 'Copying...';
     copyBtn.disabled = true;
+    debugLog('🔄 复制按钮状态已设为复制中...');
     
-    renderShareCanvasWithFixedWidth().then(function(canvas) {
-      // Convert canvas to blob
-      canvas.toBlob(function(blob) {
+    renderShareImageImproved().then(function(dataUrl) {
+      debugLog('✅ 图片生成成功，开始复制到剪贴板...');
+      // Convert data URL to blob
+      fetch(dataUrl)
+        .then(res => res.blob())
+        .then(blob => {
         if (navigator.clipboard && window.ClipboardItem) {
           // Use modern Clipboard API
           const item = new ClipboardItem({ 'image/png': blob });
@@ -972,7 +1030,13 @@ document.addEventListener('DOMContentLoaded', function() {
           copyBtn.disabled = false;
           showCopyError('Image copy not supported in this browser');
         }
-      }, 'image/png');
+        })
+        .catch(function(error) {
+          console.error('Failed to convert image:', error);
+          copyBtn.textContent = originalText;
+          copyBtn.disabled = false;
+          showCopyError('Failed to copy image');
+        });
     }).catch(function(error) {
       console.error('Error generating image for copy:', error);
       copyBtn.textContent = originalText;
