@@ -77,9 +77,12 @@ Once you have the basic setup working, use these instructions for local developm
    export GITHUB_TOKEN="your-github-token"
    export GITHUB_REPOSITORY="owner/repo"
    ```
+   Note: Register token: https://github.com/settings/tokens 
 2. Run:
    ```bash
-   make dev
+   make fetch # just fetch content from github 
+   make dev # fetch content and run local server
+   make clean # clean up fetched data which MUST be applied before pusing code to github
    ```
    This fetches content from GitHub Issues and starts the dev server.
 

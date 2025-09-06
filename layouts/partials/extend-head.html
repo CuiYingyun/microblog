@@ -266,4 +266,199 @@
     --color-primary-800: #212121;
     --color-primary-900: #000000;
   }
-</style> 
+</style>
+
+{{/* Extend functionality JavaScript */}}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Add event listeners to all extend buttons
+  document.querySelectorAll('.extend-button').forEach(function(button) {
+    button.addEventListener('click', function(e) {
+      e.stopPropagation();
+      
+      // Get corresponding menu element
+      const menu = this.nextElementSibling;
+      
+      // Close all other open menus
+      document.querySelectorAll('.extend-menu').forEach(function(otherMenu) {
+        if (otherMenu !== menu) {
+          otherMenu.classList.add('hidden');
+          otherMenu.classList.remove('show');
+        }
+      });
+      
+      // Toggle current menu display state
+      if (menu.classList.contains('hidden')) {
+        menu.classList.remove('hidden');
+        menu.classList.add('show');
+      } else {
+        menu.classList.add('hidden');
+        menu.classList.remove('show');
+      }
+    });
+  });
+
+  // Add event listeners to menu items
+  document.querySelectorAll('.extend-menu-item').forEach(function(item) {
+    item.addEventListener('click', function(e) {
+      e.stopPropagation();
+      
+      const action = this.getAttribute('data-action');
+      const button = this.closest('.post-meta').querySelector('.extend-button');
+      
+      if (action === 'copy-markdown') {
+        copyAsMarkdown(button);
+      }
+      
+      // Close menu
+      const menu = this.closest('.extend-menu');
+      menu.classList.add('hidden');
+      menu.classList.remove('show');
+    });
+  });
+
+  // Close all menus when clicking elsewhere on page
+  document.addEventListener('click', function() {
+    document.querySelectorAll('.extend-menu').forEach(function(menu) {
+      menu.classList.add('hidden');
+      menu.classList.remove('show');
+    });
+  });
+
+  // Prevent menu clicks from bubbling to document
+  document.querySelectorAll('.extend-menu').forEach(function(menu) {
+    menu.addEventListener('click', function(e) {
+      e.stopPropagation();
+    });
+  });
+
+  // Copy as Markdown function
+  function copyAsMarkdown(button) {
+    try {
+      const content = button.getAttribute('data-content');
+      
+      // Build Markdown content - only keep body content
+      let markdownContent = '';
+      
+      // Add content
+      if (content && content.trim() !== '') {
+        // Decode HTML entities
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = content;
+        markdownContent = tempDiv.textContent || tempDiv.innerText || '';
+      }
+      
+      // Use modern Clipboard API
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(markdownContent).then(function() {
+          showCopySuccess('Markdown content copied to clipboard');
+        }).catch(function(err) {
+          console.error('Copy failed:', err);
+          fallbackCopy(markdownContent);
+        });
+      } else {
+        // Fallback solution
+        fallbackCopy(markdownContent);
+      }
+    } catch (error) {
+      console.error('Error during copy process:', error);
+      showCopyError('Copy failed, please try again');
+    }
+  }
+
+  // Fallback copy solution
+  function fallbackCopy(text) {
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    textArea.style.position = 'fixed';
+    textArea.style.left = '-999999px';
+    textArea.style.top = '-999999px';
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    
+    try {
+      const successful = document.execCommand('copy');
+      if (successful) {
+        showCopySuccess('Markdown content copied to clipboard');
+      } else {
+        showCopyError('Copy failed, please copy manually');
+      }
+    } catch (err) {
+      console.error('Fallback copy also failed:', err);
+      showCopyError('Copy failed, please copy manually');
+    }
+    
+    document.body.removeChild(textArea);
+  }
+
+  // Show copy success notification
+  function showCopySuccess(message) {
+    showNotification(message, 'success');
+  }
+
+  // Show copy error notification
+  function showCopyError(message) {
+    showNotification(message, 'error');
+  }
+
+  // General notification function
+  function showNotification(message, type) {
+    // Remove existing notification
+    const existingNotification = document.querySelector('.copy-notification');
+    if (existingNotification) {
+      existingNotification.remove();
+    }
+
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = 'copy-notification';
+    notification.textContent = message;
+    
+    // Set styles
+    const baseStyles = {
+      position: 'fixed',
+      top: '20px',
+      right: '20px',
+      padding: '12px 16px',
+      borderRadius: '6px',
+      fontSize: '14px',
+      fontWeight: '500',
+      zIndex: '10000',
+      maxWidth: '300px',
+      wordWrap: 'break-word',
+      transition: 'all 0.3s ease'
+    };
+    
+    const typeStyles = type === 'success' 
+      ? {
+          backgroundColor: '#10b981',
+          color: '#ffffff',
+          border: '1px solid #059669'
+        }
+      : {
+          backgroundColor: '#ef4444',
+          color: '#ffffff',
+          border: '1px solid #dc2626'
+        };
+    
+    Object.assign(notification.style, baseStyles, typeStyles);
+    
+    // Add to page
+    document.body.appendChild(notification);
+    
+    // Auto remove after 3 seconds
+    setTimeout(function() {
+      if (notification.parentNode) {
+        notification.style.opacity = '0';
+        notification.style.transform = 'translateX(100%)';
+        setTimeout(function() {
+          if (notification.parentNode) {
+            notification.remove();
+          }
+        }, 300);
+      }
+    }, 3000);
+  }
+});
+</script> 

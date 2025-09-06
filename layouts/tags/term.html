@@ -29,6 +29,15 @@
                 <a href="{{ ($.Site.GetPage (printf "/tags/%s" $tag)).RelPermalink }}" class="tag">#{{ $tag }}</a>
               {{- end -}}
             {{ end }}
+            <span class="mx-2">·</span>
+            <button class="extend-button" data-content="{{ .RawContent | htmlEscape }}" data-title="{{ .Title | htmlEscape }}" data-date="{{ .Date.Format "2006-01-02" }}">
+              ⋯
+            </button>
+            <div class="extend-menu hidden">
+              <div class="extend-menu-item" data-action="copy-markdown">
+                Copy as Markdown
+              </div>
+            </div>
           </div>
         </article>
       {{ end }}
