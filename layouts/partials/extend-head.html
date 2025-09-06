@@ -276,6 +276,177 @@
 // Global variable to store current article title
 let currentArticleTitle = '';
 
+// Global fixed width setting for all share image operations
+const GLOBAL_SHARE_WIDTH = 400; // 修改这个数值来调整预览和生成图片的宽度
+
+// 等待字体加载完成
+async function waitForFonts() {
+  if ('fonts' in document) {
+    await document.fonts.ready;
+    // 额外等待确保字体完全渲染
+    await new Promise(resolve => setTimeout(resolve, 200));
+  } else {
+    // Fallback: wait a bit for fonts to load
+    await new Promise(resolve => setTimeout(resolve, 500));
+  }
+}
+
+// 创建一个完全独立的渲染容器
+function createIsolatedRenderContainer() {
+  const container = document.createElement('div');
+  container.id = 'isolated-render-container';
+  container.style.cssText = `
+    position: fixed !important;
+    left: -9999px !important;
+    top: -9999px !important;
+    width: ${GLOBAL_SHARE_WIDTH}px !important;
+    height: auto !important;
+    background: ${document.documentElement.classList.contains('dark') ? '#0a0a0a' : '#ffffff'} !important;
+    border: 1px dashed #d1d5db !important;
+    border-radius: 8px !important;
+    padding: 2rem !important;
+    box-sizing: border-box !important;
+    font-family: inherit !important;
+    font-size: 1rem !important;
+    line-height: 1.75 !important;
+    color: ${document.documentElement.classList.contains('dark') ? '#ffffff' : '#111827'} !important;
+    overflow: visible !important;
+    z-index: -1000 !important;
+    visibility: hidden !important;
+  `;
+  return container;
+}
+
+// Render share card to canvas with a fixed width using an isolated container
+async function renderShareCanvasWithFixedWidth() {
+  const originalCard = document.getElementById('share-card');
+  if (!originalCard) {
+    throw new Error('Share card not found');
+  }
+
+  // 确保字体已加载
+  await waitForFonts();
+
+  const width = GLOBAL_SHARE_WIDTH;
+
+  // 创建完全独立的渲染容器
+  const renderContainer = createIsolatedRenderContainer();
+  
+  // 获取文章内容
+  const articleContent = originalCard.querySelector('.share-article-content');
+  const shareDate = originalCard.querySelector('.share-date');
+  
+  // 创建内容结构
+  const contentDiv = document.createElement('div');
+  contentDiv.style.cssText = `
+    margin-bottom: 2rem !important;
+    overflow-wrap: break-word !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    display: block !important;
+  `;
+  
+  // 复制文章内容
+  if (articleContent) {
+    const clonedContent = articleContent.cloneNode(true);
+    
+    // 清理不需要的元素
+    const unwantedElements = clonedContent.querySelectorAll('script, button, .extend-button, .extend-menu');
+    unwantedElements.forEach(element => element.remove());
+    
+    // 禁用链接
+    const links = clonedContent.querySelectorAll('a');
+    links.forEach(link => {
+      link.removeAttribute('href');
+      link.style.pointerEvents = 'none';
+    });
+    
+    // 禁用图片
+    const images = clonedContent.querySelectorAll('img');
+    images.forEach(img => {
+      img.removeAttribute('src');
+      img.removeAttribute('srcset');
+    });
+    
+    contentDiv.appendChild(clonedContent);
+  }
+  
+  // 创建底部信息
+  const footerDiv = document.createElement('div');
+  footerDiv.style.cssText = `
+    border-top: 1px dashed #d1d5db !important;
+    padding-top: 1rem !important;
+    margin-top: 0 !important;
+  `;
+  
+  const footerInfo = document.createElement('div');
+  footerInfo.style.cssText = `
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    font-size: 0.875rem !important;
+    color: ${document.documentElement.classList.contains('dark') ? '#9ca3af' : '#6b7280'} !important;
+  `;
+  
+  const websiteSpan = document.createElement('span');
+  websiteSpan.textContent = 'CuiYingyun.com';
+  websiteSpan.style.fontWeight = '600';
+  
+  const dateSpan = document.createElement('span');
+  dateSpan.textContent = shareDate ? shareDate.textContent : '';
+  dateSpan.style.fontStyle = 'italic';
+  
+  footerInfo.appendChild(websiteSpan);
+  footerInfo.appendChild(dateSpan);
+  footerDiv.appendChild(footerInfo);
+  
+  // 组装容器
+  renderContainer.appendChild(contentDiv);
+  renderContainer.appendChild(footerDiv);
+  
+  document.body.appendChild(renderContainer);
+
+  // 等待布局完成
+  await new Promise(resolve => requestAnimationFrame(resolve));
+  await new Promise(resolve => requestAnimationFrame(resolve));
+  await new Promise(resolve => setTimeout(resolve, 300));
+
+  // 获取实际高度
+  const height = Math.max(renderContainer.offsetHeight, renderContainer.scrollHeight, renderContainer.clientHeight);
+
+  // 获取背景色
+  const bgColor = document.documentElement.classList.contains('dark') ? '#0a0a0a' : '#ffffff';
+
+  try {
+    const canvas = await html2canvas(renderContainer, {
+      scale: 2,
+      backgroundColor: bgColor,
+      useCORS: false,
+      allowTaint: false,
+      logging: false,
+      foreignObjectRendering: false,
+      width: width,
+      height: height,
+      windowWidth: width,
+      windowHeight: height,
+      letterRendering: true,
+      onclone: (clonedDoc) => {
+        // 在克隆文档中确保样式正确
+        const clonedContainer = clonedDoc.querySelector('#isolated-render-container');
+        if (clonedContainer) {
+          clonedContainer.style.width = width + 'px';
+          clonedContainer.style.height = 'auto';
+        }
+      }
+    });
+    document.body.removeChild(renderContainer);
+    return canvas;
+  } catch (err) {
+    document.body.removeChild(renderContainer);
+    throw err;
+  }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   // Add event listeners to all extend buttons
   document.querySelectorAll('.extend-button').forEach(function(button) {
@@ -472,12 +643,14 @@ document.addEventListener('DOMContentLoaded', function() {
   // Generate share image function
   function generateShareImage(button) {
     try {
-      const content = button.getAttribute('data-content');
+      // Get the rendered HTML content from the current article
+      const article = button.closest('.microblog-post');
+      const renderedContent = article.querySelector('.prose');
       const title = button.getAttribute('data-title');
       const date = button.getAttribute('data-date');
       
-      // Show modal
-      showShareImageModal(content, title, date);
+      // Show modal with rendered content
+      showShareImageModal(renderedContent, title, date);
     } catch (error) {
       console.error('Error generating share image:', error);
       showCopyError('Failed to generate share image');
@@ -485,17 +658,109 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // Show share image modal
-  function showShareImageModal(content, title, date) {
+  function showShareImageModal(contentElement, title, date) {
     const modal = document.getElementById('share-image-modal');
     const articleContent = modal.querySelector('.share-article-content');
     const shareDate = modal.querySelector('.share-date');
+    const shareCard = modal.querySelector('.share-card');
     
     // Store article title globally for filename
     currentArticleTitle = title || '';
     
-    // Process and format article content
-    const formattedContent = formatArticleContent(content, title);
-    articleContent.innerHTML = formattedContent;
+    // 使用与渲染完全相同的样式设置
+    shareCard.style.cssText = `
+      width: ${GLOBAL_SHARE_WIDTH}px !important;
+      min-width: ${GLOBAL_SHARE_WIDTH}px !important;
+      max-width: ${GLOBAL_SHARE_WIDTH}px !important;
+      height: auto !important;
+      min-height: auto !important;
+      max-height: none !important;
+      margin: 0 auto !important;
+      display: block !important;
+      position: relative !important;
+      box-sizing: border-box !important;
+      overflow: visible !important;
+      background: ${document.documentElement.classList.contains('dark') ? '#0a0a0a' : '#ffffff'} !important;
+      border: 1px dashed #d1d5db !important;
+      border-radius: 8px !important;
+      padding: 2rem !important;
+      font-family: inherit !important;
+      font-size: 1rem !important;
+      line-height: 1.75 !important;
+      color: ${document.documentElement.classList.contains('dark') ? '#ffffff' : '#111827'} !important;
+    `;
+    
+    // 设置内容区域样式
+    articleContent.style.cssText = `
+      margin-bottom: 2rem !important;
+      overflow-wrap: break-word !important;
+      word-wrap: break-word !important;
+      word-break: break-word !important;
+      display: block !important;
+      line-height: 1.75 !important;
+    `;
+    
+    // Copy the rendered HTML content directly
+    if (contentElement && contentElement.innerHTML) {
+      // Clone the content to avoid modifying the original
+      const clonedContent = contentElement.cloneNode(true);
+      
+      // Remove any unwanted elements (like scripts, buttons, etc.)
+      const unwantedElements = clonedContent.querySelectorAll('script, button, .extend-button, .extend-menu');
+      unwantedElements.forEach(element => element.remove());
+      
+      // 禁用链接
+      const links = clonedContent.querySelectorAll('a');
+      links.forEach(link => {
+        link.removeAttribute('href');
+        link.style.pointerEvents = 'none';
+      });
+      
+      // 禁用图片
+      const images = clonedContent.querySelectorAll('img');
+      images.forEach(img => {
+        img.removeAttribute('src');
+        img.removeAttribute('srcset');
+      });
+      
+      // Ensure list styles are preserved
+      const lists = clonedContent.querySelectorAll('ul, ol');
+      lists.forEach(list => {
+        if (!list.style.listStyleType) {
+          if (list.tagName === 'UL') {
+            list.style.listStyleType = 'disc';
+          } else if (list.tagName === 'OL') {
+            list.style.listStyleType = 'decimal';
+          }
+        }
+      });
+      
+      // Set the content
+      articleContent.innerHTML = clonedContent.innerHTML;
+    } else {
+      articleContent.innerHTML = '<p>No content available</p>';
+    }
+    
+    // 设置底部区域样式
+    const shareCardFooter = shareCard.querySelector('.share-card-footer');
+    if (shareCardFooter) {
+      shareCardFooter.style.cssText = `
+        border-top: 1px dashed #d1d5db !important;
+        padding-top: 1rem !important;
+        margin-top: 0 !important;
+      `;
+    }
+    
+    const shareFooterInfo = shareCard.querySelector('.share-footer-info');
+    if (shareFooterInfo) {
+      shareFooterInfo.style.cssText = `
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        font-size: 0.875rem !important;
+        color: ${document.documentElement.classList.contains('dark') ? '#9ca3af' : '#6b7280'} !important;
+      `;
+    }
     
     // Format and set date
     const formattedDate = formatShareDate(date);
@@ -643,21 +908,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Download share image
   function downloadShareImage() {
-    const shareCard = document.getElementById('share-card');
-    
     // Show loading state
     const downloadBtn = document.querySelector('.share-download-btn');
     const originalText = downloadBtn.textContent;
     downloadBtn.textContent = 'Generating...';
     downloadBtn.disabled = true;
     
-    html2canvas(shareCard, {
-      scale: 2,
-      backgroundColor: null,
-      useCORS: true,
-      allowTaint: true,
-      foreignObjectRendering: false
-    }).then(function(canvas) {
+    renderShareCanvasWithFixedWidth().then(function(canvas) {
       // Get article title for filename
       const filename = getArticleFilename();
       
@@ -686,21 +943,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Copy share image to clipboard
   function copyShareImage() {
-    const shareCard = document.getElementById('share-card');
-    
     // Show loading state
     const copyBtn = document.querySelector('.share-copy-btn');
     const originalText = copyBtn.textContent;
     copyBtn.textContent = 'Copying...';
     copyBtn.disabled = true;
     
-    html2canvas(shareCard, {
-      scale: 2,
-      backgroundColor: null,
-      useCORS: true,
-      allowTaint: true,
-      foreignObjectRendering: false
-    }).then(function(canvas) {
+    renderShareCanvasWithFixedWidth().then(function(canvas) {
       // Convert canvas to blob
       canvas.toBlob(function(blob) {
         if (navigator.clipboard && window.ClipboardItem) {

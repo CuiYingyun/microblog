@@ -176,7 +176,6 @@ a:focus {
 
 /* Microblog custom styles */
 .microblog-container {
-  max-width: 650px;
   margin: 0 auto;
   padding-top: 0rem; /* 添加上边距，因为去掉了页面标题 */
 }
@@ -366,7 +365,6 @@ html.dark body article .post-meta a.tag {
 
 /* General prose container styles */
 .prose {
-  max-width: 650px;
   margin: 0 auto;
 }
 
@@ -608,6 +606,9 @@ html.dark body .content a {
   overflow: hidden;
   transform: scale(0.9);
   transition: transform 0.3s ease;
+  /* 防止容器自身影响内部布局 */
+  display: flex;
+  flex-direction: column;
 }
 
 .share-modal.show .share-modal-container {
@@ -666,25 +667,39 @@ html.dark body .content a {
   color: #d1d5db;
 }
 
-/* 模态框内容区域 */
+/* 模态框内容区域 - 完全固定布局 */
 .share-modal-content {
   padding: 1.5rem;
   max-height: 60vh;
   overflow-y: auto;
+  overflow-x: auto;
+  /* 使用绝对定位避免任何布局影响 */
+  position: relative;
+  display: block;
 }
 
-/* 分享卡片样式 */
+/* 分享卡片容器 - 使用绝对居中 */
+.share-card-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  /* 移除所有可能影响布局的属性 */
+}
+
+/* 分享卡片样式 - 完全固定 */
 .share-card {
   background: #ffffff;
   border: 1px dashed #d1d5db;
   border-radius: 8px;
   padding: 2rem;
-  max-width: 600px;
-  margin: 0 auto;
+  width: 400px !important; /* 固定宽度 */
+  min-width: 400px !important;
+  max-width: 400px !important;
+  margin: 0;
   position: relative;
-  min-height: 400px;
-  display: flex;
-  flex-direction: column;
+  display: block;
+  box-sizing: border-box;
+  overflow: visible;
 }
 
 .dark .share-card {
@@ -695,14 +710,24 @@ html.dark body .content a {
 
 /* 分享卡片内容区域 */
 .share-card-content {
-  flex: 1;
   margin-bottom: 2rem;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  /* 移除flex属性，使用block布局 */
+  display: block;
 }
 
 .share-article-content {
   font-size: 1rem;
-  line-height: 1.6;
+  line-height: 1.75; /* 增加行高，避免文字重叠 */
   color: #111827;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+  /* 防止文字大小随视口变化 */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 .dark .share-article-content {
@@ -746,16 +771,39 @@ html.dark body .content a {
 /* 分享卡片中的段落样式 */
 .share-article-content p {
   margin: 0 0 1rem 0;
+  line-height: 1.75;
 }
 
 /* 分享卡片中的列表样式 */
 .share-article-content ul, 
 .share-article-content ol {
-  margin: 0 0 1rem 1.5rem;
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+  line-height: 1.75;
+}
+
+.share-article-content ul {
+  list-style-type: disc;
+}
+
+.share-article-content ol {
+  list-style-type: decimal;
 }
 
 .share-article-content li {
-  margin: 0.25rem 0;
+  margin: 0.5rem 0;
+  display: list-item;
+  line-height: 1.75;
+}
+
+.share-article-content ul ul {
+  list-style-type: circle;
+  margin: 0.5rem 0;
+}
+
+.share-article-content ol ol {
+  list-style-type: lower-alpha;
+  margin: 0.5rem 0;
 }
 
 /* 分享卡片中的代码样式 */
@@ -786,11 +834,63 @@ html.dark body .content a {
   color: #f9fafb;
 }
 
+/* 分享卡片中的其他元素样式 */
+.share-article-content blockquote {
+  border-left: 4px solid #d1d5db;
+  padding-left: 1rem;
+  margin: 1rem 0;
+  font-style: italic;
+  color: #6b7280;
+}
+
+.dark .share-article-content blockquote {
+  border-left-color: #4b5563;
+  color: #9ca3af;
+}
+
+.share-article-content strong,
+.share-article-content b {
+  font-weight: 700;
+}
+
+.share-article-content em,
+.share-article-content i {
+  font-style: italic;
+}
+
+.share-article-content hr {
+  border: none;
+  border-top: 1px solid #e5e7eb;
+  margin: 2rem 0;
+}
+
+.dark .share-article-content hr {
+  border-top-color: #4b5563;
+}
+
+.share-article-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  margin: 1rem 0;
+}
+
+.share-article-content a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: #8b5cf6;
+}
+
+.dark .share-article-content a {
+  color: inherit;
+}
+
 /* 分享卡片底部信息 */
 .share-card-footer {
   border-top: 1px dashed #d1d5db;
   padding-top: 1rem;
-  margin-top: auto;
+  /* 移除margin-top: auto，使用固定间距 */
+  margin-top: 0;
 }
 
 .dark .share-card-footer {
@@ -896,9 +996,17 @@ html.dark body .content a {
     max-width: calc(100vw - 2rem);
   }
   
+  .share-modal-content {
+    padding: 1rem;
+    /* 确保小屏幕上能够横向滚动 */
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
   .share-card {
     padding: 1.5rem;
-    min-height: 300px;
+    /* 移除固定高度，让内容决定高度 */
+    /* 宽度由 JavaScript 动态设置 */
   }
   
   .share-modal-actions {
