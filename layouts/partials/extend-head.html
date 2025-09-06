@@ -294,6 +294,7 @@ const DEBUG_CONFIG = {
   // 📏 间距配置
   cardPadding: 2,            // 卡片内边距 (rem)
   contentBottomMargin: 1,    // 内容区域底部间距 (rem)
+  footerPadding: 1,          // 底部区域上下内边距 (rem) (建议范围: 0.5-2.0)
   
   // 🎨 渲染配置
   imageTimeout: 20000,       // 图片生成超时时间 (ms)
@@ -315,6 +316,7 @@ function applyDebugConfigToCSS() {
   root.style.setProperty('--debug-website-font-size', DEBUG_CONFIG.websiteFontSize + 'rem');
   root.style.setProperty('--debug-date-font-size', DEBUG_CONFIG.dateFontSize + 'rem');
   root.style.setProperty('--debug-border-width', DEBUG_CONFIG.borderWidth + 'px');
+  root.style.setProperty('--debug-footer-padding', DEBUG_CONFIG.footerPadding + 'rem');
   root.style.setProperty('--debug-line-height', DEBUG_CONFIG.lineHeight);
   root.style.setProperty('--debug-paragraph-spacing', DEBUG_CONFIG.paragraphSpacing + 'rem');
   root.style.setProperty('--debug-letter-spacing', DEBUG_CONFIG.letterSpacing);
@@ -365,7 +367,12 @@ function createDebugPanel() {
     
     <div style="margin-bottom: 8px;">
       <label>虚线粗细: <span id="border-width-value">${DEBUG_CONFIG.borderWidth}</span>px</label>
-      <input type="range" id="border-width-slider" min="1" max="5" step="1" value="${DEBUG_CONFIG.borderWidth}" style="width: 100%; margin-top: 3px;">
+      <input type="range" id="border-width-slider" min="1" max="5" step="0.5" value="${DEBUG_CONFIG.borderWidth}" style="width: 100%; margin-top: 3px;">
+    </div>
+    
+    <div style="margin-bottom: 8px;">
+      <label>底部区域高度: <span id="footer-padding-value">${DEBUG_CONFIG.footerPadding}</span>rem</label>
+      <input type="range" id="footer-padding-slider" min="0.3" max="2.0" step="0.1" value="${DEBUG_CONFIG.footerPadding}" style="width: 100%; margin-top: 3px;">
     </div>
     
     <div style="margin-top: 10px;">
@@ -383,7 +390,8 @@ function createDebugPanel() {
   const sliders = [
     { id: 'website-font-size', config: 'websiteFontSize', display: 'website-font-size-value' },
     { id: 'date-font-size', config: 'dateFontSize', display: 'date-font-size-value' },
-    { id: 'border-width', config: 'borderWidth', display: 'border-width-value' }
+    { id: 'border-width', config: 'borderWidth', display: 'border-width-value' },
+    { id: 'footer-padding', config: 'footerPadding', display: 'footer-padding-value' }
   ];
   
   sliders.forEach(slider => {
@@ -401,6 +409,9 @@ function createDebugPanel() {
   document.getElementById('apply-debug-config').addEventListener('click', function() {
     applyDebugConfigToCSS();
     debugLog('🎛️ 调试配置已应用', DEBUG_CONFIG);
+    debugLog('底部区域配置', { 
+      footerPadding: DEBUG_CONFIG.footerPadding + 'rem'
+    });
     
     // 如果分享模态框是打开的，重新应用样式
     const modal = document.getElementById('share-image-modal');
@@ -418,11 +429,21 @@ function createDebugPanel() {
           shareDate.style.fontSize = `${DEBUG_CONFIG.dateFontSize}rem !important`;
         }
         
-        // 更新虚线边框宽度
+        // 更新虚线边框宽度和底部区域高度
         shareCard.style.borderWidth = `${DEBUG_CONFIG.borderWidth}px`;
         const shareCardFooter = shareCard.querySelector('.share-card-footer');
         if (shareCardFooter) {
           shareCardFooter.style.borderTopWidth = `${DEBUG_CONFIG.borderWidth}px`;
+          shareCardFooter.style.padding = `${DEBUG_CONFIG.footerPadding}rem 0`;
+          shareCardFooter.style.minHeight = `calc(${DEBUG_CONFIG.footerPadding * 2}rem + 1.5rem)`;
+          shareCardFooter.style.display = 'flex';
+          shareCardFooter.style.alignItems = 'center';
+          debugLog('🔧 底部区域样式已更新', {
+            padding: shareCardFooter.style.padding,
+            minHeight: shareCardFooter.style.minHeight,
+            display: shareCardFooter.style.display,
+            alignItems: shareCardFooter.style.alignItems
+          });
         }
       }
     }
@@ -433,6 +454,7 @@ function createDebugPanel() {
     DEBUG_CONFIG.websiteFontSize = 0.875;
     DEBUG_CONFIG.dateFontSize = 0.875;
     DEBUG_CONFIG.borderWidth = 1;
+    DEBUG_CONFIG.footerPadding = 1;
     
     // 更新滑块和显示值
     sliders.forEach(slider => {
@@ -938,11 +960,20 @@ document.addEventListener('DOMContentLoaded', function() {
     // 设置底部区域样式
     const shareCardFooter = shareCard.querySelector('.share-card-footer');
     if (shareCardFooter) {
+      const minHeightValue = `calc(${DEBUG_CONFIG.footerPadding * 2}rem + 1.5rem)`;
       shareCardFooter.style.cssText = `
         border-top: ${DEBUG_CONFIG.borderWidth}px dashed ${borderColor} !important;
-        padding-top: 1rem !important;
+        padding: ${DEBUG_CONFIG.footerPadding}rem 0 !important;
         margin-top: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        min-height: ${minHeightValue} !important;
       `;
+      debugLog('📐 初始底部区域样式设置', {
+        footerPadding: DEBUG_CONFIG.footerPadding + 'rem',
+        minHeight: minHeightValue,
+        borderWidth: DEBUG_CONFIG.borderWidth + 'px'
+      });
     }
     
     const shareFooterInfo = shareCard.querySelector('.share-footer-info');
@@ -952,6 +983,7 @@ document.addEventListener('DOMContentLoaded', function() {
         display: flex !important;
         justify-content: space-between !important;
         align-items: center !important;
+        width: 100% !important;
         font-size: 0.875rem !important;
         color: ${footerTextColor} !important;
       `;

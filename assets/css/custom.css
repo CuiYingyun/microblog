@@ -901,9 +901,12 @@ html.dark body .content a {
 /* 分享卡片底部信息 */
 .share-card-footer {
   border-top: var(--debug-border-width, 1px) dashed #a855f7;
-  padding-top: 1rem;
+  padding: var(--debug-footer-padding, 1rem) 0;
   /* 移除margin-top: auto，使用固定间距 */
   margin-top: 0;
+  display: flex;
+  align-items: center;
+  min-height: calc(var(--debug-footer-padding, 1rem) * 2 + 1.5rem);
 }
 
 .dark .share-card-footer {
@@ -916,6 +919,7 @@ html.dark body .content a {
   align-items: center;
   font-size: 0.875rem;
   color: #7c3aed;
+  width: 100%;
 }
 
 .dark .share-footer-info {
