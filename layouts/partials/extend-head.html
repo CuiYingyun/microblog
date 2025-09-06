@@ -282,9 +282,14 @@ const DEBUG_CONFIG = {
   imageScale: 2.8,             // 图片分辨率缩放 (1=标准, 2=高清, 3=超高清)
   
   // 📝 文字样式配置
+  websiteFontSize: 1.3,    // 网站名称字体大小 (rem) (建议范围: 0.7-1.2)
+  dateFontSize: 0.8,       // 日期字体大小 (rem) (建议范围: 0.7-1.2)
   lineHeight: 1.6,           // 行高倍数 (建议范围: 1.1-1.4)
   paragraphSpacing: 0.7,     // 段落间距 (rem) (建议范围: 0.3-1.0)
   letterSpacing: '0.01em',   // 字符间距
+  
+  // 🎨 边框样式配置
+  borderWidth: 2.5,            // 图片生成预览卡片中的虚线边框宽度 (px) (建议范围: 1-5)
   
   // 📏 间距配置
   cardPadding: 2,            // 卡片内边距 (rem)
@@ -307,6 +312,9 @@ const GLOBAL_SHARE_WIDTH = DEBUG_CONFIG.shareWidth;
 // 将调试配置应用到CSS自定义属性
 function applyDebugConfigToCSS() {
   const root = document.documentElement;
+  root.style.setProperty('--debug-website-font-size', DEBUG_CONFIG.websiteFontSize + 'rem');
+  root.style.setProperty('--debug-date-font-size', DEBUG_CONFIG.dateFontSize + 'rem');
+  root.style.setProperty('--debug-border-width', DEBUG_CONFIG.borderWidth + 'px');
   root.style.setProperty('--debug-line-height', DEBUG_CONFIG.lineHeight);
   root.style.setProperty('--debug-paragraph-spacing', DEBUG_CONFIG.paragraphSpacing + 'rem');
   root.style.setProperty('--debug-letter-spacing', DEBUG_CONFIG.letterSpacing);
@@ -314,7 +322,143 @@ function applyDebugConfigToCSS() {
 }
 
 // 页面加载时应用配置
-document.addEventListener('DOMContentLoaded', applyDebugConfigToCSS);
+document.addEventListener('DOMContentLoaded', function() {
+  applyDebugConfigToCSS();
+  createDebugPanel();
+});
+
+// 创建调试面板
+function createDebugPanel() {
+  // 检查是否已存在调试面板
+  if (document.getElementById('debug-panel')) return;
+  
+  const debugPanel = document.createElement('div');
+  debugPanel.id = 'debug-panel';
+  debugPanel.style.cssText = `
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    width: 300px;
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    z-index: 10000;
+    font-family: monospace;
+    font-size: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    display: none;
+  `;
+  
+  debugPanel.innerHTML = `
+    <div style="margin-bottom: 10px; font-weight: bold; color: #a855f7;">🎛️ 分享卡片调试面板</div>
+    
+    <div style="margin-bottom: 8px;">
+      <label>网站名称字体: <span id="website-font-size-value">${DEBUG_CONFIG.websiteFontSize}</span>rem</label>
+      <input type="range" id="website-font-size-slider" min="0.7" max="1.5" step="0.05" value="${DEBUG_CONFIG.websiteFontSize}" style="width: 100%; margin-top: 3px;">
+    </div>
+    
+    <div style="margin-bottom: 8px;">
+      <label>日期字体大小: <span id="date-font-size-value">${DEBUG_CONFIG.dateFontSize}</span>rem</label>
+      <input type="range" id="date-font-size-slider" min="0.7" max="1.2" step="0.05" value="${DEBUG_CONFIG.dateFontSize}" style="width: 100%; margin-top: 3px;">
+    </div>
+    
+    <div style="margin-bottom: 8px;">
+      <label>虚线粗细: <span id="border-width-value">${DEBUG_CONFIG.borderWidth}</span>px</label>
+      <input type="range" id="border-width-slider" min="1" max="5" step="1" value="${DEBUG_CONFIG.borderWidth}" style="width: 100%; margin-top: 3px;">
+    </div>
+    
+    <div style="margin-top: 10px;">
+      <button id="apply-debug-config" style="background: #a855f7; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; width: 100%;">应用设置</button>
+    </div>
+    
+    <div style="margin-top: 5px;">
+      <button id="reset-debug-config" style="background: #6b7280; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; width: 100%;">重置默认</button>
+    </div>
+  `;
+  
+  document.body.appendChild(debugPanel);
+  
+  // 绑定滑块事件
+  const sliders = [
+    { id: 'website-font-size', config: 'websiteFontSize', display: 'website-font-size-value' },
+    { id: 'date-font-size', config: 'dateFontSize', display: 'date-font-size-value' },
+    { id: 'border-width', config: 'borderWidth', display: 'border-width-value' }
+  ];
+  
+  sliders.forEach(slider => {
+    const sliderElement = document.getElementById(slider.id + '-slider');
+    const displayElement = document.getElementById(slider.display);
+    
+    sliderElement.addEventListener('input', function() {
+      const value = parseFloat(this.value);
+      DEBUG_CONFIG[slider.config] = value;
+      displayElement.textContent = value;
+    });
+  });
+  
+  // 应用设置按钮
+  document.getElementById('apply-debug-config').addEventListener('click', function() {
+    applyDebugConfigToCSS();
+    debugLog('🎛️ 调试配置已应用', DEBUG_CONFIG);
+    
+    // 如果分享模态框是打开的，重新应用样式
+    const modal = document.getElementById('share-image-modal');
+    if (modal && modal.style.display !== 'none') {
+      const shareCard = modal.querySelector('.share-card');
+      if (shareCard) {
+        // 更新网站名称和日期字体大小
+        const shareWebsite = shareCard.querySelector('.share-website');
+        if (shareWebsite) {
+          shareWebsite.style.fontSize = `${DEBUG_CONFIG.websiteFontSize}rem !important`;
+        }
+        
+        const shareDate = shareCard.querySelector('.share-date');
+        if (shareDate) {
+          shareDate.style.fontSize = `${DEBUG_CONFIG.dateFontSize}rem !important`;
+        }
+        
+        // 更新虚线边框宽度
+        shareCard.style.borderWidth = `${DEBUG_CONFIG.borderWidth}px`;
+        const shareCardFooter = shareCard.querySelector('.share-card-footer');
+        if (shareCardFooter) {
+          shareCardFooter.style.borderTopWidth = `${DEBUG_CONFIG.borderWidth}px`;
+        }
+      }
+    }
+  });
+  
+  // 重置按钮
+  document.getElementById('reset-debug-config').addEventListener('click', function() {
+    DEBUG_CONFIG.websiteFontSize = 0.875;
+    DEBUG_CONFIG.dateFontSize = 0.875;
+    DEBUG_CONFIG.borderWidth = 1;
+    
+    // 更新滑块和显示值
+    sliders.forEach(slider => {
+      const sliderElement = document.getElementById(slider.id + '-slider');
+      const displayElement = document.getElementById(slider.display);
+      sliderElement.value = DEBUG_CONFIG[slider.config];
+      displayElement.textContent = DEBUG_CONFIG[slider.config];
+    });
+    
+    applyDebugConfigToCSS();
+    debugLog('🔄 调试配置已重置为默认值');
+  });
+}
+
+// 添加快捷键来显示/隐藏调试面板
+document.addEventListener('keydown', function(e) {
+  // Ctrl+Shift+D 或 Cmd+Shift+D
+  if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'D') {
+    e.preventDefault();
+    const debugPanel = document.getElementById('debug-panel');
+    if (debugPanel) {
+      debugPanel.style.display = debugPanel.style.display === 'none' ? 'block' : 'none';
+      console.log('🎛️ 调试面板', debugPanel.style.display === 'none' ? '隐藏' : '显示');
+    }
+  }
+});
 
 // 调试日志函数
 function debugLog(message, data = null) {
@@ -426,9 +570,15 @@ async function renderShareImageImproved() {
           const computedStyle = window.getComputedStyle(el);
           const fontSize = parseFloat(computedStyle.fontSize);
           
-          // 基础字体样式
+          // 基础字体样式 - 应用调试配置的字体大小
           el.style.fontFamily = computedStyle.fontFamily;
-          el.style.fontSize = computedStyle.fontSize;
+          if (el.classList.contains('share-website')) {
+            el.style.fontSize = (DEBUG_CONFIG.websiteFontSize) + 'rem';
+          } else if (el.classList.contains('share-date')) {
+            el.style.fontSize = (DEBUG_CONFIG.dateFontSize) + 'rem';
+          } else {
+            el.style.fontSize = computedStyle.fontSize;
+          }
           el.style.fontWeight = computedStyle.fontWeight;
           el.style.fontStyle = computedStyle.fontStyle;
           
@@ -707,7 +857,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const isDark = document.documentElement.classList.contains('dark');
     const bgColor = isDark ? '#0a0a0a' : '#ffffff';
     const textColor = isDark ? '#ffffff' : '#111827';
-    const borderColor = isDark ? '#4b5563' : '#d1d5db';
+    const borderColor = isDark ? '#c084fc' : '#a855f7';
     
     // 使用调试配置设置分享卡片样式
     shareCard.style.cssText = `
@@ -721,7 +871,7 @@ document.addEventListener('DOMContentLoaded', function() {
       box-sizing: border-box !important;
       overflow: visible !important;
       background: ${bgColor} !important;
-      border: 1px dashed ${borderColor} !important;
+      border: ${DEBUG_CONFIG.borderWidth}px dashed ${borderColor} !important;
       border-radius: 8px !important;
       padding: ${DEBUG_CONFIG.cardPadding}rem !important;
       font-family: inherit !important;
@@ -789,7 +939,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const shareCardFooter = shareCard.querySelector('.share-card-footer');
     if (shareCardFooter) {
       shareCardFooter.style.cssText = `
-        border-top: 1px dashed ${borderColor} !important;
+        border-top: ${DEBUG_CONFIG.borderWidth}px dashed ${borderColor} !important;
         padding-top: 1rem !important;
         margin-top: 0 !important;
       `;
@@ -797,7 +947,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     const shareFooterInfo = shareCard.querySelector('.share-footer-info');
     if (shareFooterInfo) {
-      const footerTextColor = isDark ? '#9ca3af' : '#6b7280';
+      const footerTextColor = isDark ? '#c084fc' : '#7c3aed';
       shareFooterInfo.style.cssText = `
         display: flex !important;
         justify-content: space-between !important;
@@ -805,6 +955,20 @@ document.addEventListener('DOMContentLoaded', function() {
         font-size: 0.875rem !important;
         color: ${footerTextColor} !important;
       `;
+    }
+    
+    // 单独设置网站名称和日期的字体大小和颜色
+    const shareWebsite = shareCard.querySelector('.share-website');
+    if (shareWebsite) {
+      const websiteColor = isDark ? '#a855f7' : '#8b5cf6';
+      shareWebsite.style.fontSize = `${DEBUG_CONFIG.websiteFontSize}rem !important`;
+      shareWebsite.style.color = `${websiteColor} !important`;
+    }
+    
+    if (shareDate) {
+      const dateColor = isDark ? '#c084fc' : '#7c3aed';
+      shareDate.style.fontSize = `${DEBUG_CONFIG.dateFontSize}rem !important`;
+      shareDate.style.color = `${dateColor} !important`;
     }
     
     // Format and set date

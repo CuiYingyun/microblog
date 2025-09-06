@@ -689,10 +689,10 @@ html.dark body .content a {
   /* 移除所有可能影响布局的属性 */
 }
 
-/* 分享卡片样式 - 完全固定 */
+/* 分享卡片样式 - 紫色虚线边框 */
 .share-card {
   background: #ffffff;
-  border: 1px dashed #d1d5db;
+  border: var(--debug-border-width, 1px) dashed #a855f7;
   border-radius: 8px;
   padding: 2rem;
   width: 400px !important; /* 固定宽度 */
@@ -707,7 +707,7 @@ html.dark body .content a {
 
 .dark .share-card {
   background: #0a0a0a;
-  border-color: #4b5563;
+  border: var(--debug-border-width, 1px) dashed #c084fc;
   color: #ffffff;
 }
 
@@ -900,14 +900,14 @@ html.dark body .content a {
 
 /* 分享卡片底部信息 */
 .share-card-footer {
-  border-top: 1px dashed #d1d5db;
+  border-top: var(--debug-border-width, 1px) dashed #a855f7;
   padding-top: 1rem;
   /* 移除margin-top: auto，使用固定间距 */
   margin-top: 0;
 }
 
 .dark .share-card-footer {
-  border-top-color: #4b5563;
+  border-top: var(--debug-border-width, 1px) dashed #c084fc;
 }
 
 .share-footer-info {
@@ -915,19 +915,31 @@ html.dark body .content a {
   justify-content: space-between;
   align-items: center;
   font-size: 0.875rem;
-  color: #6b7280;
+  color: #7c3aed;
 }
 
 .dark .share-footer-info {
-  color: #9ca3af;
+  color: #c084fc;
 }
 
 .share-website {
   font-weight: 600;
+  color: #8b5cf6;
+  font-size: var(--debug-website-font-size, 0.875rem) !important;
+}
+
+.dark .share-website {
+  color: #a855f7;
 }
 
 .share-date {
   font-style: italic;
+  color: #7c3aed;
+  font-size: var(--debug-date-font-size, 0.875rem) !important;
+}
+
+.dark .share-date {
+  color: #c084fc;
 }
 
 /* 模态框操作按钮 */
