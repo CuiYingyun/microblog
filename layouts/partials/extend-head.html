@@ -295,7 +295,7 @@ const DEBUG_CONFIG = {
   cardPadding:1 ,            // 卡片整体内边距 (rem)
   contentToFooterSpacing: 1, // 内容到Banner区域的间距 (rem) (建议范围: 0.5-3.0)
   footerHeight: 0.5,         // Banner区域高度 (rem) (建议范围: 1.0-2.5)
-  bannerVerticalPosition: 7,  // Banner在其区域内的垂直位置调整 (px) (建议范围: -15 到 15)
+  bannerVerticalPosition: 0,  // Banner在其区域内的垂直位置调整 (px) (建议范围: -15 到 15)
   
   // 🎨 渲染配置
   imageTimeout: 20000,       // 图片生成超时时间 (ms)
@@ -578,6 +578,18 @@ async function renderShareImageImproved() {
   debugLog('🎨 检测主题模式', { isDark, bgColor });
 
   try {
+    // 🔍 调试：检查预览页面当前的Banner状态
+    const currentFooter = shareCard.querySelector('.share-card-footer');
+    const currentFooterInfo = shareCard.querySelector('.share-footer-info');
+    if (currentFooter && currentFooterInfo) {
+      debugLog('📊 调用html2canvas前的预览状态检查:', {
+        footer样式: currentFooter.style.cssText,
+        footerInfo样式: currentFooterInfo.style.cssText,
+        footerInfo计算样式transform: window.getComputedStyle(currentFooterInfo).transform,
+        bannerVerticalPosition: DEBUG_CONFIG.bannerVerticalPosition
+      });
+    }
+    
     debugLog('🖼️ 开始调用 html2canvas...', {
       配置: {
         backgroundColor: bgColor,
@@ -605,7 +617,7 @@ async function renderShareImageImproved() {
       windowHeight: shareCard.offsetHeight,
       letterRendering: true, // 改善字体渲染
       onclone: function(clonedDoc, element) {
-        debugLog('🔄 html2canvas onclone 回调执行中...');
+        debugLog('🔄 简化onclone - 信任预览状态');
         
         // 在克隆的文档中移除不需要的元素
         const unwantedElements = element.querySelectorAll('.extend-button, .extend-menu');
@@ -714,11 +726,11 @@ async function renderShareImageImproved() {
           }
         });
         
-        // 重新应用Banner区域样式（完全覆盖CSS）
+        // 重新应用Banner区域样式（修正预览的错误）
         if (clonedShareCardFooter) {
           // 先清空所有样式
           clonedShareCardFooter.style.cssText = '';
-          // 然后重新设置
+          // 然后重新设置（修正预览状态的错误）
           clonedShareCardFooter.style.cssText = `
             border-top: ${DEBUG_CONFIG.borderWidth}px dashed ${isDark ? '#c084fc' : '#a855f7'} !important;
             padding: ${DEBUG_CONFIG.footerHeight}rem 0 !important;
@@ -733,15 +745,15 @@ async function renderShareImageImproved() {
             min-height: auto !important;
             height: auto !important;
           `;
-          debugLog('🔧 Banner Footer样式已彻底重设');
+          debugLog('🔧 Banner Footer样式已重设（修正预览错误）');
         }
         
-        // 重新应用Banner内容位置（完全覆盖CSS）
+        // 重新应用Banner内容位置（修正预览的错误）
         if (clonedShareFooterInfo) {
           const footerTextColor = isDark ? '#c084fc' : '#7c3aed';
           // 先清空所有样式
           clonedShareFooterInfo.style.cssText = '';
-          // 然后重新设置
+          // 然后重新设置（但是调整vertical position为0，不要偏移）
           clonedShareFooterInfo.style.cssText = `
             display: flex !important;
             justify-content: space-between !important;
@@ -749,14 +761,14 @@ async function renderShareImageImproved() {
             width: 100% !important;
             font-size: 0.875rem !important;
             color: ${footerTextColor} !important;
-            transform: translateY(${DEBUG_CONFIG.bannerVerticalPosition}px) !important;
+            transform: translateY(0px) !important;
             margin: 0 !important;
             padding: 0 !important;
             box-sizing: border-box !important;
             position: relative !important;
             line-height: 1.2 !important;
           `;
-          debugLog('🔧 Banner Info样式已彻底重设');
+          debugLog('🔧 Banner Info样式已重设（修正为0px偏移）');
         }
         
         // 确保website和date元素也彻底重设
@@ -786,7 +798,7 @@ async function renderShareImageImproved() {
           `;
         }
         
-        debugLog('🔧 系统化布局样式重新应用完成');
+        debugLog('✅ Banner样式重设完成 - 修正为0px偏移');
         debugLog('✅ onclone 回调处理完成');
       }
     });
@@ -1165,7 +1177,7 @@ document.addEventListener('DOMContentLoaded', function() {
         width: 100% !important;
         font-size: 0.875rem !important;
         color: ${footerTextColor} !important;
-        transform: translateY(${DEBUG_CONFIG.bannerVerticalPosition}px) !important;
+        transform: translateY(0px) !important;
         margin: 0 !important;
         padding: 0 !important;
         box-sizing: border-box !important;
@@ -1173,7 +1185,7 @@ document.addEventListener('DOMContentLoaded', function() {
         line-height: 1.2 !important;
       `;
       debugLog('📐 预览Banner Info样式已彻底重设', {
-        bannerVerticalPosition: DEBUG_CONFIG.bannerVerticalPosition + 'px'
+        bannerVerticalPosition: '0px (固定值)'
       });
     }
     
