@@ -291,10 +291,11 @@ const DEBUG_CONFIG = {
   // 🎨 边框样式配置
   borderWidth: 2.5,            // 图片生成预览卡片中的虚线边框宽度 (px) (建议范围: 1-5)
   
-  // 📏 间距配置
-  cardPadding: 2,            // 卡片内边距 (rem)
-  contentBottomMargin: 1,    // 内容区域底部间距 (rem)
-  footerPadding: 1,          // 底部区域上下内边距 (rem) (建议范围: 0.5-2.0)
+  // 📏 布局间距配置 (重新设计)
+  cardPadding:1 ,            // 卡片整体内边距 (rem)
+  contentToFooterSpacing: 1, // 内容到Banner区域的间距 (rem) (建议范围: 0.5-3.0)
+  footerHeight: 0.5,         // Banner区域高度 (rem) (建议范围: 1.0-2.5)
+  bannerVerticalPosition: 7,  // Banner在其区域内的垂直位置调整 (px) (建议范围: -15 到 15)
   
   // 🎨 渲染配置
   imageTimeout: 20000,       // 图片生成超时时间 (ms)
@@ -321,6 +322,11 @@ function applyDebugConfigToCSS() {
   root.style.setProperty('--debug-paragraph-spacing', DEBUG_CONFIG.paragraphSpacing + 'rem');
   root.style.setProperty('--debug-letter-spacing', DEBUG_CONFIG.letterSpacing);
   root.style.setProperty('--debug-card-padding', DEBUG_CONFIG.cardPadding + 'rem');
+  
+  // 新增：系统化布局配置
+  root.style.setProperty('--debug-content-to-footer-spacing', DEBUG_CONFIG.contentToFooterSpacing + 'rem');
+  root.style.setProperty('--debug-footer-height', DEBUG_CONFIG.footerHeight + 'rem');
+  root.style.setProperty('--debug-banner-vertical-position', DEBUG_CONFIG.bannerVerticalPosition + 'px');
 }
 
 // 页面加载时应用配置
@@ -370,9 +376,21 @@ function createDebugPanel() {
       <input type="range" id="border-width-slider" min="1" max="5" step="0.5" value="${DEBUG_CONFIG.borderWidth}" style="width: 100%; margin-top: 3px;">
     </div>
     
+    <div style="margin-bottom: 10px; padding-top: 10px; border-top: 1px solid #444; font-weight: bold; color: #c084fc;">📐 系统化布局控制</div>
+    
     <div style="margin-bottom: 8px;">
-      <label>底部区域高度: <span id="footer-padding-value">${DEBUG_CONFIG.footerPadding}</span>rem</label>
-      <input type="range" id="footer-padding-slider" min="0.3" max="2.0" step="0.1" value="${DEBUG_CONFIG.footerPadding}" style="width: 100%; margin-top: 3px;">
+      <label>内容到Banner间距: <span id="content-to-footer-spacing-value">${DEBUG_CONFIG.contentToFooterSpacing}</span>rem</label>
+      <input type="range" id="content-to-footer-spacing-slider" min="0.5" max="3.0" step="0.1" value="${DEBUG_CONFIG.contentToFooterSpacing}" style="width: 100%; margin-top: 3px;">
+    </div>
+    
+    <div style="margin-bottom: 8px;">
+      <label>Banner区域高度: <span id="footer-height-value">${DEBUG_CONFIG.footerHeight}</span>rem</label>
+      <input type="range" id="footer-height-slider" min="1.0" max="2.5" step="0.1" value="${DEBUG_CONFIG.footerHeight}" style="width: 100%; margin-top: 3px;">
+    </div>
+    
+    <div style="margin-bottom: 8px;">
+      <label>Banner垂直位置: <span id="banner-vertical-position-value">${DEBUG_CONFIG.bannerVerticalPosition}</span>px</label>
+      <input type="range" id="banner-vertical-position-slider" min="-15" max="15" step="1" value="${DEBUG_CONFIG.bannerVerticalPosition}" style="width: 100%; margin-top: 3px;">
     </div>
     
     <div style="margin-top: 10px;">
@@ -391,7 +409,9 @@ function createDebugPanel() {
     { id: 'website-font-size', config: 'websiteFontSize', display: 'website-font-size-value' },
     { id: 'date-font-size', config: 'dateFontSize', display: 'date-font-size-value' },
     { id: 'border-width', config: 'borderWidth', display: 'border-width-value' },
-    { id: 'footer-padding', config: 'footerPadding', display: 'footer-padding-value' }
+    { id: 'content-to-footer-spacing', config: 'contentToFooterSpacing', display: 'content-to-footer-spacing-value' },
+    { id: 'footer-height', config: 'footerHeight', display: 'footer-height-value' },
+    { id: 'banner-vertical-position', config: 'bannerVerticalPosition', display: 'banner-vertical-position-value' }
   ];
   
   sliders.forEach(slider => {
@@ -429,20 +449,39 @@ function createDebugPanel() {
           shareDate.style.fontSize = `${DEBUG_CONFIG.dateFontSize}rem !important`;
         }
         
-        // 更新虚线边框宽度和底部区域高度
+        // 更新系统化布局样式（模拟CSS行为）
         shareCard.style.borderWidth = `${DEBUG_CONFIG.borderWidth}px`;
+        shareCard.style.padding = `${DEBUG_CONFIG.cardPadding}rem`;
+        
+        // 更新内容区域间距
+        const shareCardContent = shareCard.querySelector('.share-card-content');
+        if (shareCardContent) {
+          shareCardContent.style.marginBottom = `${DEBUG_CONFIG.contentToFooterSpacing}rem`;
+        }
+        
+        // 更新Banner区域样式
         const shareCardFooter = shareCard.querySelector('.share-card-footer');
         if (shareCardFooter) {
           shareCardFooter.style.borderTopWidth = `${DEBUG_CONFIG.borderWidth}px`;
-          shareCardFooter.style.padding = `${DEBUG_CONFIG.footerPadding}rem 0`;
-          shareCardFooter.style.minHeight = `calc(${DEBUG_CONFIG.footerPadding * 2}rem + 1.5rem)`;
+          shareCardFooter.style.padding = `${DEBUG_CONFIG.footerHeight}rem 0`;
+          shareCardFooter.style.marginTop = '0';
           shareCardFooter.style.display = 'flex';
           shareCardFooter.style.alignItems = 'center';
-          debugLog('🔧 底部区域样式已更新', {
-            padding: shareCardFooter.style.padding,
-            minHeight: shareCardFooter.style.minHeight,
-            display: shareCardFooter.style.display,
-            alignItems: shareCardFooter.style.alignItems
+          shareCardFooter.style.justifyContent = 'center';
+          shareCardFooter.style.position = 'relative';
+          
+          debugLog('🔧 Banner区域样式已更新', {
+            footerHeight: DEBUG_CONFIG.footerHeight + 'rem',
+            borderWidth: DEBUG_CONFIG.borderWidth + 'px'
+          });
+        }
+        
+        // 更新Banner内容位置
+        const shareFooterInfo = shareCard.querySelector('.share-footer-info');
+        if (shareFooterInfo) {
+          shareFooterInfo.style.transform = `translateY(${DEBUG_CONFIG.bannerVerticalPosition}px)`;
+          debugLog('🔧 Banner内容位置已更新', {
+            bannerVerticalPosition: DEBUG_CONFIG.bannerVerticalPosition + 'px'
           });
         }
       }
@@ -454,7 +493,9 @@ function createDebugPanel() {
     DEBUG_CONFIG.websiteFontSize = 0.875;
     DEBUG_CONFIG.dateFontSize = 0.875;
     DEBUG_CONFIG.borderWidth = 1;
-    DEBUG_CONFIG.footerPadding = 1;
+    DEBUG_CONFIG.contentToFooterSpacing = 1.5;
+    DEBUG_CONFIG.footerHeight = 1.5;
+    DEBUG_CONFIG.bannerVerticalPosition = 0;
     
     // 更新滑块和显示值
     sliders.forEach(slider => {
@@ -571,6 +612,7 @@ async function renderShareImageImproved() {
         debugLog(`🗑️ 移除 ${unwantedElements.length} 个不需要的元素`);
         unwantedElements.forEach(el => el.remove());
         
+        
         // 确保样式正确应用
         element.style.background = bgColor;
         element.style.color = isDark ? '#ffffff' : '#111827';
@@ -634,6 +676,117 @@ async function renderShareImageImproved() {
           }
         });
         
+        // 重新应用系统化布局样式（确保与预览一致）
+        const clonedShareCard = element;
+        const clonedShareCardContent = clonedShareCard.querySelector('.share-card-content');
+        const clonedShareCardFooter = clonedShareCard.querySelector('.share-card-footer');
+        const clonedShareFooterInfo = clonedShareCard.querySelector('.share-footer-info');
+        
+        // 重新应用卡片样式
+        clonedShareCard.style.padding = `${DEBUG_CONFIG.cardPadding}rem`;
+        clonedShareCard.style.border = `${DEBUG_CONFIG.borderWidth}px dashed ${isDark ? '#c084fc' : '#a855f7'}`;
+        
+        // 重新应用内容区域间距
+        if (clonedShareCardContent) {
+          clonedShareCardContent.style.marginBottom = `${DEBUG_CONFIG.contentToFooterSpacing}rem`;
+        }
+        
+        // 彻底清除CSS样式，避免CSS变量干扰
+        const allBannerElements = element.querySelectorAll('*');
+        allBannerElements.forEach(el => {
+          // 移除可能干扰的CSS类
+          if (el.classList.contains('share-card-footer') || 
+              el.classList.contains('share-footer-info') ||
+              el.classList.contains('share-website') ||
+              el.classList.contains('share-date')) {
+            // 清空所有CSS变量相关的样式
+            el.style.removeProperty('padding');
+            el.style.removeProperty('margin');
+            el.style.removeProperty('border-top');
+            el.style.removeProperty('display');
+            el.style.removeProperty('align-items');
+            el.style.removeProperty('justify-content');
+            el.style.removeProperty('transform');
+            el.style.removeProperty('position');
+            el.style.removeProperty('width');
+            el.style.removeProperty('font-size');
+            el.style.removeProperty('color');
+          }
+        });
+        
+        // 重新应用Banner区域样式（完全覆盖CSS）
+        if (clonedShareCardFooter) {
+          // 先清空所有样式
+          clonedShareCardFooter.style.cssText = '';
+          // 然后重新设置
+          clonedShareCardFooter.style.cssText = `
+            border-top: ${DEBUG_CONFIG.borderWidth}px dashed ${isDark ? '#c084fc' : '#a855f7'} !important;
+            padding: ${DEBUG_CONFIG.footerHeight}rem 0 !important;
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            position: relative !important;
+            box-sizing: border-box !important;
+            width: 100% !important;
+            min-height: auto !important;
+            height: auto !important;
+          `;
+          debugLog('🔧 Banner Footer样式已彻底重设');
+        }
+        
+        // 重新应用Banner内容位置（完全覆盖CSS）
+        if (clonedShareFooterInfo) {
+          const footerTextColor = isDark ? '#c084fc' : '#7c3aed';
+          // 先清空所有样式
+          clonedShareFooterInfo.style.cssText = '';
+          // 然后重新设置
+          clonedShareFooterInfo.style.cssText = `
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            width: 100% !important;
+            font-size: 0.875rem !important;
+            color: ${footerTextColor} !important;
+            transform: translateY(${DEBUG_CONFIG.bannerVerticalPosition}px) !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            box-sizing: border-box !important;
+            position: relative !important;
+            line-height: 1.2 !important;
+          `;
+          debugLog('🔧 Banner Info样式已彻底重设');
+        }
+        
+        // 确保website和date元素也彻底重设
+        const clonedWebsite = element.querySelector('.share-website');
+        const clonedDate = element.querySelector('.share-date');
+        
+        if (clonedWebsite) {
+          const websiteColor = isDark ? '#a855f7' : '#8b5cf6';
+          clonedWebsite.style.cssText = `
+            font-size: ${DEBUG_CONFIG.websiteFontSize}rem !important;
+            color: ${websiteColor} !important;
+            font-weight: 600 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            flex-shrink: 0 !important;
+          `;
+        }
+        
+        if (clonedDate) {
+          const dateColor = isDark ? '#c084fc' : '#7c3aed';
+          clonedDate.style.cssText = `
+            font-size: ${DEBUG_CONFIG.dateFontSize}rem !important;
+            color: ${dateColor} !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            flex-shrink: 0 !important;
+          `;
+        }
+        
+        debugLog('🔧 系统化布局样式重新应用完成');
         debugLog('✅ onclone 回调处理完成');
       }
     });
@@ -903,9 +1056,21 @@ document.addEventListener('DOMContentLoaded', function() {
       color: ${textColor} !important;
     `;
     
-    // 使用调试配置设置内容区域样式
+    // 使用调试配置设置内容区域样式（模拟CSS .share-card-content）
+    const shareCardContent = shareCard.querySelector('.share-card-content');
+    if (shareCardContent) {
+      shareCardContent.style.cssText = `
+        margin-bottom: ${DEBUG_CONFIG.contentToFooterSpacing}rem !important;
+        overflow-wrap: break-word !important;
+        word-wrap: break-word !important;
+        word-break: break-word !important;
+        display: block !important;
+      `;
+    }
+    
+    // 设置文章内容样式（模拟CSS .share-article-content）
     articleContent.style.cssText = `
-      margin-bottom: ${DEBUG_CONFIG.contentBottomMargin}rem !important;
+      margin-bottom: 0 !important;
       overflow-wrap: break-word !important;
       word-wrap: break-word !important;
       word-break: break-word !important;
@@ -958,28 +1123,41 @@ document.addEventListener('DOMContentLoaded', function() {
       articleContent.innerHTML = '<p>No content available</p>';
     }
     
-    // 设置底部区域样式
+    // 彻底清除和重设Banner样式（与onclone回调保持完全一致）
+    
+    // 设置Banner区域样式（彻底覆盖CSS）
     const shareCardFooter = shareCard.querySelector('.share-card-footer');
     if (shareCardFooter) {
-      const minHeightValue = `calc(${DEBUG_CONFIG.footerPadding * 2}rem + 1.5rem)`;
+      // 先清空所有样式
+      shareCardFooter.style.cssText = '';
+      // 然后重新设置（与onclone完全一致）
       shareCardFooter.style.cssText = `
         border-top: ${DEBUG_CONFIG.borderWidth}px dashed ${borderColor} !important;
-        padding: ${DEBUG_CONFIG.footerPadding}rem 0 !important;
+        padding: ${DEBUG_CONFIG.footerHeight}rem 0 !important;
         margin-top: 0 !important;
+        margin-bottom: 0 !important;
         display: flex !important;
         align-items: center !important;
-        min-height: ${minHeightValue} !important;
+        justify-content: center !important;
+        position: relative !important;
+        box-sizing: border-box !important;
+        width: 100% !important;
+        min-height: auto !important;
+        height: auto !important;
       `;
-      debugLog('📐 初始底部区域样式设置', {
-        footerPadding: DEBUG_CONFIG.footerPadding + 'rem',
-        minHeight: minHeightValue,
+      debugLog('📐 预览Banner Footer样式已彻底重设', {
+        footerHeight: DEBUG_CONFIG.footerHeight + 'rem',
         borderWidth: DEBUG_CONFIG.borderWidth + 'px'
       });
     }
     
+    // 设置Banner内容容器样式（彻底覆盖CSS）
     const shareFooterInfo = shareCard.querySelector('.share-footer-info');
     if (shareFooterInfo) {
       const footerTextColor = isDark ? '#c084fc' : '#7c3aed';
+      // 先清空所有样式
+      shareFooterInfo.style.cssText = '';
+      // 然后重新设置（与onclone完全一致）
       shareFooterInfo.style.cssText = `
         display: flex !important;
         justify-content: space-between !important;
@@ -987,21 +1165,41 @@ document.addEventListener('DOMContentLoaded', function() {
         width: 100% !important;
         font-size: 0.875rem !important;
         color: ${footerTextColor} !important;
+        transform: translateY(${DEBUG_CONFIG.bannerVerticalPosition}px) !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        box-sizing: border-box !important;
+        position: relative !important;
+        line-height: 1.2 !important;
       `;
+      debugLog('📐 预览Banner Info样式已彻底重设', {
+        bannerVerticalPosition: DEBUG_CONFIG.bannerVerticalPosition + 'px'
+      });
     }
     
-    // 单独设置网站名称和日期的字体大小和颜色
+    // 彻底重设网站名称和日期的样式
     const shareWebsite = shareCard.querySelector('.share-website');
     if (shareWebsite) {
       const websiteColor = isDark ? '#a855f7' : '#8b5cf6';
-      shareWebsite.style.fontSize = `${DEBUG_CONFIG.websiteFontSize}rem !important`;
-      shareWebsite.style.color = `${websiteColor} !important`;
+      shareWebsite.style.cssText = `
+        font-size: ${DEBUG_CONFIG.websiteFontSize}rem !important;
+        color: ${websiteColor} !important;
+        font-weight: 600 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        flex-shrink: 0 !important;
+      `;
     }
     
     if (shareDate) {
       const dateColor = isDark ? '#c084fc' : '#7c3aed';
-      shareDate.style.fontSize = `${DEBUG_CONFIG.dateFontSize}rem !important`;
-      shareDate.style.color = `${dateColor} !important`;
+      shareDate.style.cssText = `
+        font-size: ${DEBUG_CONFIG.dateFontSize}rem !important;
+        color: ${dateColor} !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        flex-shrink: 0 !important;
+      `;
     }
     
     // Format and set date

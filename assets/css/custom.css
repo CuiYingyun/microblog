@@ -712,7 +712,7 @@ html.dark body .content a {
   background: #ffffff;
   border: var(--debug-border-width, 1px) dashed #a855f7;
   border-radius: 8px;
-  padding: 2rem;
+  padding: var(--debug-card-padding, 2rem); /* 使用CSS变量 */
   width: 400px !important; /* 固定宽度 */
   min-width: 400px !important;
   max-width: 400px !important;
@@ -731,7 +731,7 @@ html.dark body .content a {
 
 /* 分享卡片内容区域 */
 .share-card-content {
-  margin-bottom: 2rem;
+  margin-bottom: var(--debug-content-to-footer-spacing, 1.5rem); /* 使用CSS变量 */
   overflow-wrap: break-word;
   word-wrap: break-word;
   word-break: break-word;
@@ -973,12 +973,12 @@ html.dark body .content a {
 /* 分享卡片底部信息 */
 .share-card-footer {
   border-top: var(--debug-border-width, 1px) dashed #a855f7;
-  padding: var(--debug-footer-padding, 1rem) 0;
-  /* 移除margin-top: auto，使用固定间距 */
-  margin-top: 0;
+  padding: var(--debug-footer-height, 1rem) 0; /* 使用CSS变量 */
+  margin-top: 0; /* 不设置margin，由content控制 */
   display: flex;
   align-items: center;
-  min-height: calc(var(--debug-footer-padding, 1rem) * 2 + 1.5rem);
+  justify-content: center;
+  position: relative;
 }
 
 .dark .share-card-footer {
@@ -992,6 +992,7 @@ html.dark body .content a {
   font-size: 0.875rem;
   color: #7c3aed;
   width: 100%;
+  transform: translateY(var(--debug-banner-vertical-position, 0px)); /* 使用CSS变量进行微调 */
 }
 
 .dark .share-footer-info {
