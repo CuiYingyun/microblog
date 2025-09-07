@@ -490,31 +490,6 @@ function debugLog(message, data = null) {
   }
 }
 
-// 等待字体加载完成
-async function waitForFonts() {
-  debugLog('开始等待字体加载...');
-  
-  if ('fonts' in document) {
-    debugLog('检测到 document.fonts API，等待字体就绪...');
-    await document.fonts.ready;
-    
-    // 确保所有字体都已加载
-    const fontFaces = [...document.fonts];
-    debugLog(`发现 ${fontFaces.length} 个字体`, fontFaces.map(f => f.family));
-    await Promise.all(fontFaces.map(font => font.loaded));
-    
-    // 额外等待确保字体完全渲染
-    debugLog(`等待 ${DEBUG_CONFIG.fontWaitTime}ms 确保字体渲染完成...`);
-    await new Promise(resolve => setTimeout(resolve, DEBUG_CONFIG.fontWaitTime));
-  } else {
-    debugLog('字体 API 不可用，使用备用等待时间 1000ms');
-    await new Promise(resolve => setTimeout(resolve, 1000));
-  }
-  
-  debugLog('字体加载完成 ✅');
-}
-
-
 // Render share card to image using improved html2canvas
 async function renderShareImageImproved() {
   debugLog('🚀 开始生成分享图片...');
@@ -531,9 +506,25 @@ async function renderShareImageImproved() {
     computedStyle: window.getComputedStyle(shareCard).display
   });
 
-  // 确保字体已加载
-  debugLog('📝 开始字体加载流程...');
-  await waitForFonts();
+  // 简化但安全的字体等待策略
+  debugLog('📝 等待DOM和字体渲染完成...');
+  
+  // 对于系统字体，简单等待就足够了，但我们加一个快速的字体检查作为保险
+  if ('fonts' in document) {
+    try {
+      // 快速检查字体API状态，但不等待具体字体加载
+      await Promise.race([
+        document.fonts.ready,
+        new Promise(resolve => setTimeout(resolve, 200)) // 200ms快速超时
+      ]);
+      debugLog('✅ 字体API检查完成');
+    } catch (error) {
+      debugLog('⚠️ 字体API检查跳过:', error);
+    }
+  }
+  
+  // 主要等待时间确保DOM完全渲染
+  await new Promise(resolve => setTimeout(resolve, DEBUG_CONFIG.fontWaitTime));
 
   // 等待DOM更新完成
   debugLog('⏳ 等待DOM更新完成...');
