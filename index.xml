@@ -1,4 +1,11 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>💭 Issues Blog on Cui.Yingyun</title><link>https://www.cuiyingyun.com/</link><description>Recent content in 💭 Issues Blog on Cui.Yingyun</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>© 2025 Cui.Yingyun</copyright><lastBuildDate>Sun, 16 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://www.cuiyingyun.com/index.xml" rel="self" type="application/rss+xml"/><item><title>2025/11/16 LLM 能力天花板</title><link>https://www.cuiyingyun.com/posts/20251116-llm-%E8%83%BD%E5%8A%9B%E5%A4%A9%E8%8A%B1%E6%9D%BF/</link><pubDate>Sun, 16 Nov 2025 00:00:00 +0000</pubDate><guid>https://www.cuiyingyun.com/posts/20251116-llm-%E8%83%BD%E5%8A%9B%E5%A4%A9%E8%8A%B1%E6%9D%BF/</guid><description>&lt;p>LLM 拥有近似无限的能力，本质上也是通过「指令微调」的方式「教会」了模型。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>💭 Issues Blog on Cui.Yingyun</title><link>https://www.cuiyingyun.com/</link><description>Recent content in 💭 Issues Blog on Cui.Yingyun</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>© 2025 Cui.Yingyun</copyright><lastBuildDate>Thu, 20 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://www.cuiyingyun.com/index.xml" rel="self" type="application/rss+xml"/><item><title>2025/11/20 好奇心是最大的竞争力</title><link>https://www.cuiyingyun.com/posts/20251120-%E5%A5%BD%E5%A5%87%E5%BF%83%E6%98%AF%E6%9C%80%E5%A4%A7%E7%9A%84%E7%AB%9E%E4%BA%89%E5%8A%9B/</link><pubDate>Thu, 20 Nov 2025 00:00:00 +0000</pubDate><guid>https://www.cuiyingyun.com/posts/20251120-%E5%A5%BD%E5%A5%87%E5%BF%83%E6%98%AF%E6%9C%80%E5%A4%A7%E7%9A%84%E7%AB%9E%E4%BA%89%E5%8A%9B/</guid><description>&lt;h2 id="好奇心这是最大的核心竞争力" class="relative group">“好奇心”，这是最大的核心竞争力。 &lt;/h2>&lt;p>它会让你：&lt;/p>
+&lt;ul>
+&lt;li>保持专注、提高时间投入度&lt;/li>
+&lt;li>增加思考时间，包括在吃饭、睡觉、娱乐的时候&lt;/li>
+&lt;li>提高点状信息的关联能力和信息敏感度&lt;/li>
+&lt;li>利用一切可用的工具和知识&lt;/li>
+&lt;li>…&lt;/li>
+&lt;/ul></description></item><item><title>2025/11/16 LLM 能力天花板</title><link>https://www.cuiyingyun.com/posts/20251116-llm-%E8%83%BD%E5%8A%9B%E5%A4%A9%E8%8A%B1%E6%9D%BF/</link><pubDate>Sun, 16 Nov 2025 00:00:00 +0000</pubDate><guid>https://www.cuiyingyun.com/posts/20251116-llm-%E8%83%BD%E5%8A%9B%E5%A4%A9%E8%8A%B1%E6%9D%BF/</guid><description>&lt;p>LLM 拥有近似无限的能力，本质上也是通过「指令微调」的方式「教会」了模型。
 算是一种 scaling law，对于新技能的 scaling law。对于新增一个领域的业务，扩展他的成本极其低。 甚至是自动化的事情。&lt;/p>
 &lt;p>LLM 区别于其他 AI 技术点在于，它的 scaling 能力太强大了。
 模型本身的「智力」、模型解决特定领域问题的能力等等。&lt;/p>
@@ -78,12 +85,4 @@ They are rationalizing.&lt;/p>
 &lt;ul>
 &lt;li>开发小工具，是赚零花钱的好方法，比写文章好太多了。接第二条：&lt;/li>
 &lt;li>你的认知非常重要，不要分享给不值得分享的人，除非对方为此付费。 转自@cyrilxuq&lt;/li>
-&lt;/ul></description></item><item><title>2025/09/27 读张忠谋自传之感</title><link>https://www.cuiyingyun.com/posts/20250927-%E8%AF%BB%E5%BC%A0%E5%BF%A0%E8%B0%8B%E8%87%AA%E4%BC%A0%E4%B9%8B%E6%84%9F/</link><pubDate>Sat, 27 Sep 2025 00:00:00 +0000</pubDate><guid>https://www.cuiyingyun.com/posts/20250927-%E8%AF%BB%E5%BC%A0%E5%BF%A0%E8%B0%8B%E8%87%AA%E4%BC%A0%E4%B9%8B%E6%84%9F/</guid><description>&lt;p>读「张忠谋自传」之感：&lt;/p>
-&lt;ul>
-&lt;li>现代社会，教育是改变命运的最快捷的方式。出身背景、时代背景，当然影响重大，但自我教育本身可能是起决定性作用。终身学习是唯一的出路！&lt;/li>
-&lt;li>要抓住时代的规律，这可能只是一个决定即可（可能就是一个冲动的决定）。决定之后就是靠着惯性发展，而这一发展可能就是几十年，几乎就是一个人的一生了。&lt;/li>
-&lt;li>职业生涯来看，起起伏伏，充满了兴奋与沮丧。有得意的时候，也有自我怀疑的时候。能让人坚持下去的，可能就是「热爱」吧。有了热爱，也好坚持，有了坚持，等到时机变换之时，有翻盘的可能性。找到热爱并深耕，是唯一的战略！&lt;/li>
-&lt;li>善于处理与人的关系，这可以包括客户、合作伙伴、员工，甚至是上级与下属。上下级关系可以决定你在某个环境里的生存境遇，但客户、合作伙伴、员工关系决定你能否成就大事业。真诚是最高级的技巧！&lt;/li>
-&lt;/ul>
-&lt;p>非常棒的自传，上册讲的是求学阶段，下册讲的台积电时期的经历。上册可能更符合张的本性，而下册则更多像是「宣传」自己的经营理念与成就。&lt;/p>
-&lt;p>我更喜欢上册。&lt;/p></description></item></channel></rss>
+&lt;/ul></description></item></channel></rss>
