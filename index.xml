@@ -15,7 +15,16 @@
 &lt;p>&amp;mdash; Daniel Kahneman&lt;/p>
 &lt;p>卡尼曼的这个洞见很深刻。当你想一件事的时候，不自觉地会放大它。同样，那有没有可能在不想它的时候会低估呢？&lt;/p>
 &lt;p>控制自己在想什么，我们可能需要这种能力。因为你在想一件事，它会影响你对它的重要性的判断。&lt;/p></description></item><item><title>20251114 幸福</title><link>https://www.cuiyingyun.com/posts/20251114-%E5%B9%B8%E7%A6%8F/</link><pubDate>Fri, 14 Nov 2025 00:00:00 +0000</pubDate><guid>https://www.cuiyingyun.com/posts/20251114-%E5%B9%B8%E7%A6%8F/</guid><description>&lt;p>Happiness is complicated, but if you simplify it into things like a loving family, health, friendship, eight hours of sleep, well-balanced children, and being part of something bigger than yourself, you realize how limited money’s role can be.&lt;/p>
-&lt;p>&amp;mdash; The art of spending money by Morgan Housel&lt;/p></description></item><item><title>2025/11/07 rational</title><link>https://www.cuiyingyun.com/posts/20251107-rational/</link><pubDate>Fri, 07 Nov 2025 00:00:00 +0000</pubDate><guid>https://www.cuiyingyun.com/posts/20251107-rational/</guid><description>&lt;p>People are not rational.
+&lt;p>&amp;mdash; The art of spending money by Morgan Housel&lt;/p></description></item><item><title>20251113 高维祝福</title><link>https://www.cuiyingyun.com/posts/20251113-%E9%AB%98%E7%BB%B4%E7%A5%9D%E7%A6%8F/</link><pubDate>Thu, 13 Nov 2025 00:00:00 +0000</pubDate><guid>https://www.cuiyingyun.com/posts/20251113-%E9%AB%98%E7%BB%B4%E7%A5%9D%E7%A6%8F/</guid><description>&lt;h3 id="高纬度的祝福" class="relative group">高纬度的祝福 &lt;/h3>&lt;p>深度神经网络的规模达到一定的程度的复杂度之后，最优的区域可能呈现出平坦的、大面积的区域，也意味着找到最优值的方式并没有随着网络规模的变大而变大，某种程度上反而变得简单了。&lt;/p>
+&lt;p>即使是用梯度下降这种只要求局部最优的算法，也能取得非常好的效果。&lt;/p>
+&lt;p>我读到上面内容的时候的第一个反应是面对复杂的局面，特别是超级复杂的局面，反而找到最优值的方法更为简单，而且也不是很高深的道理。&lt;/p>
+&lt;ul>
+&lt;li>投资复杂不复杂？&lt;/li>
+&lt;li>创新复杂不复杂？&lt;/li>
+&lt;li>市场竞争复杂不复杂？&lt;/li>
+&lt;li>人际关系复杂不复杂？&lt;/li>
+&lt;/ul>
+&lt;p>我觉得应对它们的「算法」，可能是非常简单的。&lt;/p></description></item><item><title>2025/11/07 rational</title><link>https://www.cuiyingyun.com/posts/20251107-rational/</link><pubDate>Fri, 07 Nov 2025 00:00:00 +0000</pubDate><guid>https://www.cuiyingyun.com/posts/20251107-rational/</guid><description>&lt;p>People are not rational.
 They are rationalizing.&lt;/p>
 &lt;p>Once you understand this simple fact, all the oddest human behavior will suddenly make way more sense.&lt;/p>
 &lt;p>&amp;mdash; Billy Markus&lt;/p>
@@ -81,8 +90,4 @@ They are rationalizing.&lt;/p>
 所以我有了将近九天在家休息的机会，感觉像是有了暑假一样。保持正常的作息、正常的饮食、正常的学习与阅读，发现并没有感到无聊，甚至还挺好的。
 如果退休了、财务自由了，是不是就是这种状态？&lt;/p></description></item><item><title>2025/10/02 工具本身的反哺</title><link>https://www.cuiyingyun.com/posts/20251002-%E5%B7%A5%E5%85%B7%E6%9C%AC%E8%BA%AB%E7%9A%84%E5%8F%8D%E5%93%BA/</link><pubDate>Thu, 02 Oct 2025 00:00:00 +0000</pubDate><guid>https://www.cuiyingyun.com/posts/20251002-%E5%B7%A5%E5%85%B7%E6%9C%AC%E8%BA%AB%E7%9A%84%E5%8F%8D%E5%93%BA/</guid><description>&lt;p>有了基本的、可用的模型之后，可以利用此模型生成高质量数据，然后再反哺给模型，以提高模型的能力。
 获得高质量数据的方法多种多样，RL 只是其中一种。&lt;/p>
-&lt;p>这个模式跟编译器、OS 类似；可以用 C 编译器开发 C 编译器，用 Linux 开发 Linux。&lt;/p></description></item><item><title>2025/09/30 认知付费</title><link>https://www.cuiyingyun.com/posts/20250930-%E8%AE%A4%E7%9F%A5%E4%BB%98%E8%B4%B9/</link><pubDate>Tue, 30 Sep 2025 00:00:00 +0000</pubDate><guid>https://www.cuiyingyun.com/posts/20250930-%E8%AE%A4%E7%9F%A5%E4%BB%98%E8%B4%B9/</guid><description>&lt;p>今日收获&lt;/p>
-&lt;ul>
-&lt;li>开发小工具，是赚零花钱的好方法，比写文章好太多了。接第二条：&lt;/li>
-&lt;li>你的认知非常重要，不要分享给不值得分享的人，除非对方为此付费。 转自@cyrilxuq&lt;/li>
-&lt;/ul></description></item></channel></rss>
+&lt;p>这个模式跟编译器、OS 类似；可以用 C 编译器开发 C 编译器，用 Linux 开发 Linux。&lt;/p></description></item></channel></rss>
