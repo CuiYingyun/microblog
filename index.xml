@@ -1,4 +1,10 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>💭 Issues Blog on Cui.Yingyun</title><link>https://www.cuiyingyun.com/</link><description>Recent content in 💭 Issues Blog on Cui.Yingyun</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>© 2025 Cui.Yingyun</copyright><lastBuildDate>Sat, 22 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://www.cuiyingyun.com/index.xml" rel="self" type="application/rss+xml"/><item><title>2025/11/22 make something wonderful and put it out there</title><link>https://www.cuiyingyun.com/posts/20251122-make-something-wonderful-and-put-it-out-there/</link><pubDate>Sat, 22 Nov 2025 00:00:00 +0000</pubDate><guid>https://www.cuiyingyun.com/posts/20251122-make-something-wonderful-and-put-it-out-there/</guid><description>&lt;p>There&amp;rsquo;s lots of ways to be, as a person.&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>💭 Issues Blog on Cui.Yingyun</title><link>https://www.cuiyingyun.com/</link><description>Recent content in 💭 Issues Blog on Cui.Yingyun</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>© 2025 Cui.Yingyun</copyright><lastBuildDate>Fri, 28 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://www.cuiyingyun.com/index.xml" rel="self" type="application/rss+xml"/><item><title>2025/11/28 解决问题的乐趣</title><link>https://www.cuiyingyun.com/posts/20251128-%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98%E7%9A%84%E4%B9%90%E8%B6%A3/</link><pubDate>Fri, 28 Nov 2025 00:00:00 +0000</pubDate><guid>https://www.cuiyingyun.com/posts/20251128-%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98%E7%9A%84%E4%B9%90%E8%B6%A3/</guid><description>&lt;p>当有一个好的环境，可以聚焦于解决问题时，这会激发纯粹的解题乐趣。
+感觉很微妙，非常纯粹，非常充实。&lt;/p>
+&lt;ul>
+&lt;li>首先要遇到这种好的环境，主要看合作者、上级。这是小概率事件。&lt;/li>
+&lt;li>你是不是享受解决眼下问题的过程？这也是小概率事件。&lt;/li>
+&lt;li>解决的问题是否是客户所需要的？这也是小概率事件。&lt;/li>
+&lt;/ul></description></item><item><title>2025/11/22 make something wonderful and put it out there</title><link>https://www.cuiyingyun.com/posts/20251122-make-something-wonderful-and-put-it-out-there/</link><pubDate>Sat, 22 Nov 2025 00:00:00 +0000</pubDate><guid>https://www.cuiyingyun.com/posts/20251122-make-something-wonderful-and-put-it-out-there/</guid><description>&lt;p>There&amp;rsquo;s lots of ways to be, as a person.&lt;/p>
 &lt;p>And some people express their deep appreciation in different ways.&lt;/p>
 &lt;p>But one of the ways that I believe people express their appreciation to the rest of humanity is to make something wonderful and put it out there.&lt;/p>
 &lt;p>&amp;mdash; Steve, 2007&lt;/p></description></item><item><title>2025/11/20 好奇心是最大的竞争力</title><link>https://www.cuiyingyun.com/posts/20251120-%E5%A5%BD%E5%A5%87%E5%BF%83%E6%98%AF%E6%9C%80%E5%A4%A7%E7%9A%84%E7%AB%9E%E4%BA%89%E5%8A%9B/</link><pubDate>Thu, 20 Nov 2025 00:00:00 +0000</pubDate><guid>https://www.cuiyingyun.com/posts/20251120-%E5%A5%BD%E5%A5%87%E5%BF%83%E6%98%AF%E6%9C%80%E5%A4%A7%E7%9A%84%E7%AB%9E%E4%BA%89%E5%8A%9B/</guid><description>&lt;h2 id="好奇心这是最大的核心竞争力" class="relative group">“好奇心”，这是最大的核心竞争力。 &lt;/h2>&lt;p>它会让你：&lt;/p>
@@ -63,34 +69,4 @@ They are rationalizing.&lt;/p>
 晚上偶然翻到 23 年七月的时候，发现这本书出了第四版，读了李老师写的序。
 跟我一样的地方生活、一样的地方上学、一样的地方工作。
 甚至他写第一版时的 37 岁，也是我现在的年纪。
-李老师的作品不止这一本影响了我，还有他的财富观、英语口语方法等等。&lt;/p></description></item><item><title>2025/10/06 immersive-notepad 1.0</title><link>https://www.cuiyingyun.com/posts/20251006-immersive-notepad-1.0/</link><pubDate>Mon, 06 Oct 2025 00:00:00 +0000</pubDate><guid>https://www.cuiyingyun.com/posts/20251006-immersive-notepad-1.0/</guid><description>&lt;p>随着编写的 prompt 越来越复杂，而且还需要引用大量的文字作为 prompt 内容本身，今年七月的时候就想到可以写个 Chrome 插件专门用来做这件事。&lt;/p>
-&lt;p>得益于 vibe coding，我这种对 Chrome 插件开发、网页技术栈一窍不通的人也可以写一个满足自己需求的工具，确实很神奇。
-这也是我的第一个完整的面向终端用户的小工具，既然能够解决我的需求，我相信也肯定能解决其他有类似需求的人的需求。&lt;/p>
-&lt;p>我还给它做了个产品介绍页，地址为 &lt;a href="https://immersive-notepad.caveman.work/" target="_blank" rel="noreferrer">immersive-notepad.caveman.work&lt;/a>。&lt;/p>
-&lt;p>以下是设计理念的大纲：&lt;/p>
-&lt;ul>
-&lt;li>聊天窗口式大模型的出现
-&lt;ul>
-&lt;li>把基于文字的信息传递的效率推向了新的台阶&lt;/li>
-&lt;li>浏览器成了主要的入口&lt;/li>
-&lt;li>面临的信息更多&lt;/li>
-&lt;li>思考的深度更多&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>需要临时缓冲区
-&lt;ul>
-&lt;li>将信息具象化，有助于形成焦点，可以专注思考&lt;/li>
-&lt;li>对内容进行打磨，打磨的过程（即写 prompt 的过程）本身就是思考的过程。思考越多，prompt 就越长，而且不是一次性编写的，需要多轮优化。&lt;/li>
-&lt;li>你需要在一个特定上下文中思考&lt;/li>
-&lt;li>无缝地抓取引起注意的文字信息到临时缓冲区&lt;/li>
-&lt;li>形成思考的循环，有助于进一步编写内容、prompt。&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>定位
-&lt;ul>
-&lt;li>专业的笔记记录工具，它只是临时缓存。&lt;/li>
-&lt;li>完全可用快捷键操作，减少上下文切换，直接在浏览器中实现具象化的临时性思考&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>改变了使用聊天式大模型的工具的方式，是这类工具的好伴侣。&lt;/li>
-&lt;/ul></description></item></channel></rss>
+李老师的作品不止这一本影响了我，还有他的财富观、英语口语方法等等。&lt;/p></description></item></channel></rss>
