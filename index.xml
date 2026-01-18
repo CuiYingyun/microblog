@@ -1,4 +1,10 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>💭 Issues Blog on Cui.Yingyun</title><link>https://www.cuiyingyun.com/</link><description>Recent content in 💭 Issues Blog on Cui.Yingyun</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>© 2025 Cui.Yingyun</copyright><lastBuildDate>Tue, 06 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://www.cuiyingyun.com/index.xml" rel="self" type="application/rss+xml"/><item><title>2026/01/06 树挪死 人挪活</title><link>https://www.cuiyingyun.com/posts/20260106-%E6%A0%91%E6%8C%AA%E6%AD%BB-%E4%BA%BA%E6%8C%AA%E6%B4%BB/</link><pubDate>Tue, 06 Jan 2026 00:00:00 +0000</pubDate><guid>https://www.cuiyingyun.com/posts/20260106-%E6%A0%91%E6%8C%AA%E6%AD%BB-%E4%BA%BA%E6%8C%AA%E6%B4%BB/</guid><description>&lt;ul>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>💭 Issues Blog on Cui.Yingyun</title><link>https://www.cuiyingyun.com/</link><description>Recent content in 💭 Issues Blog on Cui.Yingyun</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>© 2025 Cui.Yingyun</copyright><lastBuildDate>Sun, 18 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://www.cuiyingyun.com/index.xml" rel="self" type="application/rss+xml"/><item><title>2026/01/18 agent 结果的评估</title><link>https://www.cuiyingyun.com/posts/20260118-agent-%E7%BB%93%E6%9E%9C%E7%9A%84%E8%AF%84%E4%BC%B0/</link><pubDate>Sun, 18 Jan 2026 00:00:00 +0000</pubDate><guid>https://www.cuiyingyun.com/posts/20260118-agent-%E7%BB%93%E6%9E%9C%E7%9A%84%E8%AF%84%E4%BC%B0/</guid><description>&lt;p>使用 Claude Code 等智能体来执行任务，本质上就是在“开发”一个智能体。但大多数时候，它们只是用来处理简单任务，很多情况下还需要自己亲自参与结果验证。
+它的高阶用法，是端到端交付一个完整结果。
+要把它设计好，需要技巧。
+最核心的问题是：如何定义智能体“已经把任务完成了”？进一步，如何评估完成度？
+“聪明”的模型可能会 hack 结果，通过抄近路的方式解决问题。
+如何设定正确的验收方式，才是提升工程效率的核心。&lt;/p>
+&lt;p>这和人类社会一样：假设你是企业老板，盈利是最终目标，但你不能把这个目标直接下达给下属部门。你需要针对不同部门，设定适合他们的评估方法——这既是技术，也是艺术。&lt;/p></description></item><item><title>2026/01/06 树挪死 人挪活</title><link>https://www.cuiyingyun.com/posts/20260106-%E6%A0%91%E6%8C%AA%E6%AD%BB-%E4%BA%BA%E6%8C%AA%E6%B4%BB/</link><pubDate>Tue, 06 Jan 2026 00:00:00 +0000</pubDate><guid>https://www.cuiyingyun.com/posts/20260106-%E6%A0%91%E6%8C%AA%E6%AD%BB-%E4%BA%BA%E6%8C%AA%E6%B4%BB/</guid><description>&lt;ul>
 &lt;li>有时候，恶劣的环境会造就恶劣的人，但身处恶劣环境之中却不自知。面对困局，最简单的办法是换个环境，而不是硬着头皮逼自己去迎合环境。&lt;/li>
 &lt;li>稳健、真诚都是良好的品质。令我惊讶的是，现实中真有人这样行事。这是我该学习的！但这离不开环境的支撑。希望能够持续保持这种环境，让这些良好品质得以留存。&lt;/li>
 &lt;li>应思考如何做 scale up 的事！要对需求保持敏感！这个世界就是可自由探索的需求工厂。&lt;/li>
@@ -81,8 +87,4 @@
 &lt;p>&amp;mdash; Daniel Kahneman&lt;/p>
 &lt;p>卡尼曼的这个洞见很深刻。当你想一件事的时候，不自觉地会放大它。同样，那有没有可能在不想它的时候会低估呢？&lt;/p>
 &lt;p>控制自己在想什么，我们可能需要这种能力。因为你在想一件事，它会影响你对它的重要性的判断。&lt;/p></description></item><item><title>20251114 幸福</title><link>https://www.cuiyingyun.com/posts/20251114-%E5%B9%B8%E7%A6%8F/</link><pubDate>Fri, 14 Nov 2025 00:00:00 +0000</pubDate><guid>https://www.cuiyingyun.com/posts/20251114-%E5%B9%B8%E7%A6%8F/</guid><description>&lt;p>Happiness is complicated, but if you simplify it into things like a loving family, health, friendship, eight hours of sleep, well-balanced children, and being part of something bigger than yourself, you realize how limited money’s role can be.&lt;/p>
-&lt;p>&amp;mdash; The art of spending money by Morgan Housel&lt;/p></description></item><item><title>20251114 有没有选择做热爱的事情</title><link>https://www.cuiyingyun.com/posts/20251114-%E6%9C%89%E6%B2%A1%E6%9C%89%E9%80%89%E6%8B%A9%E5%81%9A%E7%83%AD%E7%88%B1%E7%9A%84%E4%BA%8B%E6%83%85/</link><pubDate>Fri, 14 Nov 2025 00:00:00 +0000</pubDate><guid>https://www.cuiyingyun.com/posts/20251114-%E6%9C%89%E6%B2%A1%E6%9C%89%E9%80%89%E6%8B%A9%E5%81%9A%E7%83%AD%E7%88%B1%E7%9A%84%E4%BA%8B%E6%83%85/</guid><description>&lt;p>要做自己喜欢的事情，才能做出成绩来，这个倒是没问题。可是让我困惑的是，很多人在面临当下的局面时，并没有可选择的余地，甚至不知道自己其实可以选择。&lt;/p>
-&lt;p>在没有选择的前提下，他怎么能确保自己正在做的事情就是自己所热爱的呢？
-要么强迫自己爱上这件事，要么找个理由说服自己，要么就只是忍受。&lt;/p>
-&lt;p>所以，他不是不懂“去做自己热爱的事情”这个道理，而是很可能从一开始就没有这个选择。更可悲的是，他甚至不知道自己有做出选择的能力。&lt;/p>
-&lt;p>原因在于人的本性、惰性，或者说人自身的某些特性，本来就很难改变。&lt;/p></description></item></channel></rss>
+&lt;p>&amp;mdash; The art of spending money by Morgan Housel&lt;/p></description></item></channel></rss>
