@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>💭 Issues Blog on Cui.Yingyun</title><link>https://www.cuiyingyun.com/</link><description>Recent content in 💭 Issues Blog on Cui.Yingyun</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>© 2025 Cui.Yingyun</copyright><lastBuildDate>Tue, 27 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://www.cuiyingyun.com/index.xml" rel="self" type="application/rss+xml"/><item><title>20260127 近期状态</title><link>https://www.cuiyingyun.com/posts/20260127-%E8%BF%91%E6%9C%9F%E7%8A%B6%E6%80%81/</link><pubDate>Tue, 27 Jan 2026 00:00:00 +0000</pubDate><guid>https://www.cuiyingyun.com/posts/20260127-%E8%BF%91%E6%9C%9F%E7%8A%B6%E6%80%81/</guid><description>&lt;p>我们创造工具，工具塑造我们。&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>💭 Issues Blog on Cui.Yingyun</title><link>https://www.cuiyingyun.com/</link><description>Recent content in 💭 Issues Blog on Cui.Yingyun</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>© 2025 Cui.Yingyun</copyright><lastBuildDate>Sat, 31 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://www.cuiyingyun.com/index.xml" rel="self" type="application/rss+xml"/><item><title>2026/01/31 github 活跃</title><link>https://www.cuiyingyun.com/posts/20260131-github-%E6%B4%BB%E8%B7%83/</link><pubDate>Sat, 31 Jan 2026 00:00:00 +0000</pubDate><guid>https://www.cuiyingyun.com/posts/20260131-github-%E6%B4%BB%E8%B7%83/</guid><description>&lt;img width="911" height="314" alt="Image" src="https://github.com/user-attachments/assets/90985d10-f56e-41a3-b1bb-13ef03b7cb45" />
+&lt;p>六月，编程真正进入了 Agentic Coding 时代，彻底改变了我的习惯。我们创造工具，工具塑造我们。&lt;/p></description></item><item><title>20260127 近期状态</title><link>https://www.cuiyingyun.com/posts/20260127-%E8%BF%91%E6%9C%9F%E7%8A%B6%E6%80%81/</link><pubDate>Tue, 27 Jan 2026 00:00:00 +0000</pubDate><guid>https://www.cuiyingyun.com/posts/20260127-%E8%BF%91%E6%9C%9F%E7%8A%B6%E6%80%81/</guid><description>&lt;p>我们创造工具，工具塑造我们。&lt;/p>
 &lt;p>
 &lt;figure>&lt;img src="https://github.com/user-attachments/assets/a6cbc9c0-2bac-4dc3-9bd4-7fb23c1a4527" alt="image" class="mx-auto my-0 rounded-md" />
 &lt;/figure>
@@ -85,8 +86,4 @@
 &lt;li>提高点状信息的关联能力和信息敏感度&lt;/li>
 &lt;li>利用一切可用的工具和知识&lt;/li>
 &lt;li>…&lt;/li>
-&lt;/ul></description></item><item><title>2025/11/16 LLM 能力天花板</title><link>https://www.cuiyingyun.com/posts/20251116-llm-%E8%83%BD%E5%8A%9B%E5%A4%A9%E8%8A%B1%E6%9D%BF/</link><pubDate>Sun, 16 Nov 2025 00:00:00 +0000</pubDate><guid>https://www.cuiyingyun.com/posts/20251116-llm-%E8%83%BD%E5%8A%9B%E5%A4%A9%E8%8A%B1%E6%9D%BF/</guid><description>&lt;p>LLM 拥有近似无限的能力，本质上也是通过「指令微调」的方式「教会」了模型。
-算是一种 scaling law，对于新技能的 scaling law。对于新增一个领域的业务，扩展他的成本极其低。 甚至是自动化的事情。&lt;/p>
-&lt;p>LLM 区别于其他 AI 技术点在于，它的 scaling 能力太强大了。
-模型本身的「智力」、模型解决特定领域问题的能力等等。&lt;/p>
-&lt;p>它的训练方式（模型+数据）以及与世界的交互方式（文字），奠定了它的能力天花板非常非常高。&lt;/p></description></item></channel></rss>
+&lt;/ul></description></item></channel></rss>
