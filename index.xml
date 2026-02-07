@@ -1,4 +1,11 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>💭 Issues Blog on Cui.Yingyun</title><link>https://www.cuiyingyun.com/</link><description>Recent content in 💭 Issues Blog on Cui.Yingyun</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>© 2025 Cui.Yingyun</copyright><lastBuildDate>Fri, 06 Feb 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://www.cuiyingyun.com/index.xml" rel="self" type="application/rss+xml"/><item><title>2026/02/06 海盗旗</title><link>https://www.cuiyingyun.com/posts/20260206-%E6%B5%B7%E7%9B%97%E6%97%97/</link><pubDate>Fri, 06 Feb 2026 00:00:00 +0000</pubDate><guid>https://www.cuiyingyun.com/posts/20260206-%E6%B5%B7%E7%9B%97%E6%97%97/</guid><description>&lt;img width="1920" height="1280" alt="Image" src="https://github.com/user-attachments/assets/438c9469-1727-4e81-894f-98c4d39ff361" />
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>💭 Issues Blog on Cui.Yingyun</title><link>https://www.cuiyingyun.com/</link><description>Recent content in 💭 Issues Blog on Cui.Yingyun</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>© 2025 Cui.Yingyun</copyright><lastBuildDate>Sat, 07 Feb 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://www.cuiyingyun.com/index.xml" rel="self" type="application/rss+xml"/><item><title>2026/02/07 代码学习方法</title><link>https://www.cuiyingyun.com/posts/20260207-%E4%BB%A3%E7%A0%81%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/</link><pubDate>Sat, 07 Feb 2026 00:00:00 +0000</pubDate><guid>https://www.cuiyingyun.com/posts/20260207-%E4%BB%A3%E7%A0%81%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/</guid><description>&lt;p>通过阅读代码来学习技术的方法：&lt;/p>
+&lt;ol>
+&lt;li>先把与你想学的技术相关的开源代码多下载几份（最好覆盖从入门到中级、高级，以及当前最主流的方案）。&lt;/li>
+&lt;li>启动 Claude Code 或 Codex。&lt;/li>
+&lt;li>让它以这些代码为基础，结合你想学习的某个具体话题的算法设计，把两者融合起来。&lt;/li>
+&lt;/ol>
+&lt;p>基于代码库，专门生成一份符合你当前水平、同时包含代码与算法说明的技术文档。
+这种方式最快。&lt;/p></description></item><item><title>2026/02/06 海盗旗</title><link>https://www.cuiyingyun.com/posts/20260206-%E6%B5%B7%E7%9B%97%E6%97%97/</link><pubDate>Fri, 06 Feb 2026 00:00:00 +0000</pubDate><guid>https://www.cuiyingyun.com/posts/20260206-%E6%B5%B7%E7%9B%97%E6%97%97/</guid><description>&lt;img width="1920" height="1280" alt="Image" src="https://github.com/user-attachments/assets/438c9469-1727-4e81-894f-98c4d39ff361" />
 &lt;p>即便是少有人走的路，那应该也有灯塔。&lt;/p></description></item><item><title>2026/01/31 github 活跃</title><link>https://www.cuiyingyun.com/posts/20260131-github-%E6%B4%BB%E8%B7%83/</link><pubDate>Sat, 31 Jan 2026 00:00:00 +0000</pubDate><guid>https://www.cuiyingyun.com/posts/20260131-github-%E6%B4%BB%E8%B7%83/</guid><description>&lt;img width="911" height="314" alt="Image" src="https://github.com/user-attachments/assets/90985d10-f56e-41a3-b1bb-13ef03b7cb45" />
 &lt;p>六月，编程真正进入了 Agentic Coding 时代，彻底改变了我的习惯。我们创造工具，工具塑造我们。&lt;/p></description></item><item><title>20260127 近期状态</title><link>https://www.cuiyingyun.com/posts/20260127-%E8%BF%91%E6%9C%9F%E7%8A%B6%E6%80%81/</link><pubDate>Tue, 27 Jan 2026 00:00:00 +0000</pubDate><guid>https://www.cuiyingyun.com/posts/20260127-%E8%BF%91%E6%9C%9F%E7%8A%B6%E6%80%81/</guid><description>&lt;p>我们创造工具，工具塑造我们。&lt;/p>
 &lt;p>
@@ -77,7 +84,4 @@
 &lt;li>首先要遇到这种好的环境，主要看合作者、上级。这是小概率事件。&lt;/li>
 &lt;li>你是不是享受解决眼下问题的过程？这也是小概率事件。&lt;/li>
 &lt;li>解决的问题是否是客户所需要的？这也是小概率事件。&lt;/li>
-&lt;/ul></description></item><item><title>2025/11/22 make something wonderful and put it out there</title><link>https://www.cuiyingyun.com/posts/20251122-make-something-wonderful-and-put-it-out-there/</link><pubDate>Sat, 22 Nov 2025 00:00:00 +0000</pubDate><guid>https://www.cuiyingyun.com/posts/20251122-make-something-wonderful-and-put-it-out-there/</guid><description>&lt;p>There&amp;rsquo;s lots of ways to be, as a person.&lt;/p>
-&lt;p>And some people express their deep appreciation in different ways.&lt;/p>
-&lt;p>But one of the ways that I believe people express their appreciation to the rest of humanity is to make something wonderful and put it out there.&lt;/p>
-&lt;p>&amp;mdash; Steve, 2007&lt;/p></description></item></channel></rss>
+&lt;/ul></description></item></channel></rss>
