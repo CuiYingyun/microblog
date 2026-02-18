@@ -1,4 +1,14 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>💭 Issues Blog on Cui.Yingyun</title><link>https://www.cuiyingyun.com/</link><description>Recent content in 💭 Issues Blog on Cui.Yingyun</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>© 2025 Cui.Yingyun</copyright><lastBuildDate>Tue, 17 Feb 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://www.cuiyingyun.com/index.xml" rel="self" type="application/rss+xml"/><item><title>2026/02/17 26 年马年给自己的祝词，祝自由</title><link>https://www.cuiyingyun.com/posts/20260217-26-%E5%B9%B4%E9%A9%AC%E5%B9%B4%E7%BB%99%E8%87%AA%E5%B7%B1%E7%9A%84%E7%A5%9D%E8%AF%8D%E7%A5%9D%E8%87%AA%E7%94%B1/</link><pubDate>Tue, 17 Feb 2026 00:00:00 +0000</pubDate><guid>https://www.cuiyingyun.com/posts/20260217-26-%E5%B9%B4%E9%A9%AC%E5%B9%B4%E7%BB%99%E8%87%AA%E5%B7%B1%E7%9A%84%E7%A5%9D%E8%AF%8D%E7%A5%9D%E8%87%AA%E7%94%B1/</guid><description>&lt;p>写在2026年马年新年之际，给自己的话。&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>💭 Issues Blog on Cui.Yingyun</title><link>https://www.cuiyingyun.com/</link><description>Recent content in 💭 Issues Blog on Cui.Yingyun</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>© 2025 Cui.Yingyun</copyright><lastBuildDate>Wed, 18 Feb 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://www.cuiyingyun.com/index.xml" rel="self" type="application/rss+xml"/><item><title>2026/02/18 先大后小</title><link>https://www.cuiyingyun.com/posts/20260218-%E5%85%88%E5%A4%A7%E5%90%8E%E5%B0%8F/</link><pubDate>Wed, 18 Feb 2026 00:00:00 +0000</pubDate><guid>https://www.cuiyingyun.com/posts/20260218-%E5%85%88%E5%A4%A7%E5%90%8E%E5%B0%8F/</guid><description>&lt;p>在从 Vibe Coding 过渡到 Agentic Coding 之后，一个很明显的不争事实是：所有真正拥抱 Agentic Coding 的公司（那些同时拥有 Frontier Model 和 Coding 工具的公司），其代码目前都由 AI 生成。&lt;/p>
+&lt;p>在这个前提下，我们需要在思路上做一次转向。过去设计软件时，我们习惯用迭代的方式，一点点把它做大；但在 Agentic Coding 时代，这套思路可能不再适用。&lt;/p>
+&lt;p>更好的方式是：&lt;/p>
+&lt;ol>
+&lt;li>先把未来成功时的完整形态，以及对应的组织架构，一次性输入给 Coding 工具。&lt;/li>
+&lt;li>让 AI 在上述上下文中生成代码，使其朝着最终成功的形态演化。&lt;/li>
+&lt;li>在构建软件系统时，再逐步把功能加进去。&lt;/li>
+&lt;/ol>
+&lt;p>这就像一个 Rocket Booster：它会放大人的想象力与品位。因此，你的瓶颈将更多来自想象力，而不是落地时的工程约束。&lt;/p>
+&lt;p>所以，构思要往大处想；执行时，让 AI 工具沿着你的设想自动演化成你想要的状态。之所以目前还需要一步步推进，根本原因是：人一旦参与验收，就会遇到现实约束，只能逐步验证。&lt;/p>
+&lt;p>如果你能设计出一个完整、可自我验证的闭环负反馈系统，Agentic Coding 工具理论上可以自行演化成你想要的样子。但这极其困难，而且高度分领域、很挑场景。&lt;/p></description></item><item><title>2026/02/17 26 年马年给自己的祝词，祝自由</title><link>https://www.cuiyingyun.com/posts/20260217-26-%E5%B9%B4%E9%A9%AC%E5%B9%B4%E7%BB%99%E8%87%AA%E5%B7%B1%E7%9A%84%E7%A5%9D%E8%AF%8D%E7%A5%9D%E8%87%AA%E7%94%B1/</link><pubDate>Tue, 17 Feb 2026 00:00:00 +0000</pubDate><guid>https://www.cuiyingyun.com/posts/20260217-26-%E5%B9%B4%E9%A9%AC%E5%B9%B4%E7%BB%99%E8%87%AA%E5%B7%B1%E7%9A%84%E7%A5%9D%E8%AF%8D%E7%A5%9D%E8%87%AA%E7%94%B1/</guid><description>&lt;p>写在2026年马年新年之际，给自己的话。&lt;/p>
 &lt;p>当你置身于某个环境时，常会在不知不觉中被其中与你相处的人所“洗脑”。这种“洗脑”往往是无意识的，你可能直到某一天才突然意识到：眼下的状态，其实并不是你真正想要的。&lt;/p>
 &lt;p>你未必能准确说清原因，却会有一种“不太对劲”的感觉。而在这种时刻，往往正是需要反思的节点：&lt;/p>
 &lt;ol>
@@ -79,8 +89,4 @@
 &lt;li>自我迭代的工具最有魅力（用工具优化其本身）&lt;/li>
 &lt;li>通用性跟专业性并不矛盾，越是偏底层的工具越能平衡两者&lt;/li>
 &lt;/ul></description></item><item><title>2025/12/07 suffer</title><link>https://www.cuiyingyun.com/posts/20251207-suffer/</link><pubDate>Sun, 07 Dec 2025 00:00:00 +0000</pubDate><guid>https://www.cuiyingyun.com/posts/20251207-suffer/</guid><description>&lt;p>We suffer more often in imagination than in reality.&lt;/p>
-&lt;p>&amp;mdash; Seneca in Epistulae Morales ad Lucilium&lt;/p></description></item><item><title>2025/12/06 哲学</title><link>https://www.cuiyingyun.com/posts/20251206-%E5%93%B2%E5%AD%A6/</link><pubDate>Sat, 06 Dec 2025 00:00:00 +0000</pubDate><guid>https://www.cuiyingyun.com/posts/20251206-%E5%93%B2%E5%AD%A6/</guid><description>&lt;ol>
-&lt;li>Simple is Less&lt;/li>
-&lt;li>Less is More&lt;/li>
-&lt;li>More is Different&lt;/li>
-&lt;/ol></description></item></channel></rss>
+&lt;p>&amp;mdash; Seneca in Epistulae Morales ad Lucilium&lt;/p></description></item></channel></rss>
