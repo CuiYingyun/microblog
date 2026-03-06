@@ -1,4 +1,24 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>💭 Issues Blog on Cui.Yingyun</title><link>https://www.cuiyingyun.com/</link><description>Recent content in 💭 Issues Blog on Cui.Yingyun</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>© 2025 Cui.Yingyun</copyright><lastBuildDate>Wed, 04 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://www.cuiyingyun.com/index.xml" rel="self" type="application/rss+xml"/><item><title>2026/03/04 General Problem Solver (GPS)</title><link>https://www.cuiyingyun.com/posts/20260304-general-problem-solver-gps/</link><pubDate>Wed, 04 Mar 2026 00:00:00 +0000</pubDate><guid>https://www.cuiyingyun.com/posts/20260304-general-problem-solver-gps/</guid><description>&lt;p>A genuine problem-solving process involves repeatedly using available information to initiate exploration, which, in turn, reveals more information until a way to attain the solution is finally discovered.&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>💭 Issues Blog on Cui.Yingyun</title><link>https://www.cuiyingyun.com/</link><description>Recent content in 💭 Issues Blog on Cui.Yingyun</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>© 2025 Cui.Yingyun</copyright><lastBuildDate>Fri, 06 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://www.cuiyingyun.com/index.xml" rel="self" type="application/rss+xml"/><item><title>2026/03/06 训练信号的泛化性</title><link>https://www.cuiyingyun.com/posts/20260306-%E8%AE%AD%E7%BB%83%E4%BF%A1%E5%8F%B7%E7%9A%84%E6%B3%9B%E5%8C%96%E6%80%A7/</link><pubDate>Fri, 06 Mar 2026 00:00:00 +0000</pubDate><guid>https://www.cuiyingyun.com/posts/20260306-%E8%AE%AD%E7%BB%83%E4%BF%A1%E5%8F%B7%E7%9A%84%E6%B3%9B%E5%8C%96%E6%80%A7/</guid><description>&lt;p>针对数学解题步骤设计的 Reward Model，能否具备足够的泛化能力，让它在其他领域的问题中也有很好的表现？&lt;/p>
+&lt;p>如果能的话，是因为模型从奖励信号中学到的是更抽象的东西。&lt;/p>
+&lt;p>最容易迁移的，并不是“会解二元一次方程组”，而是这些更抽象的能力：&lt;/p>
+&lt;ul>
+&lt;li>是否能显式分解问题；&lt;/li>
+&lt;li>是否会检查中间步骤；&lt;/li>
+&lt;li>是否能指出隐含假设；&lt;/li>
+&lt;li>是否能避免跳步；&lt;/li>
+&lt;li>是否能做局部纠错；&lt;/li>
+&lt;li>是否具备较稳定的长链条信用分配能力。&lt;/li>
+&lt;/ul>
+&lt;p>通过数学这类任务，模型可以学到更底层的抽象能力。如上所述，这也是数学上的 Reward Model 能够泛化到其他领域的一个关键特性。&lt;/p>
+&lt;p>这里的核心概念就是“泛化”：你需要设计一种奖励信号，使其具备足够强的泛化能力——这才是最关键的，也就是信号本身要足够“能迁移”。&lt;/p>
+&lt;p>我觉得从这个角度来看，一个好的模型设计，和一个人培养良好的思维能力，本质上是一样的。&lt;/p>
+&lt;p>你要设计的信号要足够有泛化性，才能在各行各业、各个领域里都派上用场。我以前把这种道理叫作“零阶道理”。&lt;/p>
+&lt;p>举个例子：&lt;/p>
+&lt;ol>
+&lt;li>对自身想法的批判性反思&lt;/li>
+&lt;li>好奇心&lt;/li>
+&lt;/ol>
+&lt;p>这些都属于“零阶道理”，它们作为信号的泛化力特别强。&lt;/p></description></item><item><title>2026/03/04 General Problem Solver (GPS)</title><link>https://www.cuiyingyun.com/posts/20260304-general-problem-solver-gps/</link><pubDate>Wed, 04 Mar 2026 00:00:00 +0000</pubDate><guid>https://www.cuiyingyun.com/posts/20260304-general-problem-solver-gps/</guid><description>&lt;p>A genuine problem-solving process involves repeatedly using available information to initiate exploration, which, in turn, reveals more information until a way to attain the solution is finally discovered.&lt;/p>
 &lt;p>— Allen Newell, J.C. Shaw, and Herbert Simon, “Report on a General Problem-Solving Program” (1959)&lt;/p>
 &lt;p>通过循环迭代地挖掘信息，再用新获得的信息去解决当下的问题。许多问题的本质，其实是信息不足。&lt;/p></description></item><item><title>20260304 excellence</title><link>https://www.cuiyingyun.com/posts/20260304-excellence/</link><pubDate>Wed, 04 Mar 2026 00:00:00 +0000</pubDate><guid>https://www.cuiyingyun.com/posts/20260304-excellence/</guid><description>&lt;p>
 &lt;figure>&lt;img src="https://github.com/user-attachments/assets/4226235f-1de4-4cf0-b243-01aad4744f63" alt="image" class="mx-auto my-0 rounded-md" />
@@ -80,13 +100,4 @@
 &lt;li>花销不高，有时一天只吃一顿正餐，其余则以水果、饭团解决。&lt;/li>
 &lt;li>一年一次的独自旅行，可能是个不错的选择，明年再试一次。&lt;/li>
 &lt;/ul>
-&lt;img width="633" height="560" alt="Image" src="https://github.com/user-attachments/assets/2ee39a3c-1508-4228-b54d-1149fbf428fa" /></description></item><item><title>2025/12/20 25 年年度关键词</title><link>https://www.cuiyingyun.com/posts/20251220-25-%E5%B9%B4%E5%B9%B4%E5%BA%A6%E5%85%B3%E9%94%AE%E8%AF%8D/</link><pubDate>Sat, 20 Dec 2025 00:00:00 +0000</pubDate><guid>https://www.cuiyingyun.com/posts/20251220-25-%E5%B9%B4%E5%B9%B4%E5%BA%A6%E5%85%B3%E9%94%AE%E8%AF%8D/</guid><description>&lt;p>25 年度复盘&lt;/p>
-&lt;h2 id="最强大的工具大模型" class="relative group">最强大的工具：大模型 &lt;/h2>&lt;p>这一年最确定的增益来自“持续用大模型”——学习、理性分析、实时信息获取、帮我复盘自己的决策……几乎覆盖了所有关键环节。
-我的结论很简单：用最领先的模型，哪怕贵，也值。你愿意花“大钱”买最先进的学习工具，反而会更珍惜、更高频、更认真地用，回报会滚起来。
-对学习最有效的一招：让它扮演“PhD 导师/评审”，并且用英文提问（质量明显更稳）。&lt;/p>
-&lt;h2 id="惊喜的产品chatgpt-pulse" class="relative group">惊喜的产品：ChatGPT Pulse &lt;/h2>&lt;p>它会回顾我的对话，逐渐理解我，然后用一种“我很熟悉但又有点意外”的方式推送信息。
-我喜欢它的原因：它把“lifelog（生活记录）”这条路线真正产品化了——不是记录本身，而是把记录变成可用的洞察和提醒。&lt;/p>
-&lt;h2 id="工作与生活降杠杆留白自由" class="relative group">工作与生活：降杠杆、留白、自由 &lt;/h2>&lt;p>我越来越相信：降杠杆=给自己更大的自由空间。
-金钱的意义之一，是对冲各种风险——遇到不靠谱的同事/老板，能快速抽身、立刻换环境。想做到“不靠杠杆”，就得提升能力；而提升能力最直接的加速器之一，就是继续用最领先的学习与思考工具。
-同时也学会对大脑“留白”：同时推进多个复杂任务，往往一个都做不好。宁愿看起来“很闲”，也要给大脑足够空间，让真正的深度思考发生。
-最后一个体感很强的点：很多以为“改不了”的现状，其实都能改，而且改变可以立刻发生——差别只在于你想改变的念头，到底有多强。&lt;/p></description></item></channel></rss>
+&lt;img width="633" height="560" alt="Image" src="https://github.com/user-attachments/assets/2ee39a3c-1508-4228-b54d-1149fbf428fa" /></description></item></channel></rss>
