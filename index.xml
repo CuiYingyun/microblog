@@ -3,7 +3,10 @@
 &lt;li>固定深度的 Transformer（不输出中间 token）本质上更像一个固定层数的电路——它所能处理的问题复杂度是有上界的。&lt;/li>
 &lt;li>一旦允许输出中间 token，模型就变成了一个图灵完备的计算系统——理论上，只要给它足够多的中间步骤，就可以处理任意复杂的可计算问题。&lt;/li>
 &lt;/ul>
-&lt;p>因为任何算法都可以被分解为更小的原子单元，并通过逐步累积的方式实现，所以任何可计算的问题，本质上都可以用这种方法来解决。&lt;/p></description></item><item><title>2026/03/06 训练信号的泛化性</title><link>https://www.cuiyingyun.com/posts/20260306-%E8%AE%AD%E7%BB%83%E4%BF%A1%E5%8F%B7%E7%9A%84%E6%B3%9B%E5%8C%96%E6%80%A7/</link><pubDate>Fri, 06 Mar 2026 00:00:00 +0000</pubDate><guid>https://www.cuiyingyun.com/posts/20260306-%E8%AE%AD%E7%BB%83%E4%BF%A1%E5%8F%B7%E7%9A%84%E6%B3%9B%E5%8C%96%E6%80%A7/</guid><description>&lt;p>针对数学解题步骤设计的 Reward Model，能否具备足够的泛化能力，让它在其他领域的问题中也有很好的表现？&lt;/p>
+&lt;p>因为任何算法都可以被分解为更小的原子单元，并通过逐步累积的方式实现，所以任何可计算的问题，本质上都可以用这种方法来解决。&lt;/p>
+&lt;p>从学习的角度看，更进一步的原因在于：模型在预训练阶段，已经见过这类推理过程。&lt;/p>
+&lt;p>比如，在多份材料中，往往会共同呈现一种通过多步骤分解来解决问题或生成回答的方式。因此，多步骤推理能够激活模型在预训练阶段习得的相关知识。&lt;/p>
+&lt;p>后续训练的作用，则是把这种在预训练中形成的能力进一步激发出来。&lt;/p></description></item><item><title>2026/03/06 训练信号的泛化性</title><link>https://www.cuiyingyun.com/posts/20260306-%E8%AE%AD%E7%BB%83%E4%BF%A1%E5%8F%B7%E7%9A%84%E6%B3%9B%E5%8C%96%E6%80%A7/</link><pubDate>Fri, 06 Mar 2026 00:00:00 +0000</pubDate><guid>https://www.cuiyingyun.com/posts/20260306-%E8%AE%AD%E7%BB%83%E4%BF%A1%E5%8F%B7%E7%9A%84%E6%B3%9B%E5%8C%96%E6%80%A7/</guid><description>&lt;p>针对数学解题步骤设计的 Reward Model，能否具备足够的泛化能力，让它在其他领域的问题中也有很好的表现？&lt;/p>
 &lt;p>如果能的话，是因为模型从奖励信号中学到的是更抽象的东西。&lt;/p>
 &lt;p>最容易迁移的，并不是“会解二元一次方程组”，而是这些更抽象的能力：&lt;/p>
 &lt;ul>
