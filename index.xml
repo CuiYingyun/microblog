@@ -1,4 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>💭 Issues Blog on Cui.Yingyun</title><link>https://www.cuiyingyun.com/</link><description>Recent content in 💭 Issues Blog on Cui.Yingyun</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>© 2025 Cui.Yingyun</copyright><lastBuildDate>Fri, 06 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://www.cuiyingyun.com/index.xml" rel="self" type="application/rss+xml"/><item><title>2026/03/06 训练信号的泛化性</title><link>https://www.cuiyingyun.com/posts/20260306-%E8%AE%AD%E7%BB%83%E4%BF%A1%E5%8F%B7%E7%9A%84%E6%B3%9B%E5%8C%96%E6%80%A7/</link><pubDate>Fri, 06 Mar 2026 00:00:00 +0000</pubDate><guid>https://www.cuiyingyun.com/posts/20260306-%E8%AE%AD%E7%BB%83%E4%BF%A1%E5%8F%B7%E7%9A%84%E6%B3%9B%E5%8C%96%E6%80%A7/</guid><description>&lt;p>针对数学解题步骤设计的 Reward Model，能否具备足够的泛化能力，让它在其他领域的问题中也有很好的表现？&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>💭 Issues Blog on Cui.Yingyun</title><link>https://www.cuiyingyun.com/</link><description>Recent content in 💭 Issues Blog on Cui.Yingyun</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>© 2025 Cui.Yingyun</copyright><lastBuildDate>Wed, 11 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://www.cuiyingyun.com/index.xml" rel="self" type="application/rss+xml"/><item><title>2026/03/11 关于为什么中间推理步骤能提升最终答案质量的一点思考</title><link>https://www.cuiyingyun.com/posts/20260311-%E5%85%B3%E4%BA%8E%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%AD%E9%97%B4%E6%8E%A8%E7%90%86%E6%AD%A5%E9%AA%A4%E8%83%BD%E6%8F%90%E5%8D%87%E6%9C%80%E7%BB%88%E7%AD%94%E6%A1%88%E8%B4%A8%E9%87%8F%E7%9A%84%E4%B8%80%E7%82%B9%E6%80%9D%E8%80%83/</link><pubDate>Wed, 11 Mar 2026 00:00:00 +0000</pubDate><guid>https://www.cuiyingyun.com/posts/20260311-%E5%85%B3%E4%BA%8E%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%AD%E9%97%B4%E6%8E%A8%E7%90%86%E6%AD%A5%E9%AA%A4%E8%83%BD%E6%8F%90%E5%8D%87%E6%9C%80%E7%BB%88%E7%AD%94%E6%A1%88%E8%B4%A8%E9%87%8F%E7%9A%84%E4%B8%80%E7%82%B9%E6%80%9D%E8%80%83/</guid><description>&lt;p>关于为什么中间推理步骤能提升最终答案质量的一点思考：&lt;/p>
+&lt;ul>
+&lt;li>固定深度的 Transformer（不输出中间 token）本质上更像一个固定层数的电路——它所能处理的问题复杂度是有上界的。&lt;/li>
+&lt;li>一旦允许输出中间 token，模型就变成了一个图灵完备的计算系统——理论上，只要给它足够多的中间步骤，就可以处理任意复杂的可计算问题。&lt;/li>
+&lt;/ul>
+&lt;p>因为任何算法都可以被分解为更小的原子单元，并通过逐步累积的方式实现，所以任何可计算的问题，本质上都可以用这种方法来解决。&lt;/p></description></item><item><title>2026/03/06 训练信号的泛化性</title><link>https://www.cuiyingyun.com/posts/20260306-%E8%AE%AD%E7%BB%83%E4%BF%A1%E5%8F%B7%E7%9A%84%E6%B3%9B%E5%8C%96%E6%80%A7/</link><pubDate>Fri, 06 Mar 2026 00:00:00 +0000</pubDate><guid>https://www.cuiyingyun.com/posts/20260306-%E8%AE%AD%E7%BB%83%E4%BF%A1%E5%8F%B7%E7%9A%84%E6%B3%9B%E5%8C%96%E6%80%A7/</guid><description>&lt;p>针对数学解题步骤设计的 Reward Model，能否具备足够的泛化能力，让它在其他领域的问题中也有很好的表现？&lt;/p>
 &lt;p>如果能的话，是因为模型从奖励信号中学到的是更抽象的东西。&lt;/p>
 &lt;p>最容易迁移的，并不是“会解二元一次方程组”，而是这些更抽象的能力：&lt;/p>
 &lt;ul>
@@ -94,10 +99,4 @@
 &lt;p>
 &lt;figure>&lt;img src="https://github.com/user-attachments/assets/426dcc8d-509b-4470-8fae-ad60d1a6315b" alt="Image" class="mx-auto my-0 rounded-md" />
 &lt;/figure>
-&lt;/p></description></item><item><title>2026/01/03 独自旅行</title><link>https://www.cuiyingyun.com/posts/20260103-%E7%8B%AC%E8%87%AA%E6%97%85%E8%A1%8C/</link><pubDate>Sat, 03 Jan 2026 00:00:00 +0000</pubDate><guid>https://www.cuiyingyun.com/posts/20260103-%E7%8B%AC%E8%87%AA%E6%97%85%E8%A1%8C/</guid><description>&lt;h3 id="26-年元旦---日本关西地区独自旅行" class="relative group">26 年元旦 - 日本关西地区独自旅行 &lt;/h3>&lt;ul>
-&lt;li>旅行的日常非常简单，却带来了很高的自由度；有时当日的目的地，是在车站看见下一趟列车开往哪里就定哪里。&lt;/li>
-&lt;li>时常会感到无聊，但这并不等同于孤独。无聊在于看见有趣的事，却没法立刻与人分享。旅途中大量写笔记，成了我的主要消遣。另一个好处是，我可以用大量碎片时间来思考：虽然想的多半没什么实际用处，但整个过程很愉快。&lt;/li>
-&lt;li>花销不高，有时一天只吃一顿正餐，其余则以水果、饭团解决。&lt;/li>
-&lt;li>一年一次的独自旅行，可能是个不错的选择，明年再试一次。&lt;/li>
-&lt;/ul>
-&lt;img width="633" height="560" alt="Image" src="https://github.com/user-attachments/assets/2ee39a3c-1508-4228-b54d-1149fbf428fa" /></description></item></channel></rss>
+&lt;/p></description></item></channel></rss>
