@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>💭 Issues Blog on Cui.Yingyun</title><link>https://www.cuiyingyun.com/</link><description>Recent content in 💭 Issues Blog on Cui.Yingyun</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>© 2025 Cui.Yingyun</copyright><lastBuildDate>Wed, 11 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://www.cuiyingyun.com/index.xml" rel="self" type="application/rss+xml"/><item><title>2026/03/11 关于为什么中间推理步骤能提升最终答案质量的一点思考</title><link>https://www.cuiyingyun.com/posts/20260311-%E5%85%B3%E4%BA%8E%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%AD%E9%97%B4%E6%8E%A8%E7%90%86%E6%AD%A5%E9%AA%A4%E8%83%BD%E6%8F%90%E5%8D%87%E6%9C%80%E7%BB%88%E7%AD%94%E6%A1%88%E8%B4%A8%E9%87%8F%E7%9A%84%E4%B8%80%E7%82%B9%E6%80%9D%E8%80%83/</link><pubDate>Wed, 11 Mar 2026 00:00:00 +0000</pubDate><guid>https://www.cuiyingyun.com/posts/20260311-%E5%85%B3%E4%BA%8E%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%AD%E9%97%B4%E6%8E%A8%E7%90%86%E6%AD%A5%E9%AA%A4%E8%83%BD%E6%8F%90%E5%8D%87%E6%9C%80%E7%BB%88%E7%AD%94%E6%A1%88%E8%B4%A8%E9%87%8F%E7%9A%84%E4%B8%80%E7%82%B9%E6%80%9D%E8%80%83/</guid><description>&lt;p>关于为什么中间推理步骤能提升最终答案质量的一点思考：&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>💭 Issues Blog on Cui.Yingyun</title><link>https://www.cuiyingyun.com/</link><description>Recent content in 💭 Issues Blog on Cui.Yingyun</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>© 2025 Cui.Yingyun</copyright><lastBuildDate>Sun, 15 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://www.cuiyingyun.com/index.xml" rel="self" type="application/rss+xml"/><item><title>2026/03/15 反馈信号</title><link>https://www.cuiyingyun.com/posts/20260315-%E5%8F%8D%E9%A6%88%E4%BF%A1%E5%8F%B7/</link><pubDate>Sun, 15 Mar 2026 00:00:00 +0000</pubDate><guid>https://www.cuiyingyun.com/posts/20260315-%E5%8F%8D%E9%A6%88%E4%BF%A1%E5%8F%B7/</guid><description>&lt;p>能够实时获得反馈，本身就是一件并不常见的事。事实上，这才是自然界中极为罕见的情况。
+因为很多人会忽略来自外部的激励信号，甚至会抗拒这些信号。如果一个人真的有自己的目标，他就应该非常清楚这些激励信号是什么样的，并且对它们足够敏感。但很多人在做事时，往往会因为种种原因而忽视这些激励信号。&lt;/p></description></item><item><title>2026/03/11 关于为什么中间推理步骤能提升最终答案质量的一点思考</title><link>https://www.cuiyingyun.com/posts/20260311-%E5%85%B3%E4%BA%8E%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%AD%E9%97%B4%E6%8E%A8%E7%90%86%E6%AD%A5%E9%AA%A4%E8%83%BD%E6%8F%90%E5%8D%87%E6%9C%80%E7%BB%88%E7%AD%94%E6%A1%88%E8%B4%A8%E9%87%8F%E7%9A%84%E4%B8%80%E7%82%B9%E6%80%9D%E8%80%83/</link><pubDate>Wed, 11 Mar 2026 00:00:00 +0000</pubDate><guid>https://www.cuiyingyun.com/posts/20260311-%E5%85%B3%E4%BA%8E%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%AD%E9%97%B4%E6%8E%A8%E7%90%86%E6%AD%A5%E9%AA%A4%E8%83%BD%E6%8F%90%E5%8D%87%E6%9C%80%E7%BB%88%E7%AD%94%E6%A1%88%E8%B4%A8%E9%87%8F%E7%9A%84%E4%B8%80%E7%82%B9%E6%80%9D%E8%80%83/</guid><description>&lt;p>关于为什么中间推理步骤能提升最终答案质量的一点思考：&lt;/p>
 &lt;ul>
 &lt;li>固定深度的 Transformer（不输出中间 token）本质上更像一个固定层数的电路——它所能处理的问题复杂度是有上界的。&lt;/li>
 &lt;li>一旦允许输出中间 token，模型就变成了一个图灵完备的计算系统——理论上，只要给它足够多的中间步骤，就可以处理任意复杂的可计算问题。&lt;/li>
@@ -88,18 +89,4 @@
 &lt;li>在新的“编程语言”前提下，会出现新的开发模式。至于具体是什么，目前还没有共识；但从历史规律上看，肯定会有变化。现在要做的是义无反顾地投身其中，积累第一手经验，获得比较优势，并在过程中寻找杠杆，放大收益。&lt;/li>
 &lt;li>对计算机原理、数据结构与算法、优秀的设计模式以及软件工程等概念的理解，其重要性不会降低。跟以前一样，懂得这些内容的人用“自然语言”也能写出更好的程序。但软件的整体丰富度、质量在 LLM 的加持下肯定会提升。&lt;/li>
 &lt;li>对业务的理解，从古至今都是最核心的竞争力。它体现在对人的理解、对需求的敏感性上。&lt;/li>
-&lt;/ul></description></item><item><title>2026/01/03 2026 元旦浏览京都清水寺</title><link>https://www.cuiyingyun.com/posts/20260103-2026-%E5%85%83%E6%97%A6%E6%B5%8F%E8%A7%88%E4%BA%AC%E9%83%BD%E6%B8%85%E6%B0%B4%E5%AF%BA/</link><pubDate>Sat, 03 Jan 2026 00:00:00 +0000</pubDate><guid>https://www.cuiyingyun.com/posts/20260103-2026-%E5%85%83%E6%97%A6%E6%B5%8F%E8%A7%88%E4%BA%AC%E9%83%BD%E6%B8%85%E6%B0%B4%E5%AF%BA/</guid><description>&lt;p>如果佛陀看到如今的人去寺庙礼佛，是为了满足自己的诉求，佛陀会怎么想？&lt;/p>
-&lt;p>佛陀教导的是放下执着，从而获得真正的幸福；可人们一旦有所求，执着反而更深，甚至到了要靠“求神拜佛”来支撑的地步。&lt;/p>
-&lt;p>这些祈愿多半出于善意——很少有人进寺是为了诅咒他人。&lt;/p>
-&lt;p>古代欧洲宗教贩卖赎罪券，日本寺庙售卖自家出品的小纪念品：本质上的区别是什么？还是只是程度上的差异？&lt;/p>
-&lt;p>普通人总要有个寄托愿望的地方，就像也需要一个出口来疏解情绪。&lt;/p>
-&lt;p>现代寺庙的功能也许已经转变：从“教义之所”，更多成了“寄托之处”。&lt;/p>
-&lt;p>凡人难免有执念，有了执念就会寄托祝福。这是人性，不会变，因此也可以持久地存在下去。&lt;/p>
-&lt;p>既然是现代，我也不该拿原始佛陀的教义，去苛求几千年后被不断诠释、重塑的“教义”。甚至这未必是谁“改良”出来的，而是社会演进中的自我演化：存在得越久，受影响的因素就越多。&lt;/p>
-&lt;p>而它能够长时间存在，恰恰也离不开原始教义本身的力量。&lt;/p>
-&lt;p>我的态度是：没必要拿原始教义来要求当下的寺庙，也没必要指望变了样的寺庙来满足自己的祈愿心理；不过可以欣赏人们进行这种行为的过程，包括其建筑与空间之美。&lt;/p>
-&lt;p>&amp;mdash;2026 元旦，京都清水寺&lt;/p>
-&lt;p>
-&lt;figure>&lt;img src="https://github.com/user-attachments/assets/426dcc8d-509b-4470-8fae-ad60d1a6315b" alt="Image" class="mx-auto my-0 rounded-md" />
-&lt;/figure>
-&lt;/p></description></item></channel></rss>
+&lt;/ul></description></item></channel></rss>
